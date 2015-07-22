@@ -8,10 +8,11 @@ pacstrap -cGMd ./rootfs $(cat ./packages)
 cp -arfv airootfs/* rootfs/
 arch-chroot ./rootfs /root/install.sh ${1}
 ###############################################################################################################################################################################################################
-cp -ar ./rootfs/boot/* ./mount/
-rm -r ./rootfs/boot
+mv    ./rootfs/boot/* ./mount/
+rmdir ./rootfs/boot
 bootctl --path ./mount install
 sed "s/CHANGEMEH/$(blkid ${1} -s PARTUUID -o value)/" ./boot/syslinux.cfg > ./mount/syslinux/syslinux.cfg
 sed "s/CHANGEMEH/$(blkid ${1} -s PARTUUID -o value)/" ./boot/arch.conf    > ./mount/loader/entries/arch.conf
-sync; mksquashfs rootfs ./mount/rootfs.squashfs
+mksquashfs rootfs ./mount/rootfs.squashfs
+sync
 echo " quick and dirty... "
