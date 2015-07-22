@@ -21,7 +21,9 @@ would do a minimal setup with grsec but im to much of an update whore and only e
 
 overall goals...
 boot sign and network discovery
+
 lab setup with header node... (no use case but sounds fun) boot it multiple times toggle switch client / server node as a gateway with lan admin panel
+
 crypted internal storage raw images + couple of wrapper scripts to ez mode systemd-nspawn + my minimal archiso setup as in what im used to /shrug
 
 i dont really have any decent usecase or requirements its all based around whatever fits best for whatever i can get my hands on
