@@ -20,6 +20,7 @@ i want to just dump everything i had in archiso but going to build it up from sc
 would do a minimal setup with grsec but im to much of an update whore and only ever seen grsec upgrade the kernel before core once in however many years ive been no-lifing this shit
 
 overall goals...
+
 boot sign and network discovery
 
 lab setup with header node... (no use case but sounds fun) boot it multiple times toggle switch client / server node as a gateway with lan admin panel
