@@ -1,34 +1,29 @@
-so this was pretty short lived...
-i cant maintain this in git without some huge irritating script to set chmod && chown on every directory and file in airootfs
-currently just .gitignore rootfs and mount with terrabad none root user group read and write : / 
+###############################################################################################################################################################################################################
+things that still take a massive dump all over ramfs...
+.
+.
+.
+^ then better mount size 
 
-if i could edit archiso to do this i would but the bootloader foo still baffles me
-i want to eject the usb after boot to play around with hotplugging gpg && gpg-agent cache
+sections...
+rootfs / bootfs
+cant bootctl without a partition
+cant syslinux without rootfs ( got installed / rootfs new conflicts at one point + means it lags with updates cant pull new on first build)
+^ to lazy to pacman -W
 
-currently takes path to /dev/sdXYZ 
-sdXYZ - being a vfat -F32 partition (efi + bios support)
-could dump any other partition + filesystem next to it fill it with rootfs images and make a better bootloader menu or interactive menu in initramfs
-basically if i actually had a use case other than general play could make it do whatever you want
+can recover old rootfs... < - dumping gpg into initramfs totally wrong place
+signing shit with root key in boot
+gpg keyring in initramfs needs pub ah fucking socket lulz gpg into tmpfs 
 
-still planning on dumping a root signing key
-boot the usb random generates user + gnupg/ssh/sshd
-plug and play root sign + a lan network discovery
-either boot tmp with no networking or boot tmp sign the rng user and then network discovery
-everythings pretty much dev mode as in its all going to be root while i play with it 
-i want to just dump everything i had in archiso but going to build it up from scratch and recheck everything
-^ want to dump a template config for all things systemd i like it /shrug and /careface if you dont
-would do a minimal setup with grsec but im to much of an update whore and only ever seen grsec upgrade the kernel before core once in however many years ive been no-lifing this shit
+init sign vs boot sign
 
-overall goals...
+toggle 
+like the point in booting unplugging and replugging to sign is fail...
+initramfs all the things + interactive prompt
+sshd sign gnupg sign
+^ need revoke / timeout / multiple checks... single node per key gen if key moves to another node while up revoke it 
+key lost fuck off and die mode arent any work arounds or dos, owned enough to steal key + network access kill it
+means persistent access to proxy through the node or gtfo off the network...
 
-boot sign and network discovery
 
-lab setup with header node... (no use case but sounds fun) boot it multiple times toggle switch client / server node as a gateway with lan admin panel
-
-crypted internal storage raw images + couple of wrapper scripts to ez mode systemd-nspawn + my minimal archiso setup as in what im used to /shrug
-
-i dont really have any decent usecase or requirements its all based around whatever fits best for whatever i can get my hands on
-^ once i loose my last bios mobo probably shrink it to efi only bootctl is amazing the first ever efi install i did was fucking horrible now its one cli command cant complain
-
-but yeh need copious amounts of drugs and a week locked in a dark room to finish it or insert slow drawn out randomly updated proccess here
-
+###############################################################################################################################################################################################################

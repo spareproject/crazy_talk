@@ -1,18 +1,17 @@
 #!/bin/env bash
 ###############################################################################################################################################################################################################
-mkdir -p ./rootfs/
+mkdir -p ./rootfs/boot
 mkdir -p ./mount/
-mount ${1} ./mount
 ###############################################################################################################################################################################################################
-pacstrap -cGMd ./rootfs $(cat ./packages)
+mount ${1} ./rootfs/boot
+pacstrap -cGMd ./rootfs $(for i in $(cat packages);do if [[ ! $(grep "#" <<< ${i}) ]];then echo -n "${i} " ;fi;done)
+umount ./rootfs/boot
 cp -arfv airootfs/* rootfs/
 arch-chroot ./rootfs /root/install.sh ${1}
 ###############################################################################################################################################################################################################
-mv    ./rootfs/boot/* ./mount/
-rmdir ./rootfs/boot
-bootctl --path ./mount install
-sed "s/CHANGEMEH/$(blkid ${1} -s PARTUUID -o value)/" ./boot/syslinux.cfg > ./mount/syslinux/syslinux.cfg
-sed "s/CHANGEMEH/$(blkid ${1} -s PARTUUID -o value)/" ./boot/arch.conf    > ./mount/loader/entries/arch.conf
-mksquashfs rootfs ./mount/rootfs.squashfs
-sync
+umount ./rootfs/boot
+rm -r ./rootfs/boot
+mount ${1} ./mount
+mksquashfs ./rootfs ./mount/rootfs.squashfs
 echo " quick and dirty... "
+###############################################################################################################################################################################################################

@@ -48,14 +48,20 @@ fsck_root
 #"$mount_handler" /new_root
 ###################################################################################################################################################################################################################
 mkdir /new_mount
+mkdir /new_squashfs
+
 "$mount_handler" /new_mount
-mount -t tmpfs -o size=80% none /new_root
-mkdir new_squashfs
 mount -t squashfs /new_mount/rootfs.squashfs /new_squashfs
+mount -t tmpfs -o size=$(du -s new_squashfs|awk '{print $1}')K none /new_root
+
 cp -arvf /new_squashfs/* /new_root/
+
 sync
+umount /new_squashfs
 umount /new_mount
 rmdir /new_mount
+rmdir /new_squashfs
+
 sync
 ###################################################################################################################################################################################################################
 
