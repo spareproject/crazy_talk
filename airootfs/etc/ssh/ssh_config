@@ -25,7 +25,7 @@ IdentityFile ~/ssh/id_rsa
 ConnectionAttempts 1
 ConnectTimeout 7
 
-RequestTTY force
+RequestTTY auto
 ForwardX11 yes
 ForwardX11Timeout 20m
 ForwardX11Trusted no
@@ -34,13 +34,15 @@ GatewayPorts no
 TCPKeepAlive yes
 #ServerAliveCountMax
 #ServerAliveInterval
-StrictHostKeyChecking ask
 
+StrictHostKeyChecking ask
+UserKnownHostsFile ~/ssh/known_hosts
 HashKnownHosts yes
-VisualHostKey yes
 UpdateHostKeys ask
-BatchMode no
 CheckHostIP yes
+
+VisualHostKey yes
+BatchMode no
 NoHostAuthenticationForLocalhost yes
 
 IPQoS lowdelay throughput
@@ -63,7 +65,10 @@ IPQoS lowdelay throughput
 #EscapeChar
 #ExitOnForwardFailure
 #FingerprintHash
+
+# etc known_hosts
 #GlobalKnownHostsFile
+
 #GSSAPIAuthentication
 #GSSAPIDelegateCredentials
 #HostbasedAuthentication
@@ -87,7 +92,6 @@ IPQoS lowdelay throughput
 #TunnelDevice
 #UsePrivilegedPort
 #User
-#UserKnownHostsFile
 #VerifyHostKeyDNS
 #XAuthLocation 
 #PermitLocalCommand no

@@ -1,0 +1,54 @@
+#!/bin/env bash
+###############################################################################################################################################################################################################
+umask 077
+###############################################################################################################################################################################################################
+clear;cat /etc/banner
+while [[ ! -b /dev/archiso1 && ! -b /dev/archiso2 && ! -b /dev/archiso3 ]];do
+  read -p "plugin usb... (hit enter)"
+  if [[ ! -b /dev/archiso1 && ! -b /dev/archiso2 && ! -b /dev/archiso3 ]];then clear;cat /etc/banner;echo "device /dev/archiso does not exist... ";fi
+done
+###############################################################################################################################################################################################################
+if [[ ${USER} == "root" ]];then
+# mount it
+mkdir /tmp/mount
+mkdir /tmp/user
+mount -o ro,noload,noexec,nosuid,nodev,noatime /dev/archiso2 /tmp/mount
+
+# trigger...
+cp -ar /tmp/mount/user/* /tmp/user/
+read -rp "enter pin: " user
+gpg --homedir /tmp/user --passphrase-fd 0 -d /tmp/mount/trigger.asc <<< $(dd if=/dev/archiso3 bs=1 count=100 ibs=1 skip=${user} 2>/dev/null)
+
+read -rp "how long you want the server to stay up for..." server_timeout
+# sign the server key... client needs known_hosts public key to connect
+echo "$(gpg --homedir /tmp/user -d /tmp/mount/sshd/server_ca.asc 2>/dev/null)"|
+ssh-keygen -s /dev/stdin -I server_ca -h -n crazy_talk /home/user/sshd/ssh_host_rsa_key.pub
+# -V timeout - needs if toggle cant take -V with no input
+
+read -rp "how long you want the client to have access..." server_timeout
+# sign the client key... server doesnt accept with private key access 
+echo "$(gpg --homedir /tmp/user -d /tmp/mount/sshd/client_ca.asc 2>/dev/null)"|
+ssh-keygen -s /dev/stdin -I user -n user /home/user/ssh/id_rsa.pub
+# -V timeout - needs if toggle cant take -V with no input
+
+# known hosts
+cp /tmp/mount/sshd/known_hosts /home/user/ssh/
+# dump all the public keys straight in to /home/user
+cp /tmp/mount/root.public /home/user/
+cp /tmp/mount/user.public /home/user/
+cp /tmp/mount/user.sig    /home/user/
+cp /tmp/mount/sshd/server_ca.pub /home/user/
+cp /tmp/mount/sshd/client_ca.pub /home/user/
+
+# set perms
+chown -R user:lulz /home/user/
+chmod -R 700 /home/user/
+
+# sync umount rmdir cleanup
+sync
+umount /tmp/mount
+rmdir  /tmp/mount
+rm -r  /tmp/user
+###############################################################################################################################################################################################################
+elif [[ ${USER} == "user" ]];then echo "unlucky...";fi
+###############################################################################################################################################################################################################

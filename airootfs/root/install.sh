@@ -1,18 +1,30 @@
 #!/bin/env bash
 ###############################################################################################################################################################################################################
-# boot loader
-mount ${1} /boot
-sgdisk $(sed 's/.$//' <<< ${1}) --attributes=1:set:2
-dd bs=440 conv=notrunc count=1 if=/usr/lib/syslinux/bios/gptmbr.bin of=$(sed 's/.$//' <<< ${1})
+dev=${1}
+boot=${dev}1
+keys=${dev}2
+random=${dev}3
+###############################################################################################################################################################################################################
+mount ${boot} /boot
+lsblk
+ls -al /boot
+read -p "apperently it doesnt want to mount anymore... (press enter)"
+###############################################################################################################################################################################################################
+sgdisk ${dev} --attributes=1:set:2
+dd bs=440 conv=notrunc count=1 if=/usr/lib/syslinux/bios/gptmbr.bin of=${dev}
 mkdir /boot/syslinux
-sed "s/CHANGEMEH/$(blkid ${1} -s PARTUUID -o value)/" /root/syslinux.cfg > /boot/syslinux/syslinux.cfg
+sed "s/CHANGEMEH/$(blkid ${boot} -s PARTUUID -o value)/" /root/syslinux.cfg > /boot/syslinux/syslinux.cfg
 syslinux-install_update -i
+###############################################################################################################################################################################################################
 bootctl --path /boot install
-sed "s/CHANGEMEH/$(blkid ${1} -s PARTUUID -o value)/" /root/arch.conf    > /boot/loader/entries/arch.conf
+sed "s/CHANGEMEH/$(blkid ${boot} -s PARTUUID -o value)/" /root/arch.conf > /boot/loader/entries/arch.conf
 cp /root/initramfs.conf /boot/loader/entries/
 cp /root/loader.conf /boot/loader
+###############################################################################################################################################################################################################
 mkinitcpio -p linux
 rm -r /boot/initramfs-linux-fallback.img
+###############################################################################################################################################################################################################
+
 ###############################################################################################################################################################################################################
 locale-gen
 ln -sf /usr/share/zoneinfo/UTC /etc/localtime
@@ -22,10 +34,10 @@ chmod -R 700 /root
 chmod -R 700 /etc/iptables
 passwd -l root
 ###############################################################################################################################################################################################################
-USER=$(shuf -i 60000-65536 -n 1);LULZ=${USER}
-while [[ ${LULZ} == ${USER} ]];do LULZ=$(shuf -i 60000-65536 -n 1);done
-groupadd --gid ${LULZ} lulz
-useradd --uid ${USER} -g lulz -s /bin/bash user;
+user=$(shuf -i 60000-65536 -n 1)
+lulz=$(shuf -i 60000-65536 -n 1)
+groupadd --gid ${lulz} lulz
+useradd --uid ${user} -g lulz -s /bin/bash user;
 chown -R user:lulz /home/user;
 chmod -R 700 /home/user
 passwd -l user

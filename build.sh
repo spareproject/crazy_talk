@@ -1,17 +1,39 @@
 #!/bin/env bash
 ###############################################################################################################################################################################################################
+clear;cat /etc/banner
 mkdir -p ./rootfs/boot
 mkdir -p ./mount/
 ###############################################################################################################################################################################################################
-mount ${1} ./rootfs/boot
-pacstrap -cGMd ./rootfs $(for i in $(cat packages);do if [[ ! $(grep "#" <<< ${i}) ]];then echo -n "${i} " ;fi;done)
-umount ./rootfs/boot
-cp -arfv airootfs/* rootfs/
-arch-chroot ./rootfs /root/install.sh ${1}
+dev=${1}
+boot=${dev}1
+keys=${dev}2
+random=${dev}3
 ###############################################################################################################################################################################################################
+mount ${boot} ./rootfs/boot
+sync
+sleep 1
+lsblk
+read -p "apperently it doesnt want to mount anymore... (press enter)"
+pacstrap -C ./pacman.conf -cGMd ./rootfs $(for i in $(cat packages);do if [[ ! $(grep "#" <<< ${i}) ]];then echo -n "${i} " ;fi;done)
+cp -arfv airootfs/* rootfs/
+sync
+ls -al ./rootfs/boot
+read -p "apperently it doesnt want to mount anymore... (press enter)"
+umount ./rootfs/boot
+###############################################################################################################################################################################################################
+arch-chroot ./rootfs /root/install.sh ${dev}
+###############################################################################################################################################################################################################
+sync
 umount ./rootfs/boot
 rm -r ./rootfs/boot
-mount ${1} ./mount
+###############################################################################################################################################################################################################
+idproduct=$(udevadm info ${dev} | grep -e ID_MODEL_ID | sed 's/E: ID_MODEL_ID=//')
+idvendor=$(udevadm info ${dev} | grep -e ID_VENDOR_ID | sed 's/E: ID_VENDOR_ID=//')
+iserial=$(udevadm info ${dev} | grep -e ID_SERIAL_SHORT | sed 's/E: ID_SERIAL_SHORT=//')
+sed -i -e "s/IDVENDOR/${idvendor}/" -e "s/IDPRODUCT/${idproduct}/" -e "s/SERIAL/${iserial}/" ./rootfs/root/09-gnupg.rules
+###############################################################################################################################################################################################################
+mount ${boot} ./mount
 mksquashfs ./rootfs ./mount/rootfs.squashfs
+sync
 echo " quick and dirty... "
 ###############################################################################################################################################################################################################
