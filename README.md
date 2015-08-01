@@ -1,5 +1,9 @@
 ###############################################################################################################################################################################################################
 
+********
+totally forgot to sign the rng user keys... root sign or user sign... and deletes rng user key with persistent user key but sleep... 
+
+
 erm so yeh...
 
 its pretty much a cheap throw up with little to no proof reading or testing
