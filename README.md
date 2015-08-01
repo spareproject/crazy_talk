@@ -25,4 +25,6 @@ gdisk /dev/sdX
 +G 8300 partition dd if=/dev/random (literally takes hours 64G usb stick would not be a good idea)
 persistent partitions even a overlay mount to persist packages / setup is terrabad on usb/sdcard ro or gtfo was always my way of thinking
 
+will install nvidia to steam if someone buys a nvidia gpu else nope cant test blind
+
 ###############################################################################################################################################################################################################
