@@ -1,0 +1,93 @@
+Host *
+AddressFamily any
+Port 31279
+Protocol 2
+LogLevel INFO
+
+Ciphers aes256-ctr
+HostKeyAlgorithms ssh-rsa-cert-v01@openssh.com
+KexAlgorithms diffie-hellman-group-exchange-sha256
+MACs hmac-sha2-512
+Compression yes
+
+PreferredAuthentications publickey
+PubkeyAuthentication yes
+RekeyLimit default none
+ChallengeResponseAuthentication no
+KbdInteractiveAuthentication no
+PasswordAuthentication no
+RSAAuthentication no
+RhostsRSAAuthentication no
+
+IdentitiesOnly yes
+IdentityFile ~/ssh/id_rsa
+
+ConnectionAttempts 1
+ConnectTimeout 7
+
+RequestTTY auto
+ForwardX11 yes
+ForwardX11Timeout 20m
+ForwardX11Trusted no
+ForwardAgent no
+GatewayPorts no
+TCPKeepAlive yes
+#ServerAliveCountMax
+#ServerAliveInterval
+StrictHostKeyChecking ask
+
+HashKnownHosts yes
+VisualHostKey yes
+UpdateHostKeys ask
+BatchMode no
+CheckHostIP yes
+NoHostAuthenticationForLocalhost yes
+
+IPQoS lowdelay throughput
+
+#Match
+#BindAddress
+#CanonicalDomains 
+#CanonicalizeFallbackLocal
+#CanonicalizeHostname
+#CanonicalizeMaxDots
+#CanonicalizePermittedCNAMEs
+#Cipher 
+#ClearAllForwardings
+#CompressionLevel 
+#ControlMaster
+#ControlPath 
+#ControlPersist
+#DynamicForward
+#EnableSSHKeysign
+#EscapeChar
+#ExitOnForwardFailure
+#FingerprintHash
+#GlobalKnownHostsFile
+#GSSAPIAuthentication
+#GSSAPIDelegateCredentials
+#HostbasedAuthentication
+#HostbasedKeyTypes
+#HostKeyAlias 
+#HostName
+#IgnoreUnknown
+#KbdInteractiveDevices 
+#LocalCommand
+#LocalForward
+#NumberOfPasswordPrompts
+#PKCS11Provider
+#ProxyCommand 
+#ProxyUseFdpass
+#RemoteForward 
+#RevokedHostKeys 
+#SendEnv
+#StreamLocalBindMask
+#StreamLocalBindUnlink
+#Tunnel
+#TunnelDevice
+#UsePrivilegedPort
+#User
+#UserKnownHostsFile
+#VerifyHostKeyDNS
+#XAuthLocation 
+#PermitLocalCommand no
