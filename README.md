@@ -36,4 +36,8 @@ persistent partitions even a overlay mount to persist packages / setup is terrab
 
 will install nvidia to steam if someone buys a nvidia gpu else nope cant test blind
 
+
+if this thing keeps on being such a fuck on to upload im dumping a binary dot avatard auto make and spam dns resolver for remote header + rotating backups 
+
+
 ###############################################################################################################################################################################################################
