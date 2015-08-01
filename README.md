@@ -11,7 +11,9 @@ just going to run it and patch updates as things fall off
 pushing for internal storage but not saving shit till i get atleast a month of stable use out of it
 
 firstboot takes pin dumps public keys (all of them) signs random generated, auto tidy up and pull
+
 oneshot takes pin dumps user gnupg into /tmp with 60 second gpg-agent and 63 second auto delete
+
 ^ its root only mostly because i cant nspawn without root can fstab none root and block root sign with perms...
 
 did have some stupidly long script that checked a load of user input...
