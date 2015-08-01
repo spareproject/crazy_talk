@@ -20,12 +20,12 @@ did have some stupidly long script that checked a load of user input...
 gutting it and leaving boot, unionfs, create, map  
 probably need a delete but... not writing any scripts that delete things therefore when you format or dd the wrong /dev/sd... tab tab shit mode its all on you :)
 
-basically...
-gdisk /dev/sdX 
-1G ef00 partition vfat -F32
-1G 8300 partition ext4
-+G 8300 partition dd if=/dev/random (literally takes hours 64G usb stick would not be a good idea)
-persistent partitions even a overlay mount to persist packages / setup is terrabad on usb/sdcard ro or gtfo was always my way of thinking
+basically...<br />
+gdisk /dev/sdX <br />
+1G ef00 partition vfat -F32<br />
+1G 8300 partition ext4<br />
++G 8300 partition dd if=/dev/random (literally takes hours 64G usb stick would not be a good idea)<br />
+persistent partitions even a overlay mount to persist packages / setup is terrabad on usb/sdcard ro or gtfo was always my way of thinking<br />
 
 will install nvidia to steam if someone buys a nvidia gpu else nope cant test blind
 
