@@ -25,6 +25,9 @@ gdisk /dev/sdX <br />
 1G ef00 partition vfat -F32<br />
 1G 8300 partition ext4<br />
 +G 8300 partition dd if=/dev/random (literally takes hours 64G usb stick would not be a good idea)<br />
+can probably hide loads of data in the random section so long as the gnupg keys arent overwritten
+literal character map to binary spew all over the disk 
+
 persistent partitions even a overlay mount to persist packages / setup is terrabad on usb/sdcard ro or gtfo was always my way of thinking<br />
 
 will install nvidia to steam if someone buys a nvidia gpu else nope cant test blind
