@@ -1,0 +1,3 @@
+
+wpa_supplicant -D erm -i wlan0 -c < (wpa_passphrase "ssid" "key")
+
