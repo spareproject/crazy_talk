@@ -1,4 +1,7 @@
 
+todo<br>
+
+
 right so....
 
 macchanger was legacy stop bridges from setting the same mac address foo...
