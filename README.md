@@ -1,17 +1,17 @@
 
 todo<br>
-fix the build script... still ignores mounts rng
-fix combine.sh
-create,map,boot,close - tidy up checkpoint
-container install script - defult checkpoint
-
-unionfs,killall,close-mkII - deal with the headache of input checking
-container install script unionfs - add stackable config dir & package list maybe multiple unionfs mounts
-
-fix tmpfs size in initramfs ( trim it and then anything that trys to edit the rootfs gets flagged going to work on getting full list of files + last edited to flag everything )
-sign everything in /boot with keys
-
-but probably wont be updated for a while 
+fix the build script... still ignores mounts rng<br>
+fix combine.sh<br>
+create,map,boot,close - tidy up checkpoint<br>
+container install script - defult checkpoint<br>
+<br>
+unionfs,killall,close-mkII - deal with the headache of input checking<br>
+container install script unionfs - add stackable config dir & package list maybe multiple unionfs mounts<br>
+<br>
+fix tmpfs size in initramfs ( trim it and then anything that trys to edit the rootfs gets flagged going to work on getting full list of files + last edited to flag everything )<br>
+sign everything in /boot with keys<br>
+<br>
+but probably wont be updated for a while <br>
 
 right so....
 
