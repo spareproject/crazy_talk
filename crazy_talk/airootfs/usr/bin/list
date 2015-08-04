@@ -1,0 +1,18 @@
+#!/bin/env bash
+
+for i in $(ls /mnt/rawfs/);do
+echo -n "${i} - "
+if [[ -f /mnt/luks/${i} ]];then
+  echo -n "key"
+fi
+if [[ -b /dev/mapper/${i} ]];then
+  echo -n "mapped"
+fi
+if [[ $(mount | grep "/mnt/mount/${i} ") ]];then
+  echo -n "mounted"
+fi
+if [[ $(machinectl | grep "${i}") ]];then
+  echo -n "booted"
+fi
+echo ""
+done
