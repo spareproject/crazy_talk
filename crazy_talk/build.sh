@@ -1,4 +1,4 @@
-#!/bin/env bash
+!/bin/env bash
 ###############################################################################################################################################################################################################
 clear;cat /etc/banner
 mkdir -p ./rootfs/boot
@@ -9,18 +9,22 @@ boot=${dev}1
 keys=${dev}2
 random=${dev}3
 ###############################################################################################################################################################################################################
-mount ${boot} ./rootfs/boot
-sync
-sleep 1
-lsblk
-read -p "apperently it doesnt want to mount anymore... (press enter)"
+#mount ${boot} ./rootfs/boot
+#sync
+#sleep 1
+#lsblk
+#read -p "apperently it doesnt want to mount anymore... (press enter)"
 pacstrap -C ./pacman.conf -cGMd ./rootfs $(for i in $(cat packages);do if [[ ! $(grep "#" <<< ${i}) ]];then echo -n "${i} " ;fi;done)
 cp -arfv airootfs/* rootfs/
+#sync
+#ls -al ./rootfs/boot
+#read -p "apperently it doesnt want to mount anymore... (press enter)"
+#umount ./rootfs/boot
+#sleep 1
+mount ${boot} ./mount
+mv ./rootfs/boot/* ./mount/
 sync
-ls -al ./rootfs/boot
-read -p "apperently it doesnt want to mount anymore... (press enter)"
-umount ./rootfs/boot
-sleep 1
+umount ./mount/
 ###############################################################################################################################################################################################################
 arch-chroot ./rootfs /root/install.sh ${dev}
 ###############################################################################################################################################################################################################

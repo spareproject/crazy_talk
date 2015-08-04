@@ -62,11 +62,10 @@ alsa-plugins
 dwm
 dmenu
 xterm
+weechat
 ##
 chromium
 ##
 android-tools
 android-udev
-##
-openvas
 ##
