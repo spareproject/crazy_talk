@@ -1,5 +1,8 @@
 [Match]
 Name=proxy
+
 [Network]
-Address=172.16.0.1/16
+Address=10.0.0.1/8
+DHCPServer=true
 IPForward=yes
+IPMasquerade=yes

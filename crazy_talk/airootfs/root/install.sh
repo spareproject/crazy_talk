@@ -6,10 +6,6 @@ keys=${dev}2
 random=${dev}3
 ###############################################################################################################################################################################################################
 mount ${boot} /boot
-sleep 1
-lsblk
-ls -al /boot
-read -p "apperently it doesnt want to mount anymore... (press enter)"
 ###############################################################################################################################################################################################################
 sgdisk ${dev} --attributes=1:set:2
 dd bs=440 conv=notrunc count=1 if=/usr/lib/syslinux/bios/gptmbr.bin of=${dev}
@@ -47,7 +43,15 @@ passwd -l user
 systemctl enable iptables
 systemctl enable haveged.service
 systemctl enable systemd-networkd.service
-systemctl enable dhcpd4
+#systemctl enable systemd-resolved.service
+#systemctl enable dhcpd4
 systemctl enable dnscrypt-proxy
 systemctl enable combine.service
 ###############################################################################################################################################################################################################
+umount /boot
+read -p "testing"
+ls -al /boot
+read -p "testing"
+rm -r /boot
+
+

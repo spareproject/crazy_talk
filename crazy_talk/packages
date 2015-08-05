@@ -10,6 +10,7 @@ cryptsetup
 arch-install-scripts
 squashfs-tools
 unionfs-fuse
+mdadm
 ##
 sed
 usbutils
@@ -29,7 +30,7 @@ tor
 torsocks
 openssh
 sshfs
-dhcp
+#dhcp
 dnscrypt-proxy
 ldns
 nginx

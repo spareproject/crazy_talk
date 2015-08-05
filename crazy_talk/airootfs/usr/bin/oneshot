@@ -20,7 +20,7 @@ umount /tmp/mount
 rmdir  /tmp/mount
 ###############################################################################################################################################################################################################
 read -rp "enter pin: " PIN
-gpg --homedir /tmp/user --passphrase-fd 0 -d /tmp/trigger.asc <<< $(dd if=/dev/archiso3 bs=1 count=100 ibs=1 skip=${PIN} 2>/dev/null)
+gpg --homedir /tmp/user --passphrase-fd 0 -d /tmp/trigger.asc 2>/dev/null <<< $(dd if=/dev/archiso3 bs=1 count=100 ibs=1 skip=${PIN} 2>/dev/null)
 function detach_meh {
   sleep 63
   rm -r /tmp/user

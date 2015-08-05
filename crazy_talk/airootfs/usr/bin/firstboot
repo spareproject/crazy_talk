@@ -9,8 +9,9 @@ while [[ ! -b /dev/archiso1 && ! -b /dev/archiso2 && ! -b /dev/archiso3 ]];do
 done
 ###############################################################################################################################################################################################################
 if [[ ${USER} == "root" ]];then
-mkdir /tmp/mount
-mkdir /tmp/user
+if [[ $(mount | grep "/tmp/mount ") ]];then echo "something already mounted on /tmp/mount...";exit;fi
+rm -r /tmp/mount;mkdir /tmp/mount
+rm -r /tmp/user; mkdir /tmp/user
 mount -o ro,noload,noexec,nosuid,nodev,noatime /dev/archiso2 /tmp/mount
 ###############################################################################################################################################################################################################
 cp -ar /tmp/mount/user/* /tmp/user/
@@ -19,22 +20,22 @@ gpg --homedir /tmp/user --passphrase-fd 0 -d /tmp/mount/trigger.asc <<< $(dd if=
 ###############################################################################################################################################################################################################
 echo -e "Server Certificate Uptime\n1 - 1 hour\n2 - 1 day\n3 - 1 week\n4 - 1 month\n5 - 1 year\n"
 while [[ ${toggle} != @("1"|"2"|"3"|"4"|"5") ]];do read -p "input: " toggle;done
-if [[ ${toggle} == "1" ]];then timestamp="1h";fi
-if [[ ${toggle} == "2" ]];then timestamp="1d";fi
-if [[ ${toggle} == "3" ]];then timestamp="1w";fi
-if [[ ${toggle} == "4" ]];then timestamp="4w";fi
-if [[ ${toggle} == "5" ]];then timestamp="52w";fi
+if [[ ${toggle} == "1" ]];then timestamp="+1h";fi
+if [[ ${toggle} == "2" ]];then timestamp="+1d";fi
+if [[ ${toggle} == "3" ]];then timestamp="+1w";fi
+if [[ ${toggle} == "4" ]];then timestamp="+4w";fi
+if [[ ${toggle} == "5" ]];then timestamp="+52w";fi
 unset toggle
 echo "$(gpg --homedir /tmp/user -d /tmp/mount/sshd/server_ca.asc 2>/dev/null)"|
 ssh-keygen -s /dev/stdin -I server_ca -h -n crazy_talk -V ${timestamp} /home/user/sshd/ssh_host_rsa_key.pub
 ###############################################################################################################################################################################################################
 echo -e "Client Certificate Uptime\n1 - 1 hour\n2 - 1 day\n3 - 1 week\n4 - 1 month\n5 - 1 year\n"
 while [[ ${toggle} != @("1"|"2"|"3"|"4"|"5") ]];do read -p "input: " toggle;done
-if [[ ${toggle} == "1" ]];then timestamp="1h";fi
-if [[ ${toggle} == "2" ]];then timestamp="1d";fi
-if [[ ${toggle} == "3" ]];then timestamp="1w";fi
-if [[ ${toggle} == "4" ]];then timestamp="4w";fi
-if [[ ${toggle} == "5" ]];then timestamp="52w";fi
+if [[ ${toggle} == "1" ]];then timestamp="+1h";fi
+if [[ ${toggle} == "2" ]];then timestamp="+1d";fi
+if [[ ${toggle} == "3" ]];then timestamp="+1w";fi
+if [[ ${toggle} == "4" ]];then timestamp="+4w";fi
+if [[ ${toggle} == "5" ]];then timestamp="+52w";fi
 unset toggle
 echo "$(gpg --homedir /tmp/user -d /tmp/mount/sshd/client_ca.asc 2>/dev/null)"|
 ssh-keygen -s /dev/stdin -I user -n user -V ${timestamp} /home/user/ssh/id_rsa.pub

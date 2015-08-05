@@ -9,29 +9,29 @@ boot=${dev}1
 keys=${dev}2
 random=${dev}3
 ###############################################################################################################################################################################################################
-#mount ${boot} ./rootfs/boot
-#sync
-#sleep 1
-#lsblk
-#read -p "apperently it doesnt want to mount anymore... (press enter)"
 pacstrap -C ./pacman.conf -cGMd ./rootfs $(for i in $(cat packages);do if [[ ! $(grep "#" <<< ${i}) ]];then echo -n "${i} " ;fi;done)
 cp -arfv airootfs/* rootfs/
-#sync
-#ls -al ./rootfs/boot
-#read -p "apperently it doesnt want to mount anymore... (press enter)"
-#umount ./rootfs/boot
-#sleep 1
+###############################################################################################################################################################################################################
 mount ${boot} ./mount
 mv ./rootfs/boot/* ./mount/
-sync
 umount ./mount/
 ###############################################################################################################################################################################################################
 arch-chroot ./rootfs /root/install.sh ${dev}
 ###############################################################################################################################################################################################################
-sync
-umount ./rootfs/boot
-sleep 1
-rm -r ./rootfs/boot
+#sync
+#read -p "erm teh fuckzorz"
+#echo lsof
+#lsof ./rootfs/boot
+#echo "end lsof"
+#ls -al ./rootfs/boot/
+#echo lsof
+#lsof ./rootfs/boot
+#echo "end lsof"
+#umount ./rootfs/boot/
+#ls -al ./rootfs/boot/
+#read -p "because wtf"
+#sleep 1
+#rm -r ./rootfs/boot
 ###############################################################################################################################################################################################################
 idproduct=$(udevadm info ${dev} | grep -e ID_MODEL_ID | sed 's/E: ID_MODEL_ID=//')
 idvendor=$(udevadm info ${dev} | grep -e ID_VENDOR_ID | sed 's/E: ID_VENDOR_ID=//')
@@ -40,6 +40,6 @@ sed -i -e "s/IDVENDOR/${idvendor}/" -e "s/IDPRODUCT/${idproduct}/" -e "s/SERIAL/
 ###############################################################################################################################################################################################################
 mount ${boot} ./mount
 mksquashfs ./rootfs ./mount/rootfs.squashfs
-sync
+umount ./mount
 echo " quick and dirty... "
 ###############################################################################################################################################################################################################
