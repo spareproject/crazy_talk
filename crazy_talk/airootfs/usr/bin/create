@@ -6,7 +6,7 @@ umask 077
 ###############################################################################################################################################################################################################
 if [[ ! $(mount | grep /mnt) ]];then echo "internal storage isnt mounted";exit;fi
 if [[ ! -d /tmp/user && ! $(pgrep gpg-agent) ]];then echo "gnupg not loaded";exit;fi
-if [[ ! -d /mnt/luks/${1} && ! -d /mnt/rawfs/${name} ]];then echo "rawfs &| key doesnt exist";fi
+if [[ ! -d /mnt/luks/${1} && ! -d /mnt/rawfs/${name} ]];then echo "rawfs &| key dont exist";fi
 ###############################################################################################################################################################################################################
 if [[ ! -d /mnt/mount/${1} ]];then mkdir -p /mnt/mount/${1};fi
 dd if=/dev/random bs=1 count=8192 | gpg --homedir /tmp/user -e > /mnt/luks/${1}

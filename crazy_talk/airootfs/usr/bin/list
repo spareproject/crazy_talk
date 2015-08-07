@@ -1,18 +1,35 @@
 #!/bin/env bash
-
-for i in $(ls /mnt/rawfs/);do
-echo -n "${i} - "
-if [[ -f /mnt/luks/${i} ]];then
-  echo -n "key"
-fi
-if [[ -b /dev/mapper/${i} ]];then
-  echo -n "mapped"
-fi
-if [[ $(mount | grep "/mnt/mount/${i} ") ]];then
-  echo -n "mounted"
-fi
-if [[ $(machinectl | grep "${i}") ]];then
-  echo -n "booted"
-fi
-echo ""
+###############################################################################################################################################################################################################
+clear;cat /etc/banner
+for i in $(ls /mnt/rawfs/);do 
+OUTPUT+="[ ${i} ] - "
+if [[ -f /mnt/luks/${i} ]];then OUTPUT+="[ key ] ";fi
+if [[ -b /dev/mapper/${i} ]];then OUTPUT+="[ mapped ] ";fi
+if [[ $(mount | grep "/mnt/mount/${i} ") ]];then OUTPUT+="[ mounted ] ";fi
+if [[ $(machinectl | grep "${i}") ]];then OUTPUT+="[ booted ] ";fi
+OUTPUT+="\n"
 done
+echo -e $OUTPUT | column -t
+###############################################################################################################################################################################################################
+echo ""
+echo "ONLY UNIONSF MOUNT NAMES ACTUALLY MOUNTED"
+for i in $(mount | grep unionfs | awk '{print $3}');do
+echo "[ ${i#/mnt/mount/} ] "
+done
+echo ""
+###############################################################################################################################################################################################################
+echo "ONLY mount directories with a period in them "
+for i in $(ls /mnt/mount/ | grep ".\..");do
+  echo "${i} "
+  if [[ $(mount | grep "${i} ") ]];then echo mounted;fi
+done
+###############################################################################################################################################################################################################
+echo ""
+echo "everything mounted in /mnt/mount excluding unionfs "
+mount | grep "/mnt/mount" | grep -v "unionfs" | column -t 
+echo ""
+###############################################################################################################################################################################################################
+echo "every unionfs still trying to exclude anything not in /mnt/mount... unrelated shit"
+mount | grep unionfs
+###############################################################################################################################################################################################################
+

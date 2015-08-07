@@ -50,7 +50,6 @@ gpg --homedir /tmp/user --output /home/user/user.sig --sign /home/user/user.publ
 # set perms
 chown -R user:lulz /home/user/
 chmod -R 700 /home/user/
-
 # sync umount rmdir cleanup
 sync
 umount /tmp/mount

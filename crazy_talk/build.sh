@@ -4,10 +4,23 @@ clear;cat /etc/banner
 mkdir -p ./rootfs/boot
 mkdir -p ./mount/
 ###############################################################################################################################################################################################################
+if [[ ! -b ${1} ]];then echo "${1} doesnt exist...";fi
+if [[ ${1: -1} == [0-9] ]];then echo "takes device not partition fucked up this way more than once...";exit;fi
+lsblk
+unset finish;while [[ ${finish} != @("y"|"n") ]];do read -r -p "about to mkfs.vfat ${1}1  continue (y/n)? " finish;done
+if [[ ${finish} == "n" ]];then clear;cat /etc/banner;echo "i always say putting prompts like this does nothing but encourage bad behaviour learn to fuck up less...";fi
+###############################################################################################################################################################################################################
 dev=${1}
 boot=${dev}1
 keys=${dev}2
 random=${dev}3
+###############################################################################################################################################################################################################
+
+# keep forgetting this shit... not exactly good in an upload
+systemctl start pacman-init
+if [[ ! $(mount | grep /var/cache/pacman/pkg) ]];then mount --bind /mnt/storage/old/storage/pkg /var/cache/pacman/pkg;fi
+
+mkfs.vfat -F32 ${boot}
 ###############################################################################################################################################################################################################
 pacstrap -C ./pacman.conf -cGMd ./rootfs $(for i in $(cat packages);do if [[ ! $(grep "#" <<< ${i}) ]];then echo -n "${i} " ;fi;done)
 cp -arfv airootfs/* rootfs/
@@ -17,21 +30,6 @@ mv ./rootfs/boot/* ./mount/
 umount ./mount/
 ###############################################################################################################################################################################################################
 arch-chroot ./rootfs /root/install.sh ${dev}
-###############################################################################################################################################################################################################
-#sync
-#read -p "erm teh fuckzorz"
-#echo lsof
-#lsof ./rootfs/boot
-#echo "end lsof"
-#ls -al ./rootfs/boot/
-#echo lsof
-#lsof ./rootfs/boot
-#echo "end lsof"
-#umount ./rootfs/boot/
-#ls -al ./rootfs/boot/
-#read -p "because wtf"
-#sleep 1
-#rm -r ./rootfs/boot
 ###############################################################################################################################################################################################################
 idproduct=$(udevadm info ${dev} | grep -e ID_MODEL_ID | sed 's/E: ID_MODEL_ID=//')
 idvendor=$(udevadm info ${dev} | grep -e ID_VENDOR_ID | sed 's/E: ID_VENDOR_ID=//')

@@ -5,7 +5,7 @@ Protocol 2
 LogLevel INFO
 
 Ciphers aes256-ctr
-HostKeyAlgorithms ssh-rsa-cert-v01@openssh.com
+HostKeyAlgorithms ssh-rsa,ssh-rsa-cert-v01@openssh.com
 KexAlgorithms diffie-hellman-group-exchange-sha256
 MACs hmac-sha2-512
 Compression yes

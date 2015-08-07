@@ -1,6 +1,8 @@
 ##
 systemd
+bash
 iproute2
+sed
 ##
 tmux
 vim-minimal
