@@ -1,18 +1,6 @@
 #!/bin/env bash
 ###############################################################################################################################################################################################################
-#
-# so need ssh/sshd and gnupg for containers
-# basically it hasnt worked for that long i didnt really think this far ahead
-#
-#
+if [[ $# != 3 ]];then echo -e "${0} - help\narg0 interface name\narg1 network name\narg2 passphrase";exit;fi
 ###############################################################################################################################################################################################################
-
-ssh-keygen -t rsa -b 4096 -f server_ca -N ""
-ssh-keygen -t rsa -b 4096 -f client_ca -N ""
-
-sign the host user id_rsa.pub
-dump the server_ca.pub into known_hosts
-
-cluster based on certs
-syst
-
+wpa_supplicant -B -i "${1}" -c <(wpa_passphrase "${2}" <<< "${3}") &>/dev/null
+###############################################################################################################################################################################################################

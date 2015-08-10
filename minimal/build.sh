@@ -15,11 +15,9 @@ boot=${dev}1
 keys=${dev}2
 random=${dev}3
 ###############################################################################################################################################################################################################
-
-# keep forgetting... not exactly good in an upload
-#systemctl start pacman-init
-if [[ ! $(mount | grep /var/cache/pacman/pkg) ]];then mount --bind /mnt/storage/old/storage/pkg /var/cache/pacman/pkg;fi
-
+systemctl start pacman-init
+if [[ ! $(mount | grep /mnt/storage/old/storage/pkg) ]];then mount --bind /mnt/storage/old/storage/pkg /var/cache/pacman/pkg;fi
+sleep 1
 mkfs.vfat -F32 ${boot}
 sleep 2
 ###############################################################################################################################################################################################################
@@ -41,6 +39,6 @@ mount ${boot} ./mount
 mksquashfs ./rootfs ./mount/rootfs.squashfs
 umount ./mount
 echo " quick and dirty... "
-umount ./rootfs/* # incase arch-chroot doesnt shut properly
+umount ./rootfs/* 2>/dev/null # incase arch-chroot doesnt shut properly
 rm -r ./rootfs/*
 ###############################################################################################################################################################################################################

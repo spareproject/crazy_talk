@@ -22,4 +22,5 @@ rm /etc/securetty
 systemctl enable systemd-networkd.service
 systemctl enable iptables.service
 systemctl enable sshd@user.service
+systemctl enable ffs.service
 ###############################################################################################################################################################################################################

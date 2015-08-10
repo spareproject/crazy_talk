@@ -1,0 +1,11 @@
+[Unit]
+Description=fucking ipv6
+After=systemd-networkd.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/systemctl restart systemd-networkd
+
+[Install]
+WantedBy=multi-user.target
+

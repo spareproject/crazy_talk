@@ -7,6 +7,8 @@ random=${dev}3
 ###############################################################################################################################################################################################################
 mount ${boot} /boot
 ###############################################################################################################################################################################################################
+#ls /boot
+#read -p "ffs"
 sgdisk ${dev} --attributes=1:set:2
 dd bs=440 conv=notrunc count=1 if=/usr/lib/syslinux/bios/gptmbr.bin of=${dev}
 mkdir /boot/syslinux
@@ -40,10 +42,19 @@ chown -R user:lulz /home/user;
 chmod -R 700 /home/user
 passwd -l user
 ###############################################################################################################################################################################################################
-aticonfig --initial
 systemctl enable iptables
+systemctl enable haveged.service
 systemctl enable systemd-networkd.service
-systemctl enable catalyst-hook
+#systemctl enable systemd-resolved.service
+#systemctl enable dhcpd4
+systemctl enable dnscrypt-proxy
+systemctl enable combine.service
 ###############################################################################################################################################################################################################
 umount /boot
+#read -p "testing"
+#ls -al /boot
+#read -p "testing"
+#chattr -i /boot/syslinux/ldlinux.sys
 rm -r /boot
+
+
