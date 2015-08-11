@@ -1,0 +1,15 @@
+#https://www.digitalocean.com/community/tutorials/how-to-create-an-ssh-ca-to-validate-hosts-and-clients-with-ubuntu
+ssh-keygen -t rsa -b 4096 -f server_ca
+ssh-keygen -t rsa -b 4096 -f client_ca
+ssh-keygen -s server_ca -I server_ca -h -n crazy_talk -V +52w ssh_host_rsa_key.pub
+HostCertificate ./ssh_host_rsa_key-cert.pub
+./known_hosts: @cert-authority $(cat server_ca.pub) user@crazy_talk
+TrustedUserCAKeys ./client_ca.pub
+ssh-keygen -s client_ca -I user -n user -V +52w id_rsa.pub
+
+still need to find out how to do this... well with openssh
+someone thefts a client key... server sees two incoming keys from different sources key revoke
+someone thefts a server key... client sees two identical servers from different sources key revoke
+^ doesnt really work chances of generating 2 identical keys... but it needs to handle that anyway
+basically if two keys are found and arent from the same host revoke it forces proxy / routing through owned node to fuck with the network
+
