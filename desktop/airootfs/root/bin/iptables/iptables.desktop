@@ -28,6 +28,7 @@ iptables -N TCP
 iptables -N LO_UDP
 iptables -N LO_TCP
 ########################################################################################
+iptables -A INPUT -p icmp -j DROP
 iptables -A INPUT -m conntrack --ctstate INVALID -j DROP
 ########################################################################################
 iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED --ctproto tcp -j ACCEPT
@@ -40,12 +41,12 @@ iptables -A INPUT -p udp -m conntrack --ctstate NEW -j UDP
 iptables -A INPUT -j LOG --log-prefix "DROPPED" --log-level 6
 iptables -A INPUT -j DROP
 ########################################################################################
-iptables -A LO_UDP -p udp -d 127.0.0.1 --dport 53 -j ACCEPT
+#iptables -A LO_UDP -p udp -d 127.0.0.1 --dport 53 -j ACCEPT
+iptables -A LO_UDP -p udp -d 127.0.0.1 --dport 9053 -j ACCEPT
 iptables -A LO_UDP -j LOG --log-prefix "LO_UDP" --log-level 6
 iptables -A LO_UDP -j DROP
 ########################################################################################
-iptables -A LO_TCP -p tcp -d 127.0.0.1 --dport 9050 -j ACCEPT
-iptables -A LO_TCP -p tcp -d 127.0.0.1 --dport 9053 -j ACCEPT
+iptables -A LO_TCP -p tcp -d 127.0.0.1 --dport 9051 -j ACCEPT
 iptables -A LO_TCP -j LOG --log-prefix "LO_TCP" --log-level 6
 iptables -A LO_TCP -j DROP
 ########################################################################################
@@ -55,6 +56,19 @@ iptables -A UDP -j DROP
 iptables -A TCP -j LOG --log-prefix "TCP" --log-level 6
 iptables -A TCP -j DROP
 ########################################################################################
+iptables -A OUTPUT -p icmp -j DROP
+iptables -A OUTPUT -p tcp --dport 5228 -j DROP
+iptables -t nat -A OUTPUT ! -o lo -p tcp -m owner --uid-owner 1001 -j REDIRECT --to-ports 9051
+iptables -t nat -A OUTPUT ! -o lo -p udp -m owner --uid-owner 1001 -m udp --dport 53 -j REDIRECT --to-ports 9053
+########################################################################################
+iptables -A OUTPUT -p tcp -m owner --uid-owner 1002 -m tcp --dport 9051 -j ACCEPT
+iptables -A OUTPUT -p udp -m owner --uid-owner 1002 -m udp --dport 9053 -j ACCEPT
+iptables -A OUTPUT ! -o lo -m owner --uid-owner 1002 -j DROP
+########################################################################################
+#iptables -t nat -A OUTPUT -m owner --uid-owner $(id -u bob) -p udp --dport 53 -j REDIRECT --to-ports 9053
+#iptables -t nat -A OUTPUT -m owner --uid-owner $(id -u bob) -p udp -j DROP
+#iptables -t nat -A OUTPUT -m owner --uid-owner $(id -u bob) -p tcp -j REDIRECT --to-ports 9050
+########################################################################################
 #iptables -t nat -A OUTPUT -s localhost -d localhost -p udp --dport 53 -j REDIRECT --to-port 9053
 #iptables -A PREROUTING -t nat -i !internal -p tcp --dport 80 -j REDIRECT --to-port 8080
 #iptables -A PREROUTING -t nat -i !internal -p tcp --dport 443 -j REDIRECT --to-port 8080
@@ -62,3 +76,7 @@ iptables -A TCP -j DROP
 #iptables -t nat -A PREROUTING -i proxy -p udp -j REDIRECT --to-ports 9053
 #iptables -t nat -A PREROUTING -i proxy -p tcp -j REDIRECT --to-ports 9050
 ########################################################################################
+
+
+
+

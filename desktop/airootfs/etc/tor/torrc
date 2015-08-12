@@ -20,8 +20,8 @@
 #SocksPort 9050 # Default: Bind to localhost:9050 for local connections.
 VirtualAddrNetworkIPv4 10.192.0.0/10
 AutomapHostsOnResolve 1
-TransPort 172.16.0.1:9050
-DNSPort   172.16.0.1:9053
+TransPort 9051
+DNSPort   9053
 #SocksPort 10.0.0.1:9050 # Bind to this adddress:port too.
 ## Entry policies to allow/deny SOCKS requests based on IP address.
 ## First entry that matches wins. If no SocksPolicy is set, we accept

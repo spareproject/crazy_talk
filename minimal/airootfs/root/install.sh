@@ -7,17 +7,13 @@ random=${dev}3
 ###############################################################################################################################################################################################################
 mount ${boot} /boot
 ###############################################################################################################################################################################################################
-#ls /boot
-#read -p "ffs"
 sgdisk ${dev} --attributes=1:set:2
 dd bs=440 conv=notrunc count=1 if=/usr/lib/syslinux/bios/gptmbr.bin of=${dev}
-mkdir /boot/syslinux
-sed "s/CHANGEMEH/$(blkid ${boot} -s PARTUUID -o value)/" /root/syslinux.cfg > /boot/syslinux/syslinux.cfg
 syslinux-install_update -i
+sed "s/CHANGEMEH/$(blkid ${boot} -s PARTUUID -o value)/" /root/syslinux.cfg > /boot/syslinux/syslinux.cfg
 ###############################################################################################################################################################################################################
 bootctl --path /boot install
 sed "s/CHANGEMEH/$(blkid ${boot} -s PARTUUID -o value)/" /root/arch.conf > /boot/loader/entries/arch.conf
-cp /root/initramfs.conf /boot/loader/entries/
 cp /root/loader.conf /boot/loader
 ###############################################################################################################################################################################################################
 mkinitcpio -p linux
@@ -35,10 +31,10 @@ chmod -R 700 /etc/iptables
 passwd -l root
 ###############################################################################################################################################################################################################
 user=$(shuf -i 60000-65536 -n 1)
-lulz=$(shuf -i 60000-65536 -n 1)
-groupadd --gid ${lulz} lulz
-useradd --uid ${user} -g lulz -s /bin/bash user;
-chown -R user:lulz /home/user;
+group=$(shuf -i 60000-65536 -n 1)
+groupadd --gid ${group} group
+useradd --uid ${user} -g group -s /bin/bash user;
+chown -R user:group /home/user;
 chmod -R 700 /home/user
 passwd -l user
 ###############################################################################################################################################################################################################
@@ -46,15 +42,17 @@ systemctl enable iptables
 systemctl enable haveged.service
 systemctl enable systemd-networkd.service
 #systemctl enable systemd-resolved.service
-#systemctl enable dhcpd4
 systemctl enable dnscrypt-proxy
 systemctl enable combine.service
 ###############################################################################################################################################################################################################
 umount /boot
-#read -p "testing"
-#ls -al /boot
-#read -p "testing"
-#chattr -i /boot/syslinux/ldlinux.sys
 rm -r /boot
+###############################################################################################################################################################################################################
 
-
+###############################################################################################################################################################################################################
+if [[ $(ls /root/packages/) != "" ]];then
+  for i in $(ls /root/packages);do
+    pacman -U /root/packages/${i}
+  done
+fi
+###############################################################################################################################################################################################################

@@ -10,6 +10,4 @@ pacstrap -C ./pacman.conf -cGMd /mnt/mount/${1} $(for i in $(cat packages);do if
 cp -arfv airootfs/* /mnt/mount/${1}
 arch-chroot /mnt/mount/${1} /root/install.sh ${dev}
 cat /home/user/ssh/id_rsa.pub >> /mnt/mount/${1}/home/user/ssh/authorized_keys
-#chroot chown user:lulz ./rootfs/home/user/ssh/authorized_keys
-#chmod 700 ./rootfs/home/user/ssh/authorized_keys
 ###############################################################################################################################################################################################################

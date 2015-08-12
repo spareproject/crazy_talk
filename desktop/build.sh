@@ -1,25 +1,21 @@
 !/bin/env bash
 ###############################################################################################################################################################################################################
-clear;cat /etc/banner
-mkdir -p ./rootfs/boot
-mkdir -p ./mount/
-###############################################################################################################################################################################################################
-if [[ ! -b ${1} ]];then echo "${1} doesnt exist...";fi
-if [[ ${1: -1} == [0-9] ]];then echo "takes device not partition fucked up this way more than once...";exit;fi
-lsblk
-unset finish;while [[ ${finish} != @("y"|"n") ]];do read -r -p "about to mkfs.vfat ${1}1  continue (y/n)? " finish;done
-if [[ ${finish} == "n" ]];then clear;cat /etc/banner;echo "i always say putting prompts like this does nothing but encourage bad behaviour learn to fuck up less...";fi
-###############################################################################################################################################################################################################
 dev=${1}
 boot=${dev}1
 keys=${dev}2
 random=${dev}3
 ###############################################################################################################################################################################################################
-systemctl start pacman-init
-if [[ ! $(mount | grep /mnt/storage/old/storage/pkg) ]];then mount --bind /mnt/storage/old/storage/pkg /var/cache/pacman/pkg;fi
-sleep 1
+clear;cat /etc/banner
+mkdir -p ./rootfs/boot
+mkdir -p ./mount/
+###############################################################################################################################################################################################################
+if [[ ! -b ${1} ]];then echo "${dev} doesnt exist...";fi
+if [[ ${dev: -1} == [0-9] ]];then echo "takes device not partition...";exit;fi
+lsblk;unset input
+while [[ ${input} != @("y"|"n") ]];do read -r -p "about to mkfs.vfat ${boot}  continue (y/n)?" input;done
+if [[ ${input} == "n" ]];then clear;cat /etc/banner;echo "learn to fuck up less...";exit;fi
+###############################################################################################################################################################################################################
 mkfs.vfat -F32 ${boot}
-sleep 2
 ###############################################################################################################################################################################################################
 pacstrap -C ./pacman.conf -cGMd ./rootfs $(for i in $(cat packages);do if [[ ! $(grep "#" <<< ${i}) ]];then echo -n "${i} " ;fi;done)
 cp -arfv airootfs/* rootfs/

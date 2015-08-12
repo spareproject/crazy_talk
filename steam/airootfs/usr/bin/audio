@@ -1,0 +1,16 @@
+#!/bin/env bash
+
+clear;cat /etc/banner
+echo "sound cards available"
+
+awk 'NR == 1 || NR % 3 == 0' /proc/asound/cards
+
+read -r -p "select sound card: " input
+
+if [[ ${input} == [0-9] ]];then
+  sed -i -e "s/defaults.ctl.card 0/defaults.ctl.card ${input}/" -e "s/defaults.pcm.card 0/defaults.ctl.card ${input}/" /usr/share/alsa/alsa.conf
+else
+  echo "takes numeric 0-9"
+fi
+
+echo "reboot open processes for changes to take effect..."

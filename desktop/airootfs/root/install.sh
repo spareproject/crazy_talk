@@ -7,13 +7,10 @@ random=${dev}3
 ###############################################################################################################################################################################################################
 mount ${boot} /boot
 ###############################################################################################################################################################################################################
-#ls /boot
-#read -p "ffs"
 sgdisk ${dev} --attributes=1:set:2
 dd bs=440 conv=notrunc count=1 if=/usr/lib/syslinux/bios/gptmbr.bin of=${dev}
-mkdir /boot/syslinux
-sed "s/CHANGEMEH/$(blkid ${boot} -s PARTUUID -o value)/" /root/syslinux.cfg > /boot/syslinux/syslinux.cfg
 syslinux-install_update -i
+sed "s/CHANGEMEH/$(blkid ${boot} -s PARTUUID -o value)/" /root/syslinux.cfg > /boot/syslinux/syslinux.cfg
 ###############################################################################################################################################################################################################
 bootctl --path /boot install
 sed "s/CHANGEMEH/$(blkid ${boot} -s PARTUUID -o value)/" /root/arch.conf > /boot/loader/entries/arch.conf
@@ -33,28 +30,29 @@ chmod -R 700 /root
 chmod -R 700 /etc/iptables
 passwd -l root
 ###############################################################################################################################################################################################################
-user=$(shuf -i 1000-65536 -n 1)
-lulz=$(shuf -i 1000-65536 -n 1)
-groupadd --gid ${lulz} lulz
-useradd --uid ${user} -g lulz -s /bin/bash user;
-chown -R user:lulz /home/user;
+groupadd --gid 1000 group
+###############################################################################################################################################################################################################
+useradd --uid 1000 -g group -s /bin/bash user;
+chown -R user:group /home/user;
 chmod -R 700 /home/user
 passwd -l user
 ###############################################################################################################################################################################################################
-bob=${user};lelz=${lulz}
-while [[ ${bob}  == ${user} ]];do bob=$(shuf -i 1000-65536 -n 1);done
-while [[ ${lelz} == ${lulz} ]];do lelz=$(shuf -i 1000-65536 -n 1);done
-groupadd --gid ${lelz} lelz
-useradd --uid ${bob} -g lelz -s /bin/bash bob;
-chown -R bob:lelz /home/bob;
-chmod -R 700 /home/bob
-passwd -l bob
+useradd --uid 1001 -g group -s /bin/bash anon;
+chown -R anon:group /home/anon;
+chmod -R 700 /home/anon
+passwd -l anon
+###############################################################################################################################################################################################################
+chown -R root:group /home/watch
+chmod -R 770 /home/watch
+chown -R root:group /home/messages
+chmod -R 770 /home/messages
 ###############################################################################################################################################################################################################
 systemctl enable iptables
 systemctl enable haveged.service
 systemctl enable systemd-networkd.service
-systemctl enable dnscrypt-proxy
+#systemctl enable dnscrypt-proxy
 systemctl enable combine.service
+systemctl enable tor.service
 ###############################################################################################################################################################################################################
 umount /boot
 rm -r /boot

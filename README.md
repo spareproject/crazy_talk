@@ -1,34 +1,32 @@
 #READMAH
-random dump cant even remember whats changed making desktop <br>
-need to generate the rbac rules<br>
-going to gut it literally tor chromium weechat rtorrent mpv not enough packages on it to rebuild itself<br>
-dumping sudo su any form of access to root in theory haha<br>
-probably going to blag more apparmor style rbac for the binaries<br>
-if it doesnt auto magic on boot then well your pretty fucked mode currently has sudo to debug and setup<br>
-i do get the irony in calling this a desktop but it is one deal with it<br>
-<br>
-then minimals going container / lan / cluster / any play insecure update whore mode can generate usbs<br>
-desktops a browser with other things i use steam style ie as few moving parts as possible<br>
-<br>
-really need to do a template and tidy up the build.sh / install.sh / pacman.conf / gnupg.sh / then the bootloader / udev rules <br>
-to make a minimal template its either pacstrap base with bootctl and syslinux to literally zero config<br>
-or the above and gnupg plug and play pretty much adding gnupg to the template <br>
-cant really decide but ill make a template clean the scripts and config till i stop twitching at how unorganized this is <br>
-then its done bar random backups for stuff im running on it... but dumping a template would be a decent stable checkpoint to say this is done and a semi usable thing /shrug<br>
-
-im suprised i remembered anything about grsec setups may have been awhile and the configs literally learning on a few binaries and whatever i need to butcher to make it passwordless liveusb friendly
-so dont expect anything special probably attempting to do to many things at once<br>
-<br>
-template<br>
-minimal<br>
 desktop<br>
-container<br>
-steam<br>
-
-i wouldnt use the binaries im dumping in airootfs/root/packages build them...<br>
-gutted some stuff out of weechat<br>
-dwm larger font no default rules i said ages ago everythings green on black because wasting time on colorschemes is pointless but less edit easier maintain from pull<br>
+not in anyway stable : /<br>
+trying to dump a learning mode run in policy and rbac.service to start on boot<br>
+^^ not generating learning mode in a safe environment so still sketchy<br>
+/etc/grsec/pw is min length 6 chars... some weird binary hash i cant find anything about<br>
+plan is dump policy on at boot gradm.service<br>
+have a random max length password dump in pw <br>
+no way to turn it off<br>
+no passwords means no role auth... so its default only and user roles<br>
 <br>
-pepperflash <- erm yeh this doesnt work for shit google music play lasts about 2 minutes before the entire browser crashes<br>
-everytime i go to bbc iplayer on a chromebook i get free system updates :D everyime i go on archiso it bricks the iso...<br>
-^ seriously you can manipulate the legal system so its legal for a handfull of people to be a bunch of cunts on the internet but illegal for everyone else to... dat logic tho
+but wifi... short version<br>
+iwlist... fucked displays like 3 networks doesnt display my own network<br>
+wpa_cli... fucked displays like 3 networks (scan) doesnt display my own network<br>
+airodump... works shows everything with loads of sexy output... <br>
+even wifi-menu netctl + dhcpcd which works... but keeps telling me the interface is already up even tho output said it was down...<br>
+so wifis probably going to be a pain<br>
+<br>
+erm two users tty1 still has sudo debug / setup <br>
+tty2 - anon (probably not anon) i have epic naming skillz but bob was a bit weird <br>
+forwards all traffic anon generates through tor transport and tordns<br>
+^ had to drop dnscrypt-proxy if etc/resolv is 127.0.0.1 it ignores dns redirect and pulls from dnscrypt so sketchy as f00k dns leaks mode ftw<br>
+<br>
+/home/watch and /home/torrents used to dump between both accounts ssh is no where near done aiming for none root mount archiso2 symlink<br>
+root owned signing key, user owned persistsent key random boot key... but two users... ssh on one both through tor normal<br>
+<br>
+should really pull a stable template...<br>
+everything needed to generate a bios/efi bootable usb with squashfs to tmpfs on boot then gnupg hotplug for internal storage<br>
+<br>
+everythings getting out of sync and getting annoying <br>
+temped to pull it all start fresh so i can recheck everything : / but it works in theory<br>
+

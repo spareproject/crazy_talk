@@ -29,6 +29,9 @@ sshfs
 dnscrypt-proxy
 ##
 macchanger
+netctl
+dialog
+dhcpcd
 wpa_supplicant
 crda
 aircrack-ng
@@ -61,8 +64,8 @@ dwm
 dmenu
 xterm
 weechat
-rtorrent
 chromium
+rtorrent
 mpv
 ##
 sudo
