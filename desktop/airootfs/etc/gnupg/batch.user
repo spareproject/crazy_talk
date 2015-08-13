@@ -6,7 +6,6 @@ Key-Usage: sign
 Subkey-Type: rsa
 Subkey-Length: 4096
 Subkey-Usage: encrypt
-Passphrase: ""
 Name-Real:user
 Name-Email:user@archiso
 Expire-Date: 0

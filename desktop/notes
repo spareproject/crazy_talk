@@ -1,0 +1,7 @@
+
+/dev/sda1 - vfat 1G
+/dev/sda2 - ext4 1G
+/dev/sda3 - ext4 -G
+
+dd if=/dev/random of=./rawfs... run it till it dies... ?
+
