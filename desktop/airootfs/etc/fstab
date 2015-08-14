@@ -4,4 +4,6 @@ tmpfs /tmp     tmpfs rw,nodev,nosuid,noexec 0 0
 proc /proc proc defaults,hidepid=2 0 0
 /dev/archiso2 /tmp/mount ext4 ro,noload,nodev,nosuid,noexec,user,noauto,noatime
 /dev/archiso3 /tmp/random ext4 ro,noload,nodev,nosuid,noexec,user,noauto,noatime
-
+/dev/md127 /mnt/md127 ext4 rw,nodev,nosuid,noexec,user,noauto,noatime
+/dev/sda   /mnt/sda   ext4 rw,nodev,nosuid,noexec,user,noauto,noatime
+/dev/sdb   /mnt/sdb   ext4 rw,nodev,nosuid,noexec,user,noauto,noatime

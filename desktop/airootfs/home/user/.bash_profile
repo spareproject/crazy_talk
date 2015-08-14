@@ -10,3 +10,5 @@ pkill gpg-agent
 
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 
+echo "" > /home/user/.bash_profile
+

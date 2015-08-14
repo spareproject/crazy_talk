@@ -30,8 +30,6 @@ dnscrypt-proxy
 ##
 macchanger
 netctl
-dialog
-dhcpcd
 wpa_supplicant
 crda
 aircrack-ng

@@ -21,6 +21,7 @@ iptables -t security -X
 ########################################################################################
 iptables -P INPUT DROP
 iptables -P OUTPUT ACCEPT
+#iptables -P OUTPUT DROP
 iptables -P FORWARD DROP
 ########################################################################################
 iptables -N UDP
@@ -53,17 +54,35 @@ iptables -A LO_TCP -j DROP
 iptables -A UDP -j LOG --log-prefix "UDP" --log-level 6
 iptables -A UDP -j DROP
 ########################################################################################
+iptables -A TCP -p tcp --dport 31279 -j ACCEPT
 iptables -A TCP -j LOG --log-prefix "TCP" --log-level 6
 iptables -A TCP -j DROP
 ########################################################################################
-iptables -A OUTPUT -p icmp -j DROP
-iptables -A OUTPUT -p tcp --dport 5228 -j DROP
-iptables -t nat -A OUTPUT ! -o lo -p tcp -m owner --uid-owner 1001 -j REDIRECT --to-ports 9051
-iptables -t nat -A OUTPUT ! -o lo -p udp -m owner --uid-owner 1001 -m udp --dport 53 -j REDIRECT --to-ports 9053
+iptables -t nat -A OUTPUT -m owner --uid-owner 1001 ! -o lo -p tcp -j REDIRECT --to-ports 9051
+iptables -t nat -A OUTPUT -m owner --uid-owner 1001 ! -o lo -p udp --dport 53 -j REDIRECT --to-ports 9053
 ########################################################################################
-iptables -A OUTPUT -p tcp -m owner --uid-owner 1002 -m tcp --dport 9051 -j ACCEPT
-iptables -A OUTPUT -p udp -m owner --uid-owner 1002 -m udp --dport 9053 -j ACCEPT
-iptables -A OUTPUT ! -o lo -m owner --uid-owner 1002 -j DROP
+iptables -A OUTPUT -p icmp -j DROP
+iptables -A OUTPUT -m owner --uid-owner 1001 -p tcp -d 127.0.0.1 --dport 9051 -j ACCEPT
+iptables -A OUTPUT -m owner --uid-owner 1001 -p udp -d 127.0.0.1 --dport 9053 -j ACCEPT
+iptables -A OUTPUT -m owner --uid-owner 1001 -j DROP
+#
+#iptables -A OUTPUT -m owner --uid-owner 43 -p tcp --dport 9051 -j ACCEPT
+#iptables -A OUTPUT -m owner --uid-owner 43 -p tcp --sport 9051 -j ACCEPT
+#iptables -A OUTPUT -m owner --uid-owner 43 -p udp --dport 9053 -j ACCEPT
+#iptables -A OUTPUT -m owner --uid-owner 43 -p udp --sport 9053 -j ACCEPT
+#iptables -A OUTPUT -m owner --uid-owner 43 -p tcp --dport 9001 -j ACCEPT
+#iptables -A OUTPUT -m owner --uid-owner 43 -p tcp --dport 443 -j ACCEPT
+#
+#iptables -A OUTPUT -p tcp --dport 80 -j ACCEPT
+#iptables -A OUTPUT -p tcp --dport 443 -j ACCEPT
+#iptables -A OUTPUT -p udp --dport 53 -j ACCEPT
+#
+#iptables -A OUTPUT -p tcp --dport 6697 -j ACCEPT
+#
+#iptables -A OUTPUT -p tcp --dport 31279 -j ACCEPT
+#iptables -A OUTPUT -p tcp --sport 31279 -j ACCEPT
+#
+#iptables -A OUTPUT -j LOG --log-prefix "OUTPUT" --log-level 6
 ########################################################################################
 #iptables -t nat -A OUTPUT -m owner --uid-owner $(id -u bob) -p udp --dport 53 -j REDIRECT --to-ports 9053
 #iptables -t nat -A OUTPUT -m owner --uid-owner $(id -u bob) -p udp -j DROP
