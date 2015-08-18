@@ -5,6 +5,9 @@ make package worked now it doesnt do shit<br>
 i really want to do hasscicam if that actually works its going everywhere haha i may even untape my webcams : /<br>
 ^ someone needs to compile that for me because makepkg wont work for shit and its really pissing me off and everything to get none root on internal storage doesnt work either<br>
 fucking raging<br>
+its almost like someone went o this guys not allowed to do this anymore flipped a switch and turned everything off...<br>
+so the only way this is going to stay viable is with me pulling my finger out maintaining my own local cache (already do)<br>
+dumping alist of last known version + pkgbuilds (lol it doesnt even work) so it atleast has a stable version checkpoint i can downgrade to and not give any fucks<br>
 going shiny button idiot mode on minimal (idiot mode being the http localhost execute whatever you want as root mode... and its going to be that way for awhile<br>
 as in at some point this is going on lan facing with lulz remote execute with zreo attempt at stopping it<br>
 but i want ot work on snapshot mode where logging into a server can trigger a lan scan and pretty much dump that node as a header node based on timestamping the last snapshot of the current network<br>
