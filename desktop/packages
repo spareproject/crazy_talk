@@ -68,3 +68,6 @@ mpv
 ##
 sudo
 ##
+android-tools
+android-udev
+##

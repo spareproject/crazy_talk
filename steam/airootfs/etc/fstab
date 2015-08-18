@@ -2,4 +2,4 @@ tmpfs /dev/shm tmpfs rw,nodev,nosuid,noexec 0 0
 tmpfs /var/tmp tmpfs rw,nodev,nosuid,noexec 0 0
 tmpfs /tmp     tmpfs rw,nodev,nosuid,noexec 0 0
 proc /proc proc defaults,hidepid=2 0 0
-/dev/gnupg2 /tmp/mount ext4 ro,noload,nodev,nosuid,noexec,user,noauto,noatime
+/dev/sda /home/user/.local/share/Steam ext4 defaults,noatime,discard

@@ -7,8 +7,6 @@ mv /root/09-gnupg.rules /etc/udev/rules.d/
 umask 077
 ###############################################################################################################################################################################################################
 clear;cat /etc/banner
-echo "Generating rng user keys..."
-read -p "enter user key password (press any key to continue)"
 gpg --homedir /home/user/gnupg/ --batch --gen-key /etc/gnupg/batch.user
 gpg --homedir /home/user/gnupg/ --output /home/user/user.public --export user
 ssh-keygen -t rsa -b 4096 -f "/home/user/ssh/id_rsa" -N ""

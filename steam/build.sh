@@ -1,5 +1,7 @@
 !/bin/env bash
 ###############################################################################################################################################################################################################
+trap "exit" INT
+###############################################################################################################################################################################################################
 dev=${1}
 boot=${dev}1
 keys=${dev}2
@@ -26,15 +28,12 @@ umount ./mount/
 ###############################################################################################################################################################################################################
 arch-chroot ./rootfs /root/install.sh ${dev}
 ###############################################################################################################################################################################################################
-idproduct=$(udevadm info ${dev} | grep -e ID_MODEL_ID | sed 's/E: ID_MODEL_ID=//')
-idvendor=$(udevadm info ${dev} | grep -e ID_VENDOR_ID | sed 's/E: ID_VENDOR_ID=//')
-iserial=$(udevadm info ${dev} | grep -e ID_SERIAL_SHORT | sed 's/E: ID_SERIAL_SHORT=//')
-sed -i -e "s/IDVENDOR/${idvendor}/" -e "s/IDPRODUCT/${idproduct}/" -e "s/SERIAL/${iserial}/" ./rootfs/root/09-gnupg.rules
-###############################################################################################################################################################################################################
-
-#erm ffs
-pacman -r ./rootfs -U ./rootfs/root/packages/dwm-6.0-2-x86_64.pkg.tar.xz
-
+if [[ $(ls ./rootfs/root/packages) != "" ]];then
+  for i in $(ls ./rootfs/root/packages);do
+    pacman -r ./rootfs -U ./rootfs/root/packages/${i}
+  done
+fi
+#pacman -r ./rootfs -U ./rootfs/root/packages/dwm-6.0-2-x86_64.pkg.tar.xz
 mount ${boot} ./mount
 mksquashfs ./rootfs ./mount/rootfs.squashfs
 umount ./mount

@@ -31,6 +31,11 @@ idvendor=$(udevadm info ${dev} | grep -e ID_VENDOR_ID | sed 's/E: ID_VENDOR_ID=/
 iserial=$(udevadm info ${dev} | grep -e ID_SERIAL_SHORT | sed 's/E: ID_SERIAL_SHORT=//')
 sed -i -e "s/IDVENDOR/${idvendor}/" -e "s/IDPRODUCT/${idproduct}/" -e "s/SERIAL/${iserial}/" ./rootfs/root/09-gnupg.rules
 ###############################################################################################################################################################################################################
+if [[ $(ls ./rootfs/root/packages) != "" ]];then
+  for i in $(ls ./rootfs/root/packages/);do
+    pacman -r ./rootfs -U ./rootfs/root/packages/${i}
+  done
+fi
 mount ${boot} ./mount
 mksquashfs ./rootfs ./mount/rootfs.squashfs
 umount ./mount

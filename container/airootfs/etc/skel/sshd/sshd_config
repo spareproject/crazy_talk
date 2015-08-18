@@ -17,7 +17,7 @@ PermitRootLogin no
 #DenyUsers
 AllowUsers user
 #DenyGroups
-AllowGroups lulz
+AllowGroups group
 
 PubkeyAuthentication yes
 AuthenticationMethods publickey

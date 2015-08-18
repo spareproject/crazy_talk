@@ -1,14 +1,4 @@
 #!/bin/env bash
-# doesnt actually work yet... but it will in theory need systemd-networkd to handle dhcp to avoid extra packages
-# currently wifi just doesnt work at all
-
-# right perfect world... airodump and read -p tmux split... on enter kill airodump
-# cons airodump doesnt scroll for shit... scren size massive fucking limitation 
-# pros itll look kool as fuck and literally fuck all else works 
-# child process spawn? i mean dwm split is pointless should be tmux full screen - 1 line for input 
-
-
-echo "doesnt work for shit . com / meow "
 ###############################################################################################################################################################################################################
 if [[ $# != 3 ]];then echo -e "${0} - help\narg0 - interface name\narg1 - network name\narg2 - passphrase";exit;fi
 ###############################################################################################################################################################################################################

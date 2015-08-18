@@ -42,7 +42,8 @@ systemctl enable iptables
 systemctl enable haveged.service
 systemctl enable systemd-networkd.service
 #systemctl enable systemd-resolved.service
-systemctl enable dnscrypt-proxy
+systemctl enable dnscrypt-proxy.service
+systemctl enable lighttpd.service
 systemctl enable combine.service
 ###############################################################################################################################################################################################################
 umount /boot
@@ -56,3 +57,4 @@ if [[ $(ls /root/packages/) != "" ]];then
   done
 fi
 ###############################################################################################################################################################################################################
+rm -r /var/lib/pacman/sync/*

@@ -1,7 +1,6 @@
 ##
 linux
 systemd
-##
 syslinux
 sed
 ##
@@ -28,5 +27,4 @@ dmenu
 xterm
 conky
 steam
-vim-minimal
 ##

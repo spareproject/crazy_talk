@@ -9,5 +9,4 @@ if [[ ! $(mount | grep /mnt/mount/${1}) ]];then echo "mount point doesnt have an
 pacstrap -C ./pacman.conf -cGMd /mnt/mount/${1} $(for i in $(cat packages);do if [[ ! $(grep "#" <<< ${i}) ]];then echo -n "${i} " ;fi;done)
 cp -arfv airootfs/* /mnt/mount/${1}
 arch-chroot /mnt/mount/${1} /root/install.sh ${dev}
-cat /home/user/ssh/id_rsa.pub >> /mnt/mount/${1}/home/user/ssh/authorized_keys
 ###############################################################################################################################################################################################################

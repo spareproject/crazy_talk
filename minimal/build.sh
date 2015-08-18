@@ -34,7 +34,6 @@ sed -i -e "s/IDVENDOR/${idvendor}/" -e "s/IDPRODUCT/${idproduct}/" -e "s/SERIAL/
 mount ${boot} ./mount
 mksquashfs ./rootfs ./mount/rootfs.squashfs
 umount ./mount
-echo " quick and dirty... "
 umount ./rootfs/* 2>/dev/null # incase arch-chroot doesnt shut properly
 rm -r ./rootfs/*
 ###############################################################################################################################################################################################################
