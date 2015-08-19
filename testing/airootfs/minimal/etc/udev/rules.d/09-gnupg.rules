@@ -1,0 +1,7 @@
+SUBSYSTEM=="block",
+SUBSYSTEM!="tty",
+KERNEL=="sd*",
+ATTR{idVendor}=="IDVENDOR",
+ATTR{idProduct}=="IDPRODUCT",
+ATTR{serial}=="SERIAL",
+SYMLINK+="archiso%n"

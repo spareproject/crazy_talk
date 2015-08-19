@@ -1,0 +1,15 @@
+#!/bin/env bash
+clear;cat /etc/banner
+interface=""
+for i in $(ls /sys/class/net);do
+  if [[ ${i:0:2} == wl  ]];then 
+    unset input;while [[ ${input} != @("y"|"n") ]];do read -rp "scan with device ${i} (y|n)? " input;done
+    if [[ ${input} == "y" ]];then interface=${i};fi
+  fi
+done
+if [[ ! -z ${interface} ]];then
+trap "airmon-ng stop ${interface}mon" EXIT
+airmon-ng start ${interface}
+airodump-ng ${interface}mon
+fi
+if [[ -z ${interface} ]];then echo "no wireless devices found...";fi
