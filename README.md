@@ -1,28 +1,37 @@
 #READMAH
-didnt look it at for two days now its all fucked... much stable<br>
-cant su - user on a chroot or systemd-nspawn so none of the ssh works in nspawn literally didnt change anything<br>
-make package worked now it doesnt do shit<br>
-i really want to do hasscicam if that actually works its going everywhere haha i may even untape my webcams : /<br>
-^ someone needs to compile that for me because makepkg wont work for shit and its really pissing me off and everything to get none root on internal storage doesnt work either<br>
-fucking raging<br>
-its almost like someone went o this guys not allowed to do this anymore flipped a switch and turned everything off...<br>
-so the only way this is going to stay viable is with me pulling my finger out maintaining my own local cache (already do)<br>
-dumping alist of last known version + pkgbuilds (lol it doesnt even work) so it atleast has a stable version checkpoint i can downgrade to and not give any fucks<br>
-going shiny button idiot mode on minimal (idiot mode being the http localhost execute whatever you want as root mode... and its going to be that way for awhile<br>
-as in at some point this is going on lan facing with lulz remote execute with zreo attempt at stopping it<br>
-but i want ot work on snapshot mode where logging into a server can trigger a lan scan and pretty much dump that node as a header node based on timestamping the last snapshot of the current network<br>
-^ that probably doesnt make sense<br>
-
-thinking of it in terms of 3 million phones online creating a centralized point is fail... but allowing distributed remote querying means there is no centralized dump<br>
-you can still get a shit load of inforamtion by performing queries in real time vs storing information and querying it<br>
-but needs loads of stuff to stop dos etc meh rambling<br>
-
-should probably drop proxy tor for openvpn or something i can blag lan over wan with<br>
-using lighttpd over nginx which hurts my epeen because i actually read all the nginx docs module for module compiled all the stuff i didnt use out learnt stuff<br>
-but its a total fuck on for lan shiny button press to bash scripts<br>
-every other boot randomly drops systemd-networkd as in nothing starts and the only error notes are something about timeout so /shrug<br>
-but if it ever does work again last time it was fucked for literally a month theyll atleast be a shiny easy to use mode<br>
+erm...<br>
+once makepkg works again... please? haha<br>
+recompile dwm [home][0][1][2][3]... etc rule match surf to home tag<br>
+mapping path home to surf -c /home/user/lighttpd/cookiez -i -n -p -s http://localhost:8080<br>
+dumping ssl on once its bigger / moar stable<br>
+input=$(cat /dev/stdin | tr -cd 'a-zA-Z0-9=[:space:]')<br>
+it was nearly perfect but had to whitelist equals so using it for input kills variable assignment...<br>
+would fail form commit checks bar create borked naming scheme but who call a container my=container anyway? stupid logic<br>
+everything used to work now more and more things dont work...<br>
+pacman spits out error codes ive never heard of and cant init alpm (tried grep error message on the entire source dir to find function name then grep the name + error to find where its being called but got nothing<br>
+systemd-networkd randomly decides not to start... booting a static image rng dice roll... if it doesnt start systemctl restart systemd-networkd<br>
+^ this is all with testing off now so :( someone decided to shit all over tmpfs<br>
+worse case two usbs dd an ext4 image to one on every boot /shrug nothing more fun than burning through usbs<br>
 <br>
-
-so overall the entire things currently f00ked please try again later<br>
-
+but nothing works... so going to finish off a login system for a website + gnupg crypted relay / sort of want to blag my own mail server<br>
+literally can container anything<br>
+<br>
+todoish - desktop<br>
+udev symlink on boot not borked after boot...<br>
+none root wifi<br>
+none root default sound card<br>
+strip desktop<br>
+rbac<br>
+<br>
+todoish - minimal<br>
+anything if makepkg worked ide call it an install stick with containers for testing...<br>
+but it doesnt so currently it doesnt really do alot<br>
+change terminal... well liez to lazy to manually compile dwm so cant change hotkeys :(<br>
+fix the raw partition to ext4 raw blob and none root firstboot/oneshot<br>
+<br>
+todoish<br>
+script creating the actual usb partition layout boot/keys/random seperate scripts incase pre existing...<br>
+<br>
+seriously going to just start blitzing usbs and dd the image / rootfs to a second stick on boot ext4<br>
+only way i can actually test anything<br>
+<br>

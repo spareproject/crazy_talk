@@ -1,4 +1,0 @@
-[Match]
-Name=host*
-[Network]
-DHCP=ipv4

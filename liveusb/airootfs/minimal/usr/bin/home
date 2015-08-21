@@ -1,0 +1,2 @@
+#!/bin/env bash
+surf -i -n -p -s http://localhost:8080
