@@ -1,8 +1,0 @@
-#!/bin/env bash
-clear;cat /etc/banner
-umask 077
-if [[ -f /home/user/sshd/ssh_host_rsa_key.asc && ! -f /home/user/sshd/ssh_host_rsa_key ]];then
-read -p "decrypt sshd/ssh_host_rsa_key.asc... (press enter)"
-gpg --homedir /home/user/gnupg -d /home/user/sshd/ssh_host_rsa_key.asc > /home/user/sshd/ssh_host_rsa_key
-fi
-/usr/bin/sshd -f /home/user/sshd/sshd_config

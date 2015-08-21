@@ -1,2 +1,0 @@
-#!/bin/env bash
-/usr/bin/sshd -f /home/user/sshd/sshd_config
