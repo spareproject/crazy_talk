@@ -1,4 +1,14 @@
 #READMAH
+<br>
+dont really know who jamie nguyen is but he clearly needs +1000 internetz<br>
+no where near finished dont even know if i can blag this on a rebooted liveusb yet <br>
+but ive wasted enough reading about openssl to questiion my own sanity its outright horrible<br>
+i got pub/priv pki in about 5 minutes and wouldnt think twice about setting up gnupg to do exactly the same thing<br>
+but openssl is just outright horrible and should be killed with fire lots and lots of fire <br>
+but out of fear of having to re read all that shit again this is being backed up now<br>
+will bend it to work on a rebootable usb tomorrow in thoery or slaughter thousands of cute puppys and kittens to make up for the rage of going through all that for no reason<br>
+im pretty sure its not going to work unless i root sign on stick rng on tmpfs that hosts its own stuff but then serial collisions all signed the same meh heads battered<br>
+<br>
 erm...<br>
 once makepkg works again... please? haha<br>
 recompile dwm [home][0][1][2][3]... etc rule match surf to home tag<br>
