@@ -2,7 +2,7 @@
 <br>
 dont really know who jamie nguyen is but he clearly needs +1000 internetz<br>
 no where near finished dont even know if i can blag this on a rebooted liveusb yet <br>
-but ive wasted enough reading about openssl to questiion my own sanity its outright horrible<br>
+but ive wasted enough time reading about openssl to questiion my own sanity its outright horrible<br>
 i got pub/priv pki in about 5 minutes and wouldnt think twice about setting up gnupg to do exactly the same thing<br>
 but openssl is just outright horrible and should be killed with fire lots and lots of fire <br>
 but out of fear of having to re read all that shit again this is being backed up now<br>
