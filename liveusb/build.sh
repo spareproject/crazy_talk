@@ -26,8 +26,8 @@ if [[ ! -f ./airootfs/${1}/root/syslinux.cfg ]];then usage 1 "syslinux.cfg doesn
 if [[ ! -f ./airootfs/${1}/root/install.sh ]];then useage 1 "install.sh doesnt exist";fi
 if [[ ! -f ./airootfs/${1}/root/09-gnupg.rules ]];then usage 1 "09-gnupg.rules doesnt exist";fi
 # path to /dev/sdXYZ exists and isnt a partition
-if [[ ! -b ${2} ]];then echo "${2} doesnt exist...";fi
-if [[ ${2: -1} == [0-9] ]];then echo "takes device not partition...";exit;fi
+if [[ ! -b ${2} ]];then usage 1 "${2} doesnt exist...";fi
+if [[ ${2: -1} == [0-9] ]];then usage 1 "takes device not partition...";exit;fi
 ###############################################################################################################################################################################################################
 # format the partition used to install on (saves time if re using a usb)
 lsblk 

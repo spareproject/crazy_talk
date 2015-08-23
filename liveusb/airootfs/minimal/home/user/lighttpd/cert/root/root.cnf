@@ -1,0 +1,88 @@
+# went through openssl.org/docs went through default arch openssl.cnf
+# found this https://jamielinux.com/docs/openssl-certificate-authority/# < - this wins
+###############################################################################################################################################################################################################
+dir=/home/user/lighttpd/cert
+###############################################################################################################################################################################################################
+[ ca ]
+default_ca        = CA_default      # The default ca section
+###############################################################################################################################################################################################################
+[ CA_default ]
+certs             = $dir/certs
+crl_dir           = $dir/crl
+new_certs_dir     = $dir/newcerts
+database	        = $dir/index.txt
+serial            = $dir/serial
+RANDFILE          = $dir/.random
+certificate       = $dir/root/root.cert
+private_key       = $dir/root/root.key
+crlnumber         = $dir/crl/crlnumber
+crl               = $dir/crl/root.crl
+crl_extensions    = crl_ext
+default_crl_days  = 30
+default_md        = sha256
+name_opt          = ca_default
+cert_opt          = ca_default
+default_days      = 372
+preserve          = no
+policy            = policy_match
+###############################################################################################################################################################################################################
+[ policy_match ]
+countryName		          = optional
+stateOrProvinceName     = optional
+organizationName	      = optional
+organizationalUnitName  = optional
+commonName              = supplied
+emailAddress            = optional
+###############################################################################################################################################################################################################
+[ req ]
+default_bits            = 4096
+distinguished_name      = req_distinguished_name
+string_mask             = utf8only
+default_md              = sha256
+encrypt_key             = no
+x509_extensions         = v3_ca
+[ req_distinguished_name ]
+commonName                  = common name
+commonName_max              = 64
+###############################################################################################################################################################################################################
+[ v3_root ]
+subjectKeyIdentifier=hash
+authorityKeyIdentifier=keyid:always,issuer
+basicConstraints = critical,CA:true
+keyUsage = critical, digitalSignature, cRLSign, keyCertSign
+###############################################################################################################################################################################################################
+[ v3_ca ]
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid:always,issuer
+basicConstraints = critical, CA:true, pathlen:0
+keyUsage = critical, digitalSignature, cRLSign, keyCertSign
+###############################################################################################################################################################################################################
+[ usr_cert ]
+basicConstraints = CA:FALSE
+nsCertType = client, email
+nsComment = "OpenSSL Generated Client Certificate"
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid,issuer
+keyUsage = critical, nonRepudiation, digitalSignature, keyEncipherment
+extendedKeyUsage = clientAuth, emailProtection
+###############################################################################################################################################################################################################
+[ server_cert ]
+basicConstraints = CA:FALSE
+nsCertType = server
+nsComment = "OpenSSL Generated Server Certificate"
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid,issuer:always
+keyUsage = critical, digitalSignature, keyEncipherment
+extendedKeyUsage = serverAuth
+authorityInfoAccess = OCSP;URI:http://localhost:8081
+###############################################################################################################################################################################################################
+[ crl_ext ]
+authorityKeyIdentifier=keyid:always
+###############################################################################################################################################################################################################
+[ ocsp ]
+basicConstraints = CA:FALSE
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid,issuer
+keyUsage = critical, digitalSignature
+extendedKeyUsage = critical, OCSPSigning
+###############################################################################################################################################################################################################

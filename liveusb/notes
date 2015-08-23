@@ -1,0 +1,39 @@
+
+right huge queue of shit to do...
+makepkg doesnt work for shit still and im not doing it manually
+
+dwm - change tags, add surf rule, change terminal
+surf - change cafile = /home/user/lighttpd/certs/, strict ssl refuse untrusted, default features plugins,scripts,inspector,geolocation = FALSE
+^^ cookiefile = /home/user/lighttpd/cookiez.txt cookiepolicies = @, showindicators=false 
+needs to start in the download directory easiest way and im linking it to home so
+^ if lighttpd gets hosted on cluster may need to host keys download dumps them into the lighttpd dir (its all the same shit so far no external internets in theory)
+basically should handle that shit now 
+curl needs to be edited to point to the cert file.... ie the actual call to curl used in download
+^ i need to setup my own signing cert in /dev/keys...
+random gen a ssl key / cert on boot and sign it 
+lighttpd wont start then without firstboot... not exactly the easiest way
+basically a total fuck on 
+ssh i dont use that often 
+well lies same shit 
+boot pull and plug because udev is shit
+set the time you want the box up for... 
+^ need to be able to handle re up... ie sign it again and force overwrite to avoid prompts
+
+edit curl
+--cacert /home/user/lighttpd/cert
+ 
+total fuck on seriously hope it all dies a horrible fiery death 
+
+same plan....
+
+usb keys dir
+
+gnupg root sign
+gnupg persistent default
+
+ssl root sign
+ssl persistent default
+
+realistically taking the root keys off the usb and leaving only the persistent signing ones 
+ie leave them in revokable format
+
