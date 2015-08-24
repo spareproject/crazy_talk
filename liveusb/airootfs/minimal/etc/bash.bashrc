@@ -13,8 +13,7 @@ alias c='clear; cat /etc/banner'
 alias cl='clear;cat /etc/banner;ls -lAh'
 alias ..='cd ..'
 export EDITOR=vim
-
-alias weechat='weechat -r "/plugin unload trigger;/plugin unload relay;/plugin unload script;/plugin unload fifo;/plugin unload alias;/plugin unload xfer;/plugin unload exec;/window splith 30;/buffer chanmon;/window b1"'
+export TERM=xterm # cant run vim without this?
 ###############################################################################################################################################################################################################
 export CAPS="CAP_CHOWN,CAP_DAC_OVERRIDE,CAP_DAC_READ_SEARCH,CAP_FOWNER,CAP_FSETID,CAP_IPC_OWNER,CAP_KILL,CAP_LEASE,CAP_LINUX_IMMUTABLE,CAP_NET_BIND_SERVICE,CAP_NET_BROADCAST,CAP_NET_RAW,CAP_SETGID,CAP_SETFCAP,CAP_SETPCAP,CAP_SETUID,CAP_SYS_ADMIN,CAP_SYS_CHROOT,CAP_SYS_NICE,CAP_SYS_PTRACE,CAP_SYS_TTY_CONFIG,CAP_SYS_RESOURCE,CAP_SYS_BOOT,CAP_AUDIT_WRITE,CAP_AUDIT_CONTROL,CAP_NET_ADMIN"
 ###############################################################################################################################################################################################################

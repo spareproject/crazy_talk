@@ -28,6 +28,11 @@ if [[ ! -f ./airootfs/${1}/root/09-gnupg.rules ]];then usage 1 "09-gnupg.rules d
 # path to /dev/sdXYZ exists and isnt a partition
 if [[ ! -b ${2} ]];then usage 1 "${2} doesnt exist...";fi
 if [[ ${2: -1} == [0-9] ]];then usage 1 "takes device not partition...";exit;fi
+# check rootfs is empty...
+if [[ ! -z $(ls rootfs/) ]];then
+  umount ./rootfs/* 2>/dev/null
+  rm -r ./rootfs/*
+fi
 ###############################################################################################################################################################################################################
 # format the partition used to install on (saves time if re using a usb)
 lsblk 
@@ -41,13 +46,13 @@ cp -arfv airootfs/${1}/* rootfs/
 ###############################################################################################################################################################################################################
 # mounting boot was a pain it kept being ignored, so mount it copy over everything in the boot dir to the usb
 
-read -p "debug start"
-echo "mounting ${2}1"
+#read -p "debug start"
+#echo "mounting ${2}1"
 mount ${2}1 ./mount
-lsblk
+#lsblk
 mv ./rootfs/boot/* ./mount/
-ls -lash ./mount
-read -p "debug end"
+#ls -lash ./mount
+#read -p "debug end"
 umount ./mount/
 
 ###############################################################################################################################################################################################################

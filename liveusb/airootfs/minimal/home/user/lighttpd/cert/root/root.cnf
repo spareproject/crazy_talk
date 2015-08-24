@@ -1,6 +1,3 @@
-# went through openssl.org/docs went through default arch openssl.cnf
-# found this https://jamielinux.com/docs/openssl-certificate-authority/# < - this wins
-###############################################################################################################################################################################################################
 dir=/home/user/lighttpd/cert
 ###############################################################################################################################################################################################################
 [ ca ]
@@ -8,17 +5,12 @@ default_ca        = CA_default      # The default ca section
 ###############################################################################################################################################################################################################
 [ CA_default ]
 certs             = $dir/certs
-crl_dir           = $dir/crl
-new_certs_dir     = $dir/newcerts
+new_certs_dir     = $dir/certs
 database	        = $dir/index.txt
 serial            = $dir/serial
 RANDFILE          = $dir/.random
-certificate       = $dir/root/root.cert
 private_key       = $dir/root/root.key
-crlnumber         = $dir/crl/crlnumber
-crl               = $dir/crl/root.crl
-crl_extensions    = crl_ext
-default_crl_days  = 30
+certificate       = $dir/root/root.cert
 default_md        = sha256
 name_opt          = ca_default
 cert_opt          = ca_default
@@ -40,24 +32,24 @@ distinguished_name      = req_distinguished_name
 string_mask             = utf8only
 default_md              = sha256
 encrypt_key             = no
-x509_extensions         = v3_ca
+x509_extensions         = persistent
 [ req_distinguished_name ]
 commonName                  = common name
 commonName_max              = 64
 ###############################################################################################################################################################################################################
-[ v3_root ]
+[ root ]
 subjectKeyIdentifier=hash
 authorityKeyIdentifier=keyid:always,issuer
 basicConstraints = critical,CA:true
 keyUsage = critical, digitalSignature, cRLSign, keyCertSign
 ###############################################################################################################################################################################################################
-[ v3_ca ]
+[ persistent ]
 subjectKeyIdentifier = hash
 authorityKeyIdentifier = keyid:always,issuer
 basicConstraints = critical, CA:true, pathlen:0
 keyUsage = critical, digitalSignature, cRLSign, keyCertSign
 ###############################################################################################################################################################################################################
-[ usr_cert ]
+[ user ]
 basicConstraints = CA:FALSE
 nsCertType = client, email
 nsComment = "OpenSSL Generated Client Certificate"
@@ -66,7 +58,7 @@ authorityKeyIdentifier = keyid,issuer
 keyUsage = critical, nonRepudiation, digitalSignature, keyEncipherment
 extendedKeyUsage = clientAuth, emailProtection
 ###############################################################################################################################################################################################################
-[ server_cert ]
+[ server ]
 basicConstraints = CA:FALSE
 nsCertType = server
 nsComment = "OpenSSL Generated Server Certificate"
@@ -75,14 +67,4 @@ authorityKeyIdentifier = keyid,issuer:always
 keyUsage = critical, digitalSignature, keyEncipherment
 extendedKeyUsage = serverAuth
 authorityInfoAccess = OCSP;URI:http://localhost:8081
-###############################################################################################################################################################################################################
-[ crl_ext ]
-authorityKeyIdentifier=keyid:always
-###############################################################################################################################################################################################################
-[ ocsp ]
-basicConstraints = CA:FALSE
-subjectKeyIdentifier = hash
-authorityKeyIdentifier = keyid,issuer
-keyUsage = critical, digitalSignature
-extendedKeyUsage = critical, OCSPSigning
 ###############################################################################################################################################################################################################

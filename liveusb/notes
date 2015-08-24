@@ -1,39 +1,113 @@
+###############################################################################################################################################################################################################
 
-right huge queue of shit to do...
-makepkg doesnt work for shit still and im not doing it manually
+openssl is terrabad i had to delete all my notes on it... i do swear alot and generally gief zero fauks, but no
+was looing at ocsp but i cant key revoke gnupg openssh or openssl till i have some form of network setup, requires a fixed ip
+as in the entire idea just isnt that applicable to the rebootable static image yet... will think about it
+^ needs more a network based single key check did start doing stuff on this
+and im using public/private pki on everything the idea they all need a seperate fuck up is just wrong
+will probably blag it https based 
+^ can get surf to download straight into a folder hosting on its own webserver... means boot view other nodes download a key
+instantly hosting the same key can check sig sign etc... or atleast im dumping everything in lighttpd to start playing
+^ pulled ca-certificates to stop network out... cant stop http but minimal doesnt get internets
+ill hard block iptables out if i can get pacman over a port that isnt 443/80 then https on port 34123 anything
+but this is the only stick that can remake isos now desktop / steam are going minimal so i can maintain this and they shouldnt break...
 
-dwm - change tags, add surf rule, change terminal
-surf - change cafile = /home/user/lighttpd/certs/, strict ssl refuse untrusted, default features plugins,scripts,inspector,geolocation = FALSE
-^^ cookiefile = /home/user/lighttpd/cookiez.txt cookiepolicies = @, showindicators=false 
-needs to start in the download directory easiest way and im linking it to home so
-^ if lighttpd gets hosted on cluster may need to host keys download dumps them into the lighttpd dir (its all the same shit so far no external internets in theory)
-basically should handle that shit now 
-curl needs to be edited to point to the cert file.... ie the actual call to curl used in download
-^ i need to setup my own signing cert in /dev/keys...
-random gen a ssl key / cert on boot and sign it 
-lighttpd wont start then without firstboot... not exactly the easiest way
-basically a total fuck on 
-ssh i dont use that often 
-well lies same shit 
-boot pull and plug because udev is shit
-set the time you want the box up for... 
-^ need to be able to handle re up... ie sign it again and force overwrite to avoid prompts
+###############################################################################################################################################################################################################
 
-edit curl
---cacert /home/user/lighttpd/cert
- 
-total fuck on seriously hope it all dies a horrible fiery death 
+new key partition layout...
+./mount
+  /gnupg
+    /root
+    /persistent
+    /root.public
+    /user.public
+    /user.sig
+    /trigger.asc
+  /openssh
+    /client_ca.asc
+    /client_ca.pub
+    /known_hosts
+    /server_ca.asc
+    /server_ca.pub
+  /openssl
+    #/certs 
+    #/localhost 
+    /persistent
+    /root
+    /ca-certificates.crt   
 
-same plan....
+the openssl blag...
+need the whole dir structure to generate and sign anything... 
+only need to copy the root.key root.cert persistent.key persistent.cert
+so ./keys needs to take airootfs/minimal/home/user/lighttpd/certs tmp it gen keys copy them out... 
+setup the above properly
+encrypt the .keys with gnupg .asc
 
-usb keys dir
+on boot... 
+same shit setup /tmp/ copy the keys over... still requires gnupg decrypt
+still requires full hardcoded dirs and config files... < - /tmp/... ?
+^ pretty much all the generation is going /tmp because i dont want the stupid dir structure and hardcoded shit all over the filesystem
+so sign it scrap it and copy localhost.pem and ca-certificates.crt into lighttpd
 
-gnupg root sign
-gnupg persistent default
+scripts that new keys.sh setup and layout break... and the random partitions raw image over raw partition
+/home/user/.bash_profile
+/usr/bin/firstboot
+/usr/bin/oneshot
+./keys.sh < - was gnupg.sh but its getting bigger than that
 
-ssl root sign
-ssl persistent default
+^ current
+gnupg root signing key
+openssl root signing key
+openssh... single signing key
 
-realistically taking the root keys off the usb and leaving only the persistent signing ones 
-ie leave them in revokable format
+realistically once its all done and further down the road
+usb split sign a set of keys can dump single or multiple per usb so long as its signed it should be network friendly 
+but openssh doesnt have that shit so i need to further poke it with a large stick till it does what i want
 
+but then i still lulz at the 3 sets of rsa pub/priv setup thats needed to do the same math
+openssh isnt bad gnupg was easy mode to learn understand documentation etc
+then theres openssl i dont think i could talk about or refer to it without the raw seething hatered i feel spilling out
+
+the same thing three times 
+or one executable to handle
+public / private regardless of math used for keys
++ default exchange mechs 
+and a default hash
+so when this shit gets old and doesnt work you just point to different math rather than relearn the wheel
+
+should probably switch them up a bit so its not all rsa but /shrug this is all stub till i can make my own network
+I want to completly kill off the idea time because comuters give zero fucks about what time it is
+
+^ exchange happens node0 internal rotating clock node1 rotating internal clock
+node0 doesnt need an external clock to grant timed access to node1
+time parameters help keys / cookie logic... but they dont need to be based on real time
+even for centralized auth servers 
+
+^ the only arguement for agreed time is historical accuracy and i dont really give many fucks about that either
+if the clock full rotates and starts from 0 it can still store uptime for the given cookies tokens keys and auth
+it would be calculated to max then start from 0 anyway
+
+rambling need sleep 
+
+
+###############################################################################################################################################################################################################
+
+package list...
+
+desktop
+dwm                   - larger font, change alt+shift+enter to st
+st                    - default - probably need del and buffer patch
+surf                  - no plugins,scripts,inspector strict ssl ~/downloads
+hasciicam             - default - needs libaa
+ii                    - default - needs multitail and some script foo
+chromium-pepper-flash - default
+
+minimal
+dwm                   - home tag,surf rule, larger font, change alt+shift+enter to st
+st                    - default
+surf                  - no plugins,scripts,inspector strict ssl ~/lighttpd/download ~/lighttpd/cookiez ~/lighttpd/ca-certificates.crt
+
+need two sets of
+dwm,surf 
+
+###############################################################################################################################################################################################################

@@ -1,93 +1,47 @@
 #!/bin/env bash
 umask 377
+# if index.txt isnt an empty file size 0 not a file with a new line in it kicks off and wont run
 ###############################################################################################################################################################################################################
-# create the root key
-read -p "generating root private key"
+#ROOT_KEY
 openssl genrsa -out ./root/root.key 4096
-read -p "generating root cert"
-openssl req -config ./root/root.cnf -key ./root/root.key -new -x509 -days 365 -sha256 -extensions v3_root -out ./root/root.cert -subj '/CN=root'
-read -p "verify the certificate"
-openssl x509 -noout -text -in ./root/root.cert
+openssl req -config ./root/root.cnf -key ./root/root.key -new -x509 -days 365 -sha256 -extensions root -out ./root/root.cert -subj '/CN=root'
 ###############################################################################################################################################################################################################
-# create the ca key
-read -p "generating ca private key"
-openssl genrsa -out ./ca/ca.key 4096
-read -p "generating ca csr"
-openssl req -config ./ca/ca.cnf -new -sha256 -key ./ca/ca.key -out ./ca/ca.csr -subj '/CN=ca'
-read -p "generating ca cert"
-openssl ca -config ./root/root.cnf -extensions v3_ca -days 365 -notext -md sha256 -in ./ca/ca.csr -out ./ca/ca.cert
-read -p "verify the certificate"
-openssl x509 -noout -text -in ./ca/ca.cert
-read -p "creating certificate chain root-ca.chain"
+#PERSISTENT_KEY
+openssl genrsa -out ./persistent/persistent.key 4096
+openssl req -config ./persistent/persistent.cnf -new -sha256 -key ./persistent/persistent.key -out ./persistent/persistent.csr -subj '/CN=persistent'
+openssl ca -config ./root/root.cnf -extensions persistent -days 365 -notext -md sha256 -in ./persistent/persistent.csr -out ./persistent/persistent.cert
 ###############################################################################################################################################################################################################
-cat ./ca/ca.cert ./root/root.cert > certs/root-ca.chain
+cat ./root/root.cert ./persistent/persistent.cert > ./ca-certificates.crt
 ###############################################################################################################################################################################################################
-read -p "generating localhost private key"
 openssl genrsa -out ./localhost/localhost.key 4096
-read -p "generating localhost csr"
-openssl req -config ./ca/ca.cnf -key ./localhost/localhost.key -new -sha256 -out ./localhost/localhost.csr -subj '/CN=localhost'
-read -p "generating ca cert"
-openssl ca -config ./ca/ca.cnf -extensions server_cert -days 365 -notext -md sha256 -in ./localhost/localhost.csr -out ./localhost/localhost.cert
-read -p "verify the certificate"
-openssl x509 -noout -text -in ./localhost/localhost.cert
-read -p "verify the certificate chain"
-openssl verify -CAfile ./certs/root-ca.chain ./localhost/localhost.cert
+openssl req -config ./persistent/persistent.cnf -key ./localhost/localhost.key -new -sha256 -out ./localhost/localhost.csr -subj '/CN=localhost'
+openssl ca -config ./persistent/persistent.cnf -extensions server -days 365 -notext -md sha256 -in ./localhost/localhost.csr -out ./localhost/localhost.cert
 ###############################################################################################################################################################################################################
-
+openssl verify -CAfile ./ca-certificates.crt ./localhost/localhost.cert
 ###############################################################################################################################################################################################################
-read -p "generating root ocsp revocation key"
-openssl genrsa -out ./ocsp/root.ocsp.key 4096
-read -p "generating root ocsp revocation csr"
-openssl req -config ./root/root.cnf -new -sha256 -key ./ocsp/root.ocsp.key -out ./ocsp/root.ocsp.csr -subj '/CN=rootocsp'
-read -p "generating root ocsp revocation cert"
-openssl ca -config ./root/root.cnf -extensions ocsp -days 365 -notext -md sha256 -in ./ocsp/root.ocsp.csr -out ./ocsp/root.ocsp.cert
+#openssl genrsa -out ./ocsp/root.ocsp.key 4096
+#openssl req -config ./root/root.cnf -new -sha256 -key ./ocsp/root.ocsp.key -out ./ocsp/root.ocsp.csr -subj '/CN=root_ocsp'
+#openssl ca -config ./root/root.cnf -extensions ocsp -days 365 -notext -md sha256 -in ./ocsp/root.ocsp.csr -out ./ocsp/root.ocsp.cert
 ###############################################################################################################################################################################################################
-read -p "generating ca ocsp revocation key"
-openssl genrsa -out ./ocsp/ca.ocsp.key 4096
-read -p "generating ca ocsp revocation csr"
-openssl req -config ./ca/ca.cnf -new -sha256 -key ./ocsp/ca.ocsp.key -out ./ocsp/ca.ocsp.csr -subj '/CN=caocsp'
-read -p "generating ca ocsp revocation cert"
-openssl ca -config ./ca/ca.cnf -extensions ocsp -days 365 -notext -md sha256 -in ./ocsp/ca.ocsp.csr -out ./ocsp/ca.ocsp.cert
+#openssl genrsa -out ./ocsp/persistent.ocsp.key 4096
+#openssl req -config ./persistent/persistent.cnf -new -sha256 -key ./ocsp/persistent.ocsp.key -out ./ocsp/persistent.ocsp.csr -subj '/CN=persistent_ocsp'
+#openssl ca -config ./persistent/persistent.cnf -extensions ocsp -days 365 -notext -md sha256 -in ./ocsp/persistent.ocsp.csr -out ./ocsp/persistent.ocsp.cert
 ###############################################################################################################################################################################################################
 #revoke a key...
-read -p "generating test private key"
-openssl genrsa -out ./test/test.key 4096 
-read -p "generating test csr"
-openssl req -config ./ca/ca.cnf -key ./test/test.key -new -sha256 -out ./test/test.csr -subj '/CN=test'
-read -p "generating test cert"
-openssl ca -config ./ca/ca.cnf -extensions server_cert -days 375 -notext -md sha256 -in ./test/test.csr -out ./test/test.cert
+# mkdir ./test
+#openssl genrsa -out ./test/test.key 4096 
+#openssl req -config ./persistent/persistent.cnf -key ./test/test.key -new -sha256 -out ./test/test.csr -subj '/CN=test'
+#openssl ca -config ./persistent/persistent.cnf -extensions server -days 375 -notext -md sha256 -in ./test/test.csr -out ./test/test.cert
 ###############################################################################################################################################################################################################
-#run the responder on localhost...
-openssl ocsp -port 8082 -text -sha256 -index ./index.txt -ca ./certs/root-ca.chain -rkey ./ocsp/ca.ocsp.key -rsigner ./ocsp/ca.ocsp.cert -nrequest 1 &
-#send a query to it...
-openssl ocsp -CAfile ./certs/root-ca.chain -url http://localhost:8082 -resp_text -issuer ./ca/ca.cert -cert ./test/test.cert
-
-# should reply that its still up
-
+# starts ocsp, hosts ca-certificates.crt, using the persistent ocsp key/cert
+#openssl ocsp -port 8081 -text -sha256 -index ./index.txt -ca ./ca-certificates.crt -rkey ./ocsp/persistent.ocsp.key -rsigner ./ocsp/persistent.ocsp.cert -nrequest 1 &
+# query ocsp with cert, cert in query and the cert it was signed with
 #revoke the test key
-openssl ca -config ./ca/ca.cnf -revoke ./test/test.cert
-
-#run the responder on localhost...
-openssl ocsp -port 8082 -text -sha256 -index ./index.txt -ca ./certs/root-ca.chain -rkey ./ocsp/ca.ocsp.key -rsigner ./ocsp/ca.ocsp.cert -nrequest 1 &
+#openssl ca -config ./persistent.cnf -revoke ./test/test.cert
+#rerun the responder on localhost...
+#openssl ocsp -port 8081 -text -sha256 -index ./index.txt -ca ./ca-certificates.crt -rkey ./ocsp/persistent.ocsp.key -rsigner ./ocsp/persistent.ocsp.cert -nrequest 1 &
 #send a query to it...
-openssl ocsp -CAfile ./certs/root-ca.chain -url http://localhost:8082 -resp_text -issuer ./ca/ca.cert -cert ./test/test.cert
-
-# should reply its been revoked
-
+#openssl ocsp -CAfile ./ca-certificates.crt -url http://localhost:8081 -resp_text -issuer ./persistent/persitent.cert -cert ./test/test.cert
 ###############################################################################################################################################################################################################
-#-config
-#openssl req -x509 -nodes -newkey rsa:4096 -sha512 -days 0 -out ./root.pem       -keyout ./root.key -extensions v3_ca
-#openssl req -x509 -nodes -newkey rsa:4096 -sha512 -days 0 -out ./ca.pem         -keyout ./ca.key -extensions v3_intermediate_ca
-#openssl req -x509 -nodes -newkey rsa:4096 -sha512 -days 0 -out ./localhost.pem  -keyout ./localhost.key
-#-subj '/CN=localhost'
-# generate a csr - apperently can do this while generating key?
-#openssl x509 -x509toreq -in ca.pem -out ca.csr -signkey ca.key 
-# to work with arch default openssl.cnf
-#mkdir /etc/ssl/newcerts
-#touch /etc/ssl/index.txt
-#echo -e "01\n" > /etc/ssl/serial
-#cp root.key /etc/ssl/private/cakey.pem
-#cp root.pem /etc/ssl/cacert.pem
-# ^ only to sign the actual ca with the root key... then key swap again to sign the actual lighttpd key
-#openssl ca -out ca.cert -infiles ca.csr
 #openssl x509 -noout -text -in test.pem 
+###############################################################################################################################################################################################################
