@@ -1,5 +1,17 @@
 ###############################################################################################################################################################################################################
 
+erm ./key.sh - cant umount because it only kills one gpg-agent pkill gpg-agent x 1000000 only finds one of them... annoying
+
+###############################################################################################################################################################################################################
+
+/dev/sdc1 - boot partition
+/dev/sdc2 - key partition
+/dev/sdc3 - random partition
+
+so nice simple none complex setup died the second openssl shat all over it... thanks openssl love you long time
+
+###############################################################################################################################################################################################################
+
 openssl is terrabad i had to delete all my notes on it... i do swear alot and generally gief zero fauks, but no
 was looing at ocsp but i cant key revoke gnupg openssh or openssl till i have some form of network setup, requires a fixed ip
 as in the entire idea just isnt that applicable to the rebootable static image yet... will think about it

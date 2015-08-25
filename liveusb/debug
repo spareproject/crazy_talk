@@ -1,0 +1,8 @@
+NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+sda      8:0    0 111.8G  0 disk 
+sdb      8:16   0 111.8G  0 disk /mnt
+sdc      8:32   1   7.2G  0 disk 
+├─sdc1   8:33   1     1G  0 part 
+├─sdc2   8:34   1     1G  0 part 
+└─sdc3   8:35   1   5.2G  0 part 
+about to mkfs.vfat /dev/sdc1 continue (y|n)?

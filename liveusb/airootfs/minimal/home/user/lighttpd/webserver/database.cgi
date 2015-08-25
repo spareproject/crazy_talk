@@ -1,23 +1,37 @@
 #!/bin/env bash
 ###############################################################################################################################################################################################################
-trap "exit" SIGINT
+. ./session
+sqlite="/home/user/lighttpd/webpanel/database/webpanel.sqlite"
 ###############################################################################################################################################################################################################
-function usage { echo -e "${0} - help\narg0 - usbstick /dev/sdXYZ\n${2}";exit ${1}; }
-if [[ $# != 1 ]];then usage 1;fi
+input
+session
+header
 ###############################################################################################################################################################################################################
-mkdir -p ./mount/
+echo "
+<fieldset><legend><h3><b>register</b></h3></legend>
+<action='/database.cgi' method='post'><table>
+<tr><td>username</td><td><input type='text' name='username'</td></tr>
+<tr><td>password</td><td><input type='password' name='password'></td></tr>
+<tr><td>email</td><td><input type='email' name='email'></td></tr>
+<tr><td>pubkey</td><td><input type='text' name='pubkey'></td></tr>
+<tr><td></td><td><input type='submit' name='register' value='register'></td></tr>
+</table></form></fieldset>
+"
 ###############################################################################################################################################################################################################
-if [[ ! -b ${1} ]];then usage 1 "device doesnt exist";fi
-if [[ ${1: -1} == [0-9] ]];then usage 1 "takes device not partition";fi
-if [[ ! -b ${1}1 || ! -b ${1}2 || ! -b ${1}3 ]];then usage 1 "incorect partition scheme on device...";fi
+echo "<fieldset><legend><h3><b></b></h3></legend><pre>"
+sqlite3 $sqlite<<<"
+.mode column
+.headers on
+select username,email,fingerprint from user;"
+sqlite3 ${sqlite}<<<"
+.mode column
+.headers on
+select username,session from session;"
+echo "</pre></fieldset>"
 ###############################################################################################################################################################################################################
-lsblk
-unset input;while [[ ${input} != @("y"|"n") ]];do read -r -p "about to mkfs.ext4 ${1}3 continue (y/n)? " input;done
-if [[ ${input} == "n" ]];then usage 1 "learn to fuck up less...";fi
+echo "<fieldset><legend><h3><b></b></h3></legend><pre>"
+sqlite3 $sqlite<<<".schema"
+echo "<pre></fieldset>"
 ###############################################################################################################################################################################################################
-mkfs.ext4 ${1}3
-mount ${1}3 ./mount
-chmod 444 ./mount/randomfs
-###############################################################################################################################################################################################################
-dd if=/dev/random of=./mount/randomfs bs=1024 status=progress
-###############################################################################################################################################################################################################
+footer
+#############################################################################################################################################################################################################

@@ -8,17 +8,13 @@ ssh-keygen -t rsa -b 4096 -f "/home/user/ssh/id_rsa" -N "" 2>/dev/null
 ssh-keygen -t rsa -b 4096 -f "/home/user/sshd/ssh_host_rsa_key" -N "" 2>/dev/null
 ###############################################################################################################################################################################################################
 gpg --homedir /home/user/gnupg -e /home/user/ssh/id_rsa 2>/dev/null
-rm /home/user/ssh/id_rsa
+#rm /home/user/ssh/id_rsa
 gpg --homedir /home/user/gnupg -e /home/user/sshd/ssh_host_rsa_key 2>/dev/null
-rm /home/user/sshd/ssh_host_rsa_key
+#rm /home/user/sshd/ssh_host_rsa_key
 ###############################################################################################################################################################################################################
 pkill gpg-agent 2>/dev/null
 ###############################################################################################################################################################################################################
-# openssl fucks up
-# generate key
-# generate csr
-# sign cert
-
+openssl genrsa -out /home/user/lighttpd/localhost.key 4096
 ###############################################################################################################################################################################################################
 echo "" > /home/user/.bash_profile
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx

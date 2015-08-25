@@ -41,9 +41,9 @@ passwd -l user
 ###############################################################################################################################################################################################################
 systemctl enable iptables
 systemctl enable haveged.service
-systemctl enable systemd-networkd.service
+#systemctl enable systemd-networkd.service
 systemctl enable dnscrypt-proxy.service
-systemctl enable lighttpd.service
+#systemctl enable lighttpd.service
 systemctl enable combine.service
 ###############################################################################################################################################################################################################
 umount /boot

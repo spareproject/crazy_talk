@@ -19,7 +19,7 @@ cp -ar /tmp/mount/user/* /tmp/user
 cp /tmp/mount/trigger.asc /tmp
 ###############################################################################################################################################################################################################
 read -rp "enter pin: " PIN
-gpg --homedir /tmp/user --passphrase-fd 0 -d /tmp/trigger.asc 2>/dev/null <<< $(dd if=/tmp/random/raw bs=1 count=100 ibs=1 skip=${PIN} 2>/dev/null)
+gpg --homedir /tmp/user --passphrase-fd 0 -d /tmp/trigger.asc 2>/dev/null <<< $(dd if=/tmp/random/randomfs bs=1 count=100 ibs=1 skip=${PIN} 2>/dev/null)
 ###############################################################################################################################################################################################################
 touch /tmp/unlocked
 sync

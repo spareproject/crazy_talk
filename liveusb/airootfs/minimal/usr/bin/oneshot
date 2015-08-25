@@ -8,29 +8,32 @@ read -p "plugin usb... (hit enter)"
 if [[ ! -b /dev/archiso1 && ! -b /dev/archiso2 && ! -b /dev/archiso3 ]];then clear;cat /etc/banner;echo "device /dev/archiso does not exist... ";fi
 done
 ###############################################################################################################################################################################################################
-if [[ ${USER} == "root" ]];then
-mkdir /tmp/mount
-mkdir /tmp/user
-mount -o ro,noload,noexec,nosuid,nodev,noatime /dev/archiso2 /tmp/mount
-cp -ar /tmp/mount/user/* /tmp/user
-cp /tmp/mount/trigger.asc /tmp
+if [[ ! -d /tmp/mount ]];then mkdir /tmp/mount;fi
+if [[ ! -d /tmp/random ]];then mkdir /tmp/random;fi
+if [[ ! -d /tmp/persistent ]];then mkdir /tmp/persistent;fi
+if touch /tmp/persistent/test;then rm /tmp/persistent/test;else echo "cant write to /tmp/persistent !bail...";exit;fi
+mount /dev/archiso2
+mount /dev/archiso3
+###############################################################################################################################################################################################################
+cp -ar /tmp/mount/gnupg/persistent/* /tmp/persistent
+cp /tmp/mount/gnupg/trigger.asc /tmp
+###############################################################################################################################################################################################################
+read -rp "enter pin: " PIN
+gpg --homedir /tmp/persistent --passphrase-fd 0 -d /tmp/trigger.asc 2>/dev/null <<< $(dd if=/tmp/random/randomfs bs=1 count=100 ibs=1 skip=${PIN} 2>/dev/null)
+###############################################################################################################################################################################################################
 touch /tmp/unlocked
 sync
 umount /tmp/mount
-rmdir  /tmp/mount
+rmdir /tmp/mount
+umount /tmp/random
+rmdir /tmp/random
 ###############################################################################################################################################################################################################
-read -rp "enter pin: " PIN
-gpg --homedir /tmp/user --passphrase-fd 0 -d /tmp/trigger.asc 2>/dev/null <<< $(dd if=/dev/archiso3 bs=1 count=100 ibs=1 skip=${PIN} 2>/dev/null)
 function detach_meh {
   sleep 63
-  rm -r /tmp/user
+  rm -r /tmp/persistent
   rm -r /tmp/trigger.asc
   rm -r /tmp/unlocked
   pkill gpg-agent
 }
 (detach_meh &)&
-###############################################################################################################################################################################################################
-elif [[ ${USER} == "user" ]];then
-echo "unlucky..."
-fi
 ###############################################################################################################################################################################################################

@@ -17,7 +17,7 @@ mount /dev/archiso3
 ###############################################################################################################################################################################################################
 cp -ar /tmp/mount/user/* /tmp/user/
 read -rp "enter pin: " user
-gpg --homedir /tmp/user --passphrase-fd 0 -d /tmp/mount/trigger.asc <<< $(dd if=/tmp/random/raw bs=1 count=100 ibs=1 skip=${user} 2>/dev/null)
+gpg --homedir /tmp/user --passphrase-fd 0 -d /tmp/mount/trigger.asc <<< $(dd if=/tmp/random/randomfs bs=1 count=100 ibs=1 skip=${user} 2>/dev/null)
 ###############################################################################################################################################################################################################
 echo -e "Server Certificate Uptime\n1 - 1 hour\n2 - 1 day\n3 - 1 week\n4 - 1 month\n5 - 1 year\n"
 unset toggle;while [[ ${toggle} != @("1"|"2"|"3"|"4"|"5") ]];do read -p "input: " toggle;done
