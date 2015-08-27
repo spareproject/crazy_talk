@@ -23,13 +23,14 @@ echo "
 <input type=text value='application/x-www-form-urlencoded' name='test'>
 <input type=text value='second' name='second'>
 <input type=text value='third' name='third'>
-<input type=submit value=submit>
+<input type=submit name=default value=submit>
+<input type=hidden name=action value=default>
 </form>
 <form action=/index.cgi method=post enctype='multipart/form-data'>
 <input type=text value='multipart/form-data' name='test'>
 <input type=text value='second' name='second'>
 <input type=text value='third' name='third'>
-<input type=submit value=submit>
+<input type=submit name=ftp value=submit>
 </form>
 <form action=/index.cgi method=post enctype='text/plain'>
 <input type=text value='text/plain' name='test'>

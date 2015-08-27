@@ -8,8 +8,5 @@ if [[ -b /dev/mapper/${1} ]];then while [[ -b /dev/mapper/${1} ]];do cryptsetup 
 # sanity check
 if [[ ! $(mount | grep "/mnt/mount/${1} ") && ! -z ${1}  ]];then rmdir /mnt/mount/${1};fi
 ###############################################################################################################################################################################################################
-
-# because im sick of a dirty mount dir... every call that has anything to do with my internal setup is polling mount on call...
 for i in $(ls /mnt/mount);do if [[ ! $(mount | grep ${i}) ]];then rmdir /mnt/mount/${i};fi;done
-
 ###############################################################################################################################################################################################################

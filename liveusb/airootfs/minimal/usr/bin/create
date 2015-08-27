@@ -16,6 +16,5 @@ cryptsetup --cipher aes-xts-plain64 --key-size 512 --hash sha512 --iter-time 500
 mkfs.ext4 /dev/mapper/${1}
 mount /dev/mapper/${1} /mnt/mount/${1}
 ###############################################################################################################################################################################################################
-
-# because im sick of a dirty mount dir... every call that has anything to do with my internal setup is polling mount on call...
 for i in $(ls /mnt/mount);do if [[ ! $(mount | grep ${i}) ]];then rmdir /mnt/mount/${i};fi;done
+###############################################################################################################################################################################################################

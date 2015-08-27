@@ -31,7 +31,7 @@ echo "
 <fieldset>
 <pre class=center>
 "
-cat /home/user/lighttpd/webpanel/database/verify.asc
+cat /home/user/lighttpd/webserver/database/verify.asc
 echo "</pre>
 <form action='/index.cgi' method='post'>
 <table class=center>

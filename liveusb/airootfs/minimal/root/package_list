@@ -59,6 +59,7 @@ dmenu
 ##
 abs
 base-devel
+git
 ##
 chromium
 android-tools

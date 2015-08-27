@@ -13,7 +13,5 @@ if [[ -f /mnt/luks/${1} ]];then echo "deleting /mnt/luks/${1}";rm /mnt/luks/${1}
 if [[ -d /mnt/mount/${1} ]];then echo "deleting /mnt/mount/${1}";rmdir /mnt/mount/${1};fi
 fi
 ###############################################################################################################################################################################################################
-
-# because im sick of a dirty mount dir... every call that has anything to do with my internal setup is polling mount on call...
 for i in $(ls /mnt/mount);do if [[ ! $(mount | grep ${i}) ]];then rmdir /mnt/mount/${i};fi;done
-
+###############################################################################################################################################################################################################

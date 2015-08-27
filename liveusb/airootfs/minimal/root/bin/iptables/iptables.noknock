@@ -43,6 +43,7 @@ iptables -A INPUT -j DROP
 ########################################################################################
 iptables -A LO -p udp -d 127.0.0.1 --dport 53 -j ACCEPT
 iptables -A LO -p tcp -d 127.0.0.1 --dport 6010:6023 -j ACCEPT
+iptables -A LO -p tcp -d 127.0.0.1 --dport 31279 -j ACCEPT
 iptables -A LO -p tcp -d 127.0.0.1 --dport 31297 -j ACCEPT
 iptables -A LO -j LOG --log-prefix "LO" --log-level 6
 iptables -A LO -j DROP

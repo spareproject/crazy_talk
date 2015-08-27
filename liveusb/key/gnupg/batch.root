@@ -3,7 +3,7 @@ Key-Type: rsa
 Key-Length: 4096
 Key-Usage: sign
 Name-Real:root
-Name-Email:root@archiso
+Name-Email:root@usb
 Expire-Date: 0
 %commit
 %echo done

@@ -13,8 +13,7 @@ alias c='clear; cat /etc/banner'
 alias cl='clear;cat /etc/banner;ls -lAh'
 alias ..='cd ..'
 export EDITOR=vim
-export TERM=xterm # cant execute vim without this
-alias weechat='weechat -r "/window splith 30;/buffer chanmon;/window b1"'
+export TERM=xterm
 ###############################################################################################################################################################################################################
 function passwdgen { cat /dev/random | tr -cd 'a-zA-Z0-9' | fold -w 64 | head -n 1; }
 ###############################################################################################################################################################################################################

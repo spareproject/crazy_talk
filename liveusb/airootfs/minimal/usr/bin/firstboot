@@ -27,7 +27,7 @@ if [[ ${toggle} == "3" ]];then timestamp="+1w";fi
 if [[ ${toggle} == "4" ]];then timestamp="+4w";fi
 if [[ ${toggle} == "5" ]];then timestamp="+52w";fi
 echo "$(gpg --homedir /tmp/persistent -d /tmp/mount/openssh/server_ca.asc 2>/dev/null)"|
-ssh-keygen -s /dev/stdin -I server_ca -h -n crazy_talk -V ${timestamp} /home/user/sshd/ssh_host_rsa_key.pub
+ssh-keygen -s /dev/stdin -I server_ca -h -n host -V ${timestamp} /home/user/sshd/ssh_host_rsa_key.pub
 ###############################################################################################################################################################################################################
 echo -e "Client Certificate Uptime\n1 - 1 hour\n2 - 1 day\n3 - 1 week\n4 - 1 month\n5 - 1 year\n"
 unset toggle;while [[ ${toggle} != @("1"|"2"|"3"|"4"|"5") ]];do read -p "input: " toggle;done

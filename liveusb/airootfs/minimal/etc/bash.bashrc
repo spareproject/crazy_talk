@@ -15,7 +15,5 @@ alias ..='cd ..'
 export EDITOR=vim
 export TERM=xterm # cant run vim without this?
 ###############################################################################################################################################################################################################
-export CAPS="CAP_CHOWN,CAP_DAC_OVERRIDE,CAP_DAC_READ_SEARCH,CAP_FOWNER,CAP_FSETID,CAP_IPC_OWNER,CAP_KILL,CAP_LEASE,CAP_LINUX_IMMUTABLE,CAP_NET_BIND_SERVICE,CAP_NET_BROADCAST,CAP_NET_RAW,CAP_SETGID,CAP_SETFCAP,CAP_SETPCAP,CAP_SETUID,CAP_SYS_ADMIN,CAP_SYS_CHROOT,CAP_SYS_NICE,CAP_SYS_PTRACE,CAP_SYS_TTY_CONFIG,CAP_SYS_RESOURCE,CAP_SYS_BOOT,CAP_AUDIT_WRITE,CAP_AUDIT_CONTROL,CAP_NET_ADMIN"
-###############################################################################################################################################################################################################
-function passwdgen { cat /dev/random | tr -cd 'a-zA-Z0-9' | fold -w 64 | head -n 1; }
+function passwdgen { cat /dev/random | tr -cd 'a-zA-Z0-9' | fold -w 128 | head -n 1; }
 ###############################################################################################################################################################################################################

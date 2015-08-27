@@ -22,9 +22,7 @@ lib32-opencl-catalyst
 alsa-utils
 alsa-plugins
 ##
-dwm
 dmenu
-xterm
 conky
 steam
 ##

@@ -1,6 +1,6 @@
 #!/bin/env bash
 ###############################################################################################################################################################################################################
-hostname="archiso-"
+hostname="host-"
 hostname+=$(date | md5sum | sed 's/...$//')
 echo ${hostname} > /proc/sys/kernel/hostname
 echo ${hostname} > /etc/hostname

@@ -14,8 +14,6 @@ strace
 openssh
 sshfs
 ##
-dwm
 dmenu
-xterm
 xorg-xauth
 ##

@@ -43,6 +43,9 @@ if [[ ${REQUEST_METHOD} == "POST" && $(grep "multipart/form-data" <<< ${CONTENT_
 fi
 }
 ###############################################################################################################################################################################################################
+function action {
+echo stub
+}
 function session {
 if [[ -z ${HTTP_COOKIE} ]];then echo -e "Set-Cookie:session=$(date +%s)\r";fi
 echo -e "Content-type:text/html\n\n"

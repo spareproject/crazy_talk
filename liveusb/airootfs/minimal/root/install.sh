@@ -1,19 +1,14 @@
 #!/bin/env bash
 ###############################################################################################################################################################################################################
-dev=${1}
-boot=${dev}1
-keys=${dev}2
-random=${dev}3
+mount ${1}1 /boot
 ###############################################################################################################################################################################################################
-mount ${boot} /boot
-###############################################################################################################################################################################################################
-sgdisk ${dev} --attributes=1:set:2
-dd bs=440 conv=notrunc count=1 if=/usr/lib/syslinux/bios/gptmbr.bin of=${dev}
+sgdisk ${1} --attributes=1:set:2
+dd bs=440 conv=notrunc count=1 if=/usr/lib/syslinux/bios/gptmbr.bin of=${1}
 syslinux-install_update -i
-sed "s/CHANGEMEH/$(blkid ${boot} -s PARTUUID -o value)/" /root/syslinux.cfg > /boot/syslinux/syslinux.cfg
+sed "s/CHANGEMEH/$(blkid ${1}1 -s PARTUUID -o value)/" /root/syslinux.cfg > /boot/syslinux/syslinux.cfg
 ###############################################################################################################################################################################################################
 bootctl --path /boot install
-sed "s/CHANGEMEH/$(blkid ${boot} -s PARTUUID -o value)/" /root/arch.conf > /boot/loader/entries/arch.conf
+sed "s/CHANGEMEH/$(blkid ${1}1 -s PARTUUID -o value)/" /root/arch.conf > /boot/loader/entries/arch.conf
 cp /root/loader.conf /boot/loader
 ###############################################################################################################################################################################################################
 mkinitcpio -p linux
@@ -41,9 +36,8 @@ passwd -l user
 ###############################################################################################################################################################################################################
 systemctl enable iptables
 systemctl enable haveged.service
-#systemctl enable systemd-networkd.service
+systemctl enable systemd-networkd.service
 systemctl enable dnscrypt-proxy.service
-#systemctl enable lighttpd.service
 systemctl enable combine.service
 ###############################################################################################################################################################################################################
 umount /boot

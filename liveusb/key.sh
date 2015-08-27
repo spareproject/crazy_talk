@@ -1,6 +1,7 @@
 #!/bin/env bash
 ###############################################################################################################################################################################################################
 trap "exit" SIGINT
+umask 077
 ###############################################################################################################################################################################################################
 function usage { echo -e "${0} - help\narg0 - usbstick /dev/sdXYZ\n${2}";exit ${1}; }
 if [[ $# != 1 ]];then usage 1;fi
@@ -79,7 +80,72 @@ gpg --homedir ./mount/key/gnupg/persistent -e ./mount/key/openssl/persistent.key
 rm ./mount/key/openssl/persistent.csr
 rm -r /tmp/openssl
 ###############################################################################################################################################################################################################
+
+# the overall plan...
+#
+# gnupg - root signing key, persistent on liveusb key, rng key on boot
+# openssl - root signing key, persistent on liveusb signing key, rng server key on boot
+# openssh - persistent on liveusb signing key... rng server and client key on boot
+#
+# gnupg for any network comms, openssh for cli access, openssl for gui access
+# for how shit openssl is openssh is still letting the side down
+#
+# pull the root keys off the created liveusbs
+# still want a chain with a usb on the end of it or an nfc ring something always on person
+# (if anyone says a smartphone i will literally beat you to death with my keyboard)
+#
+##
+
+# todo
+# openssh root sign... (erm?)
+# openssl gnupg encrypted private keys 
+# ^ even hosts not encrypting rng privates ( easier to debug and build with )
+
+#./mount/gnupg        - 750
+# /persistent         - 750
+# /root               - 700
+# /persistent.public  - 640
+# /persistent.sig     - 640
+# root.public         - 640
+# trigger.asc         - 640
+#
+#./mount/openssh      - 750
+# /client_ca.asc      - 640
+# /client_ca.pub      - 640
+# /known_host         - 640
+# /server_ca.asc      - 640
+# /server_ca.pub      - 640
+#
+#./mount/openssl      - 700
+# /ca-certificatates  - 700
+# /persistent.cert    - 700
+# /persistent.cnf     - 700
+# /persistent.key     - 700
+# /persistent.key.asc - 700
+# /root.cert          - 700
+# /root.cnf           - 700
+# /root.key           - 700
+# /root.key.asc       - 700
+
+chown root:wheel ./mount/key/gnupg
+chmod 750 ./mount/key/gnupg
+
+chown -R root:wheel ./mount/key/gnupg/persistent
+chmod -R 750 ./mount/key/gnupg/persistent
+chown root:wheel ./mount/key/gnupg/persistent.*
+chmod 750 ./mount/key/gnupg/persistent.*
+chown root:wheel ./mount/key/gnupg/root.public
+chmod 750 ./mount/key/gnupg/root.public
+chown root:wheel ./mount/key/gnupg/trigger.asc
+chmod 750 ./mount/key/gnupg/trigger.asc
+
+chown -R root:wheel ./mount/key/openssh
+chmod -R 750 ./mount/key/openssh
+
+chown -R root:root ./mount/key/openssl
+
 sleep 3
 umount ./mount/key
 umount ./mount/random
+
 ###############################################################################################################################################################################################################

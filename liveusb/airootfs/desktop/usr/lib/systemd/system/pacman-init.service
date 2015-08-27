@@ -11,6 +11,7 @@ ExecStart=/usr/bin/pacman-key --init
 ExecStart=/usr/bin/pacman-key --populate archlinux
 ExecStart=/usr/bin/curl -o /etc/pacman.d/mirrorlist 'https://www.archlinux.org/mirrorlist/?country=all&protocol=https&use_mirror_status=on'
 ExecStart=/usr/bin/sed -i 's/#Server/Server/g' /etc/pacman.d/mirrorlist
+ExecStart=/usr/bin/pacman -Sy
 
 [Install]
 WantedBy=multi-user.target

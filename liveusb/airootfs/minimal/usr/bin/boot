@@ -3,25 +3,17 @@
 if [[ $# != 2 ]];then echo -e "${0} - help\narg0 - rawfs name\narg1 - bridge name";exit;fi
 ###############################################################################################################################################################################################################
 if [[ ! -d /mnt/mount/${1} ]];then echo "/mnt/mount/${1} doesnt exist...";exit;fi
-# cant unionfs boot without it
-#if [[ ! -b /dev/mapper/${1} ]];then echo "/dev/mapper/${1} doesnt exist...";exit;fi
 if [[ ! $(mount | grep "/mnt/mount/${1} ") ]];then echo "mapped device isnt mounted ... ";exit;fi
 ###############################################################################################################################################################################################################
-(/usr/bin/systemd-nspawn --quiet --boot --network-bridge ${2} --directory /mnt/mount/${1} &>/dev/null &)&
-###############################################################################################################################################################################################################
-# (/usr/bin/systemd-nspawn --quiet --boot --network-bridge ${2} --directory /mnt/mount/${1} --drop-capability "${CAPS}" &)&
-# --whitelist - drops all caps and allows only given
-# --blacklist - allows all caps and drops only given
-# ^ need to take list or file for either 
-# currently dropping everything breaks nspawn so apperently i have to read stuff again but default would be drop everything...
+caps="CAP_CHOWN,CAP_DAC_OVERRIDE,CAP_DAC_READ_SEARCH,CAP_FOWNER,CAP_FSETID,CAP_IPC_OWNER,CAP_KILL,CAP_LEASE,CAP_LINUX_IMMUTABLE,CAP_NET_BIND_SERVICE,CAP_NET_BROADCAST,CAP_NET_RAW,CAP_SETGID,CAP_SETFCAP,CAP_SETPCAP,CAP_SETUID,CAP_SYS_ADMIN,CAP_SYS_CHROOT,CAP_SYS_NICE,CAP_SYS_PTRACE,CAP_SYS_TTY_CONFIG,CAP_SYS_RESOURCE,CAP_SYS_BOOT,CAP_AUDIT_WRITE,CAP_AUDIT_CONTROL"
+(/usr/bin/systemd-nspawn --quiet --boot --network-bridge ${2} --directory /mnt/mount/${1} --drop-capability=${caps} &>/dev/null &)&
 ###############################################################################################################################################################################################################
 
-# take the containers server_ca public and >> to known_hosts
-# take the containers client_ca private and sign ssh/id_rsa.pub
+# either random generate gnupg and openssh on every boot from here
+# sign keys with ? container root and container openssl server and client certificate authority
+# need to use it first and find my usecase cluster signing
 cat /home/user/ssh/id_rsa.pub > /mnt/mount/${1}/home/user/ssh/authorized_keys
 
-
 ###############################################################################################################################################################################################################
-# because im sick of a dirty mount dir... every call that has anything to do with my internal setup is polling mount on call...
 for i in $(ls /mnt/mount);do if [[ ! $(mount | grep ${i}) ]];then rmdir /mnt/mount/${i};fi;done
 ###############################################################################################################################################################################################################

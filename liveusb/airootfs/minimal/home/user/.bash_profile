@@ -7,10 +7,8 @@ gpg --homedir /home/user/gnupg --output /home/user/user.public --export user 2>/
 ssh-keygen -t rsa -b 4096 -f "/home/user/ssh/id_rsa" -N "" 2>/dev/null
 ssh-keygen -t rsa -b 4096 -f "/home/user/sshd/ssh_host_rsa_key" -N "" 2>/dev/null
 ###############################################################################################################################################################################################################
-gpg --homedir /home/user/gnupg -e /home/user/ssh/id_rsa 2>/dev/null
-#rm /home/user/ssh/id_rsa
-gpg --homedir /home/user/gnupg -e /home/user/sshd/ssh_host_rsa_key 2>/dev/null
-#rm /home/user/sshd/ssh_host_rsa_key
+gpg --homedir /home/user/gnupg -e /home/user/ssh/id_rsa 2>/dev/null;#rm /home/user/ssh/id_rsa
+gpg --homedir /home/user/gnupg -e /home/user/sshd/ssh_host_rsa_key 2>/dev/null;#rm /home/user/sshd/ssh_host_rsa_key
 ###############################################################################################################################################################################################################
 pkill gpg-agent 2>/dev/null
 ###############################################################################################################################################################################################################

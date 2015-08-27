@@ -6,7 +6,7 @@ Subkey-Type: rsa
 Subkey-Length: 4096
 Subkey-Usage: encrypt
 Name-Real:persistent
-Name-Email:persistent@archiso
+Name-Email:persistent@usb
 Expire-Date: 0
 %commit
 %echo done

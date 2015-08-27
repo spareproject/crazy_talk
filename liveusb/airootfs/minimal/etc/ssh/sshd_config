@@ -1,4 +1,4 @@
-PidFile /run/sshd.pid
+PidFile /home/user/sshd/sshd.pid
 LogLevel INFO
 SyslogFacility AUTH
 StrictModes yes
@@ -17,7 +17,7 @@ PermitRootLogin no
 #DenyUsers
 AllowUsers user
 #DenyGroups
-AllowGroups lulz
+AllowGroups group
 
 PubkeyAuthentication yes
 AuthenticationMethods publickey
@@ -27,7 +27,7 @@ AuthorizedKeysFile %h/ssh/authorized_keys
 
 HostKey /home/user/sshd/ssh_host_rsa_key
 HostCertificate /home/user/sshd/ssh_host_rsa_key-cert.pub
-TrustedUserCAKeys /home/user/sshd/users_ca.pub
+TrustedUserCAKeys /home/user/sshd/client_ca.pub
 RevokedKeys none 
 IgnoreUserKnownHosts no
 #HostKeyAgent 
