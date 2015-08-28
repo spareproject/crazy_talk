@@ -46,6 +46,8 @@ cp /tmp/mount/gnupg/persistent.sig    /home/user/persistent.sig
 cp /tmp/mount/openssh/server_ca.pub   /home/user/ssh/
 cp /tmp/mount/openssh/client_ca.pub   /home/user/sshd/
 gpg --homedir /tmp/persistent --output /home/user/user.sig --sign /home/user/user.public
+gpg --homedir /home/user/gnupg --import /home/user/persistent.public
+gpg --homedir /home/user/gnupg --sign-key persistent
 ###############################################################################################################################################################################################################
 mkdir -p /tmp/openssl/certs
 touch /tmp/openssl/index.txt
@@ -58,13 +60,14 @@ if [[ ${toggle} == "1" ]];then timestamp="1";fi
 if [[ ${toggle} == "2" ]];then timestamp="7";fi
 if [[ ${toggle} == "3" ]];then timestamp="30";fi
 if [[ ${toggle} == "4" ]];then timestamp="365";fi
-openssl req -config /tmp/mount/openssl/persistent.cnf -new -sha256 -key /home/user/lighttpd/localhost.key -out /home/user/lighttpd/localhost.csr -subj '/CN=localhost'
-openssl ca  -config /tmp/mount/openssl/persistent.cnf -extensions server -days ${timestamp} -notext -md sha256 -in /home/user/lighttpd/localhost.csr -out /home/user/lighttpd/localhost.cert
-cat /home/user/lighttpd/localhost.key /home/user/lighttpd/localhost.cert > /home/user/lighttpd/localhost.pem
-rm /home/user/lighttpd/localhost.key
-rm /home/user/lighttpd/localhost.cert
-rm /home/user/lighttpd/localhost.csr
-cp /tmp/mount/openssl/ca-certificates.crt /home/user/lighttpd/
+openssl req -config /tmp/mount/openssl/persistent.cnf -new -sha256 -key /home/user/lighttpd/ssl/localhost.key -out /home/user/lighttpd/ssl/localhost.csr -subj '/CN=localhost'
+openssl ca  -config /tmp/mount/openssl/persistent.cnf -extensions server -days ${timestamp} -notext -md sha256 -in /home/user/lighttpd/ssl/localhost.csr -out /home/user/lighttpd/ssl/localhost.cert
+cat /home/user/lighttpd/ssl/localhost.key /home/user/lighttpd/ssl/localhost.cert > /home/user/lighttpd/ssl/localhost.pem
+rm /home/user/lighttpd/ssl/localhost.key
+rm /home/user/lighttpd/ssl/localhost.cert
+rm /home/user/lighttpd/ssl/localhost.csr
+cp /tmp/mount/openssl/ca-certificates.crt /home/user/lighttpd/ssl/
+
 ###############################################################################################################################################################################################################
 chown -R user:group /home/user/
 chmod -R 700 /home/user/
