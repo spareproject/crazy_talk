@@ -1,22 +1,25 @@
 #READMAH
 <br>
-general tidy up i think atleast<br>
+was actually defeated by sleep started login mech was brain dead before i finished<br>
+split the webserver into two parts...<br>
+liveusb webserver - follows the overall direction of all the authentication methods have the usb persistent keys get access<br>
+single user god mode<br>
 <br>
-desktop - firstboot, should probably just drop sshd on desktop i dont have any reason to ssh into it<br>
-but firstboot and oneshot work on desktop even with the extra bloat and unused keys it generates /shrug<br>
-so desktop gets oneshot to load gnupg minimal gets all the things<br>
+spliiting webserver and stripping everything that isnt a login / authentication method and might make a full on secure platform<br>
+it really isnt hard but given how long that took me to debug and actually get working its not fun it would probably be actual work<br>
+or atleast how quick i threw that up vs the amount of extra features a full on multi user system needs would be atleast a week if not a month for debug / clean up<br>
 <br>
-two identical monitors next to each other same settings both display the dark gray st term color differently so i have no idea how it actually looks /shrug<br>
+the lighttpd webserver is total throw up was defeated by sleep and nearly defeated by the need for food but i literally just threw code at it and took whatever stuck<br>
+in as short a time as possible<br>
 <br>
-going to finish basic webserver stuff...<br>
+needs proof reading general clean up remove duplicates make it read what its doing easily etc etc...<br>
 <br>
-been looking at busybox and minirc might sly the boot directory currently used and play with that for a bit still want outright boot to initcpio shell<br>
+if you cant explain the idea then it really isnt that clever<br>
 <br>
-openssl and gnupg both do root signing key<br>
-openssh... on the other hand doesnt<br>
-openssl gets a pass (still hate it)<br>
-openssh is getting prodded with sticks till it does something<br>
+literally nothing else done... and systemd is still sketchy hit or miss as to what it actually feels like starting on boot<br>
+still cant container anything but dont really containers anyway<br>
+the only reason i wanted container boot was because i got to play with actual nodes to make network protocols and botnet theory<br>
+can do it anyway with a database backend /shrug<br>
 <br>
-still cant systemd-nspawn or pacman... yey working things and stable stuff<br>
-if pacman didnt shit the bed i probably wouldnt have stopped depending on pkgbuilds so break more things and i might learn more (but will go kicking and screaming)<br>
-<br>
+but some actual containers would be nice so time to go QQ at the search bar till it fixes everything for me<br>
+
