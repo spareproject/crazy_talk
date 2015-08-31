@@ -8,5 +8,5 @@ total_run_times = 0,
 use_spacer = none,
 };
 conky.text = [[
-${if_existing /home/user/ssh/id_rsa-cert.pub}${if_existing /home/user/sshd/ssh_host_rsa_key-cert.pub}[ network_enabled ]${endif}${endif}${if_existing /dev/archiso}[ plugged ]${endif} ${if_existing /tmp/unlocked}[ unlocked ]${endif} [ CPU: ${cpu cpu0}% ] [ RAM: ${memperc}% ] [ ${uptime} | ${time %a %b %d %I:%M%P} ] [ Battery: ${battery_percent BAT0}% ]
+${if_existing /home/user/ssh/id_rsa-cert.pub}${if_existing /home/user/sshd/ssh_host_rsa_key-cert.pub}[ network_enabled ]${endif}${endif}${if_existing /dev/archiso}[ plugged ]${endif} ${if_existing /home/user/unlocked}[ unlocked ]${endif} [ CPU: ${cpu cpu0}% ] [ RAM: ${memperc}% ] [ ${uptime} | ${time %a %b %d %I:%M%P} ] [ Battery: ${battery_percent BAT0}% ]
 ]];
