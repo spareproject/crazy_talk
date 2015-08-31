@@ -12,16 +12,6 @@ if [[ ! ${#cookie[@]} -eq 0 ]];then echo -n "cookie: ";for i in ${!cookie[@]};do
 echo "</fieldset>"
 #############################################################################################################################################################################################################
 echo "
-
-remote address: ${REMOTE_ADDR}<br>
-http_host: $HTTP_HOST<br>
-http_referer: $HTTP_REFERER<br>
-path: $PATH<br>
-request_uri: $REQUEST_URI<br>
-script_name: ${SCRIPT_FILENAME}<br>
-
-script_name: ${SCRIPT_FILENAME##/home/user/lighttpd/webserver}<br>
-
 <fieldset><legend><h3><b>delete cookies</b></h3></legend>
 <form action=/index.cgi method=post>
 <input type=submit name=submit value=logout>
@@ -32,6 +22,9 @@ script_name: ${SCRIPT_FILENAME##/home/user/lighttpd/webserver}<br>
 #############################################################################################################################################################################################################
 echo "
 <fieldset>
+
+header needs logout and shutdown... < - being kill all containers button
+
 <legend><h3><b>offs</b></h3></legend>
 <form action=/index.cgi method=post enctype='application/x-www-form-urlencoded'>
 <input type=text value='application/x-www-form-urlencoded' name='test'>
