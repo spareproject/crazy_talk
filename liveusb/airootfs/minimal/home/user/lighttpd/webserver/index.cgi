@@ -5,6 +5,13 @@ input
 session
 header
 #############################################################################################################################################################################################################
+echo "<fieldset><legend><h3><b>systemctl</b></h3></legend>"
+echo "<table>"
+for i in iptables haveged systemd-networkd dnscrypt-proxy sshd@user lighttpd;do
+  echo "<tr><td>${i}:</td><td>$(systemctl status ${i}|awk 'NR==3 {print $2$3}')</td></tr>"
+done
+echo "</table></fieldset>"
+#############################################################################################################################################################################################################
 echo "<fieldset><legend><h3><b>debug</b></h3></legend>"
 if [[ ! ${#post[@]} -eq 0 ]];then echo -n "post: ";for i in ${!post[@]};do echo "[${i}:${post[${i}]}]";done;fi;echo '<br>'
 if [[ ! ${#get[@]} -eq 0 ]];then echo -n "post: ";for i in ${!get[@]};do echo "[${i}:${get[${i}]}]";done;fi;echo '<br>'

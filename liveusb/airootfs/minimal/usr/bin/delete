@@ -8,6 +8,12 @@ unset finish;while [[ ${finish} != @("y"|"n") ]];do read -r -p "/mnt/rawfs/${1}|
 ###############################################################################################################################################################################################################
 if [[ ${finish} == n ]];then exit;fi
 if [[ ${finish} == y ]];then
+#
+# cant handle unionfs
+# doesnt check if boot
+# doesnt check if mounted
+# doesnt check if mapped
+#
 if [[ -f /mnt/rawfs/${1} ]];then echo "deleting /mnt/rawfs/${1}";rm /mnt/rawfs/${1};fi
 if [[ -f /mnt/luks/${1} ]];then echo "deleting /mnt/luks/${1}";rm /mnt/luks/${1};fi
 if [[ -d /mnt/mount/${1} ]];then echo "deleting /mnt/mount/${1}";rmdir /mnt/mount/${1};fi

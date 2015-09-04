@@ -39,7 +39,7 @@ color:#005577;
 .center{ margin:0 auto;text-align:center; }
 /***********************************************************************************************************************************************************************************************************/
 p,h1,h2,h3,h4,h5,h6 { margin:0px; padding:0px; }
-fieldset { border:1px green solid; margin:2vh;padding:2vh; }
+fieldset { border:1px black solid; margin:2vh;padding:2vh; }
 legend { margin:0px;padding:0px; }
 form{ padding:0px; margin:0px; }
 /*input{width:13vw;}*/

@@ -13,6 +13,7 @@ strace
 ##
 openssh
 sshfs
+gnupg
 ##
 dmenu
 xorg-xauth

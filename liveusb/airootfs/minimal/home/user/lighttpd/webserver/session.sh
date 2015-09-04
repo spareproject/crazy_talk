@@ -78,6 +78,7 @@ echo "
 <div id='panel' class='top'>
 <a class='menu left' href='/index.cgi'><h3><b>[index]</b></h3></a>
 <a class='menu left' href='/container.cgi'><h3><b>[container]</b></h3></a>
+<a class='menu left' href='/test.cgi'><h3><b>[test]</b></h3></a>
 <a class='menu right' href=#><h3><b>[$(date)]</b></h3></a>
 </div>
 <div id='spacer'>a</div>

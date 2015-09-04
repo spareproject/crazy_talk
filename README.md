@@ -1,34 +1,37 @@
 #READMAH
 <br>
-apperently i forgot to hash the cookie with incoming ip and used a persistent file fail moa7<br>
+all round general fail and literally no updates if anything more unmanagable shit code and complexity<br>
 <br>
-lighttpd cant read /tmp... not annoying at all so now /home/user gets all the directories involving keys and key setup<br>
-even tho im only removing the contents of /home/user/persistent it decides to delete the directory and i cant for the life of me reproduce that so wtf?<br>
 <br>
-i need to trim some fat off the entire thing or atleast document the current setup and what each part effects<br>
-its getting to the point i couldnt easily explain it to much crap everywhere and overkill complex dir structures <br>
-^ i still blame openssl and do quite generally detest everything about it, overly complex for a piss easy task<br>
+i wanted to quickly throw an insecure gui up... demo mode<br>
+lighttpd just outright doesnt want me to<br>
+ive been staring at it for 2 days wondering why nothing works<br>
+plan was just sudo the parts that need root perms demo a working version<br>
+tidy it find ways around the lulz of it all after the fact<br>
+i cant get sudo pipes to work mount to work tmp access to work and ive only done oneshot,open,close and create none of which actually work<br>
+its like someone said o you can execute a bash script... but that person was an evil lying fuck tard<br>
+it can be done but i want this working and atleast to a state i wouldnt be embarrassed to stick my name next to and webservers going to take to long<br>
 <br>
-systemd still randomly decides what starts on boot such stable much predict very wow<br>
+so basically its get this stable trimmed checked tidy to the point my ocd lets me sleep at night<br>
+get a stupidly easy to multi boot cluster set up <br>
+find a way to blag i have the usb on this node so i can unlock on any network attached node (not throwing this up needs to be secure)<br>
 <br>
-every now and again ill boot and combine doesnt copy udev rules over...<br>
+drop the .bash_profile and go firstboot after loading (more entropy)<br>
+most of the scripts i have where thrown up as quickly as possible its tidy up time because i can actually boot containers :D<br>
+systemd-nspawn: CAP_SETGID CAP_SETUID CAP_CHOWN if you drop these it doesnt boot... i dont really get the logic with that but im assuming it was /dev/pts/ and pt_chown related? /shrug<br>
 <br>
-sort of messed up with the ability to use a web interface<br>
-going to edit oneshot to take timelimit as an input and edit /home/user/persistent/gpg-agent.sh and the sleep clean up background<br>
-plug the stick in refresh container.sh oneshot + submit to enter a pin and cache gnupg directory<br>
-having to re authenticate every 60 seconds to actually do anything... seems a tad inconvenient<br>
+either way its getting bloated with stuff im adding when i havent hardened what was already there<br>
+if i take two days to play with a web server come back to it and cant figure out where im at its to complex i still blame openssl<br>
+how much easier this would be if i just dropped lighttpd and openssl<br>
+and stuck with openssh + gnupg for a cli based home cluster setup<br>
 <br>
-i only really enjoy building authentication mechanism and stuff so total lack of motivation to make a gui<br>
-dont need a database for containers its live filesystem scrape for a database<br>
-fixing the fuck ups of not being able to decrypt rawfs on a remote target over the webserver is going to be a pain<br>
-basically ide rather just build up the webserver directory to real world usable dump everything ive learnt into it and keep it stupidly simple<br>
+openssl and lighttpd was pretty much a distraction because nspawn wouldnt even boot...<br>
+aslong as nothing gets updated by monday im going to dump the actual iso<br>
+with working easy to use scripts a default nspawn install then be done with this working snapshot checkpoint and get a real job<br>
 <br>
-random notes for me...(things that if fixed would help me sleep at night)<br>
-udev symlink...<br>
-webpanel unencrypting rawfs remotely...<br>
- -r /any/directory/ - deleting the directory in one use case only...<br>
-start some loopage to scatter the 100 char pass over the 5G random image<br>
-add trap to firstboot oneshot to clean up if the script is killed... to hard and annoying to debug<br>
-<br>
-should dump lan ssh and sshd first < - could blag persistent gnupg cache mount local call browser... nah basically no point in remote <br>
-
+i only ever dumped any of this online because i was using other peoples stuff i mean this entire thing is a blatent rip of archiso<br>
+i loved archiso in terms of how much i managed to learn and what i got to play with so on the off chance this helps someone else <br>
+have as much fun learning playing making building anything then its not a total loss <br>
+as for the quality stablity of anything in this git repo well lulz <br>
+^ seriously tho if its left stale for like 3 days the rate stuff changes in arch its going to be dead to the world an ugly mess of code that isnt documented and outright doesnt work<br>
+but its been fun anyway<br>

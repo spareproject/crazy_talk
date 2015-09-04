@@ -6,7 +6,7 @@ if [[ ! -b /dev/mapper/${1} ]];then echo "mapped device doesnt exist";exit;fi
 if [[ ! -d /mnt/mount/${1} ]];then echo "mount point doesnt exist";exit;fi
 if [[ ! $(mount | grep /mnt/mount/${1}) ]];then echo "mount point doesnt have anything mounted on it";exit;fi
 ###############################################################################################################################################################################################################
-pacstrap -C ./pacman.conf -cGMd /mnt/mount/${1} $(for i in $(cat packages);do if [[ ! $(grep "#" <<< ${i}) ]];then echo -n "${i} " ;fi;done)
-cp -arfv airootfs/* /mnt/mount/${1}
-arch-chroot /mnt/mount/${1} /root/install.sh ${dev}
+pacstrap -C ./airootfs/default/etc/pacman.conf -cGMd /mnt/mount/${1} $(for i in $(cat ./airootfs/default/root/package_list);do if [[ ! $(grep "#" <<< ${i}) ]];then echo -n "${i} " ;fi;done)
+cp -arfv airootfs/default/* /mnt/mount/${1}
+arch-chroot /mnt/mount/${1} /root/install.sh
 ###############################################################################################################################################################################################################
