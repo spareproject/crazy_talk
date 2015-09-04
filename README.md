@@ -35,3 +35,19 @@ have as much fun learning playing making building anything then its not a total 
 as for the quality stablity of anything in this git repo well lulz <br>
 ^ seriously tho if its left stale for like 3 days the rate stuff changes in arch its going to be dead to the world an ugly mess of code that isnt documented and outright doesnt work<br>
 but its been fun anyway<br>
+<br>
+<br>
+im pretty sure chromiums got a huge fucking hole in it... <br>
+was browsing places on the internet and stuffz and couple of suspicious clicks later and a lot of javascript ads that were blocked started loading<br>
+i posted shit about getting owned on weechat from thehub and that only just got fixed about 3 months later so /shrug ii is so much better<br>
+<br>
+the only other thing i want to do is take all the protocols this thing uses and completly destroy the concept of sync clocks<br>
+time is a human concept not a computer concept<br>
+so for the sake of privacy its time to write a proof so i lulz at everyone<br>
+basically root signing... persistent key... rng key...<br>
+in terms of server side, client side, (pointer)<br>
+probably need a resolv address pointer in there for revoked keys<br>
+ive pretty much nearly got the entire thing planned out<br>
+
+basically going to a website over https and not having your clock set properly and it telling you your connection is insecure is pathetic /spit /spit /golfclap<br>
+because the current time has anything to do with cryptography<br>
