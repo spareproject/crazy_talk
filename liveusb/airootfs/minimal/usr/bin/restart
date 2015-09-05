@@ -1,3 +1,2 @@
 #!/bin/env bash
-
 machinectl reboot ${1}

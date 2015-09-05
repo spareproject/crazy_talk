@@ -1,18 +1,35 @@
 #!/bin/env bash
 ###############################################################################################################################################################################################################
-if [[ $# != 1 ]];then echo -e "${0} - help\narg0 - rawfs name";exit;fi
+if [[ $# != 1 ]];then
+echo "
+${0} - help
+arg0 - rawfs name
+"
+exit
+fi
 ###############################################################################################################################################################################################################
 umask 077
 ###############################################################################################################################################################################################################
-if [[ $(ls /home/user/persistent) == "" && ! $(pgrep gpg-agent) ]];then echo "gnupg not loaded";exit;fi
-if [[ ! -f "/mnt/luks/${1}"  ]];then echo "/mnt/luks/${1}  does not exist...";exit;fi
-if [[ ! -f "/mnt/rawfs/${1}" ]];then echo "/mnt/rawfs/${1} does not exist...";exit;fi
-if [[ $(mount | grep /mnt/mount/${1}) ]];then echo "something mounted on /mnt/mount/${1}...";exit;fi
-###############################################################################################################################################################################################################
+
+# gpg-agent not running, persistent empty exit
+if [[ ! $(ps aux|grep gpg-agent|grep /home/user/gnupg/persistent) || $(ls /home/user/gnupg/persistent) == "" ]];then echo "gnupg not loaded";exit;fi
+
+# luks or rawfs doesnt exist exit
+if [[ ! -f "/mnt/luks/${1}" || ! -f "/mnt/rawfs/${1}" ]];then echo "does not exist...";exit;fi
+
+# something already mounted on mount
+if [[ $(mount|grep "/mnt/mount/${1} ") ]];then echo "something mounted on /mnt/mount/${1}...";exit;fi
+
 if [[ ! -d "/mnt/mount/${1}" ]];then mkdir /mnt/mount/${1};fi
-gpg --homedir /home/user/persistent -d /mnt/luks/${1} 2>/dev/null|
+
+###############################################################################################################################################################################################################
+
+gpg --homedir /home/user/gnupg/persistent -d /mnt/luks/${1} 2>/dev/null|
 cryptsetup --cipher aes-xts-plain64 --key-size 512 --hash sha512 --iter-time 5000 --key-file - --type=plain --offset 0 open /mnt/rawfs/${1} ${1}
+
+
 mount /dev/mapper/${1} /mnt/mount/${1}
+
 ###############################################################################################################################################################################################################
 for i in $(ls /mnt/mount);do if [[ ! $(mount | grep ${i}) ]];then rmdir /mnt/mount/${i};fi;done
 ###############################################################################################################################################################################################################

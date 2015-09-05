@@ -1,3 +1,2 @@
 #!/bin/env bash
-
 machinectl poweroff ${1}

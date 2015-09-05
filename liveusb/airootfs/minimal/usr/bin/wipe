@@ -1,12 +1,6 @@
+#!/bin/env bash
 ###############################################################################################################################################################################################################
-tmpfs /dev/shm tmpfs rw,nodev,nosuid,noexec 0 0
-tmpfs /var/tmp tmpfs rw,nodev,nosuid,noexec 0 0
-tmpfs /tmp     tmpfs rw,nodev,nosuid,noexec 0 0
-proc /proc proc defaults,hidepid=2 0 0
+echo "wipe stub... purpose if open and not running wipe pre cursor for install"
 ###############################################################################################################################################################################################################
-
-#changing...
-/dev/archiso2 /home/user/.mount/key  ext4 ro,noload,nodev,nosuid,noexec,user,noauto,noatime
-/dev/archiso3 /home/user/.mount/random ext4 ro,noload,nodev,nosuid,noexec,user,noauto,noatime
 
 ###############################################################################################################################################################################################################

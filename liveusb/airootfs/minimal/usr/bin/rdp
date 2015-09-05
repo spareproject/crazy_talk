@@ -1,0 +1,14 @@
+#!/bin/env bash
+
+echo "not even close"
+
+#if [[ -z ${XEPHYR} ]];then XEPHYR=:13;fi
+#if [[ -z ${AS} ]];then AS="user";fi
+#if [[ -z ${PORT} ]];then PORT="31279";fi
+#if [[ -z ${EXECUTE} ]];then EXECUTE="dwm";fi
+#ORIGINAL=${DISPLAY}
+#(Xephyr -screen 1900x1050 ${XEPHYR} &)&
+#export DISPLAY=:${XEPHYR}
+#(ssh -o StrictHostKeyChecking="no" -o UserKnownHostsFile="/dev/null" -p ${PORT} ${AS}@${ADDRESS} ${EXECUTE} &>/dev/null &)&
+#export DISPLAY=${ORIGINAL}
+#fi;;

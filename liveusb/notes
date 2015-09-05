@@ -1,39 +1,45 @@
-###############################################################################################################################################################################################################
-
-erm ./key.sh - cant umount because it only kills one gpg-agent pkill gpg-agent x 1000000 only finds one of them... annoying
-
-###############################################################################################################################################################################################################
-
-/dev/sdc1 - boot partition
-/dev/sdc2 - key partition
-/dev/sdc3 - random partition
-
-so nice simple none complex setup died the second openssl shat all over it... thanks openssl love you long time
-
-###############################################################################################################################################################################################################
-
-openssl is terrabad i had to delete all my notes on it... i do swear alot and generally gief zero fauks, but no
-was looing at ocsp but i cant key revoke gnupg openssh or openssl till i have some form of network setup, requires a fixed ip
-as in the entire idea just isnt that applicable to the rebootable static image yet... will think about it
-^ needs more a network based single key check did start doing stuff on this
-and im using public/private pki on everything the idea they all need a seperate fuck up is just wrong
-will probably blag it https based 
-^ can get surf to download straight into a folder hosting on its own webserver... means boot view other nodes download a key
-instantly hosting the same key can check sig sign etc... or atleast im dumping everything in lighttpd to start playing
-^ pulled ca-certificates to stop network out... cant stop http but minimal doesnt get internets
-ill hard block iptables out if i can get pacman over a port that isnt 443/80 then https on port 34123 anything
-but this is the only stick that can remake isos now desktop / steam are going minimal so i can maintain this and they shouldnt break...
-
-###############################################################################################################################################################################################################
-
-new key partition layout...
-./mount
+rootfs
+/home/user
   /gnupg
-    /root
     /persistent
+    /user
+    /persistent.public
+    /persistent.sig
     /root.public
     /user.public
     /user.sig
+/home/user
+  /openssh
+    /ssh
+      /id_rsa
+      /id_rsa.asc
+      /id_rsa-cert.pub
+      /id_rsa.pub
+      /known_hosts
+      /server_ca.pub
+    /sshd
+      /client_ca.pub
+      /sshd_config
+      /ssh_host_rsa_key
+      /ssh_host_rsa_key.asc
+      /ssh_host_rsa_key-cert.pub
+      /ssh_host_rsa_key.pub
+/home/user
+  /openssl
+    /ca-certificates.crt
+    /localhost.cert
+    /localhost.key
+    /localhost.key.asc
+    /localhost.pem
+
+key partition
+/mount
+  /gnupg
+    /persistent
+    /root
+    /persistent.public
+    /persistent.sig
+    /root.public
     /trigger.asc
   /openssh
     /client_ca.asc
@@ -42,84 +48,52 @@ new key partition layout...
     /server_ca.asc
     /server_ca.pub
   /openssl
-    #/certs 
-    #/localhost 
-    /persistent
-    /root
-    /ca-certificates.crt   
-
-the openssl blag...
-need the whole dir structure to generate and sign anything... 
-only need to copy the root.key root.cert persistent.key persistent.cert
-so ./keys needs to take airootfs/minimal/home/user/lighttpd/certs tmp it gen keys copy them out... 
-setup the above properly
-encrypt the .keys with gnupg .asc
-
-on boot... 
-same shit setup /tmp/ copy the keys over... still requires gnupg decrypt
-still requires full hardcoded dirs and config files... < - /tmp/... ?
-^ pretty much all the generation is going /tmp because i dont want the stupid dir structure and hardcoded shit all over the filesystem
-so sign it scrap it and copy localhost.pem and ca-certificates.crt into lighttpd
-
-scripts that new keys.sh setup and layout break... and the random partitions raw image over raw partition
-/home/user/.bash_profile
-/usr/bin/firstboot
-/usr/bin/oneshot
-./keys.sh < - was gnupg.sh but its getting bigger than that
-
-^ current
-gnupg root signing key
-openssl root signing key
-openssh... single signing key
-
-realistically once its all done and further down the road
-usb split sign a set of keys can dump single or multiple per usb so long as its signed it should be network friendly 
-but openssh doesnt have that shit so i need to further poke it with a large stick till it does what i want
-
-but then i still lulz at the 3 sets of rsa pub/priv setup thats needed to do the same math
-openssh isnt bad gnupg was easy mode to learn understand documentation etc
-then theres openssl i dont think i could talk about or refer to it without the raw seething hatered i feel spilling out
-
-the same thing three times 
-or one executable to handle
-public / private regardless of math used for keys
-+ default exchange mechs 
-and a default hash
-so when this shit gets old and doesnt work you just point to different math rather than relearn the wheel
-
-should probably switch them up a bit so its not all rsa but /shrug this is all stub till i can make my own network
-I want to completly kill off the idea time because comuters give zero fucks about what time it is
-
-^ exchange happens node0 internal rotating clock node1 rotating internal clock
-node0 doesnt need an external clock to grant timed access to node1
-time parameters help keys / cookie logic... but they dont need to be based on real time
-even for centralized auth servers 
-
-^ the only arguement for agreed time is historical accuracy and i dont really give many fucks about that either
-if the clock full rotates and starts from 0 it can still store uptime for the given cookies tokens keys and auth
-it would be calculated to max then start from 0 anyway
-
-rambling need sleep 
-
+    /ca-certificates.crt
+    /persistent.cert
+    /persistent.cnf
+    /persistent.key
+    /persistent.key.asc
+    /root.cert
+    /root.cnf
+    /root.key
+    /root.key.asc
+notes:
+key.sh - only script needed to generate partition with persistent / signing keys and handles permissions... 
+openssl - cant leave only .asc private keys because i cant pipe the unlocked key into the openssl command pffft
+also creates a load of pointless none needed directories and files and hard forces fixed paths for keys basically openssl is shit 
 
 ###############################################################################################################################################################################################################
 
-package list...
+anything else = errors messages to do list etc
 
-desktop
-dwm                   - larger font, change alt+shift+enter to st
-st                    - default - probably need del and buffer patch
-surf                  - no plugins,scripts,inspector strict ssl ~/downloads
-hasciicam             - default - needs libaa
-ii                    - default - needs multitail and some script foo
-chromium-pepper-flash - default
+firstboot - second execute prompt regen random keys, increase original signing time... wont run if oneshot is cached (if it dies halfway through gen then it gets messy)
+oneshot   - should work... probably needs a prompt if cached wipe and clean up (y|n)? or 15 minute cache and cant execute firstboot...
 
-minimal
-dwm                   - home tag,surf rule, larger font, change alt+shift+enter to st
-st                    - default
-surf                  - no plugins,scripts,inspector strict ssl ~/lighttpd/download ~/lighttpd/cookiez ~/lighttpd/ca-certificates.crt
+create    - should work...
 
-need two sets of
-dwm,surf 
+open      - should work...
+close     - doesnt handle unionfs
+
+unionfs   - need to mv /usr/bin/unionfs to /usr/bin/not_unionfs and insert my own script there or come up with a decent name
+
+install   - not even started but /mnt/storage/container is currently the dir
+wipe      - not even started
+
+start     - drop caps full working, copy rng id_rsa to allow ssh in... twerks ish install script needed
+stop      - machinectl poweroff alias
+restart   - machinectl reboot alias
+
+query     - not started only decided to use it after webserver attempt... show systemctl status for monitored size uptime any random usefull stats
+
+delete    - total fail doesnt support unionfs, booted machines, mounted maps or maps in general if its all off use it or it will fuck your day up
+
+list      - works... wont scale well uses a variable to abuse column -t pipe looks pretty wont scale well
+
+rdp       - start a Xephyr session running not even started 
+
+###############################################################################################################################################################################################################
+
+ive had nspawn running but it shits the bed within about 5 minutes so even if this cleaned up i might not have anything other than playing with a webserver to do or harden desktop 
+^ entire iso went down hard killed everything
 
 ###############################################################################################################################################################################################################
