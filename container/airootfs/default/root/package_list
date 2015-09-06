@@ -18,3 +18,7 @@ gnupg
 dmenu
 xorg-xauth
 ##
+terminator
+##
+libwebkit
+xorg-xprop

@@ -1,3 +1,86 @@
+###############################################################################################################################################################################################################
+
+unionfs is far to useful to not have but its a proper pain and bloats everything...
+so only doing boot a rawfs or boot a rawfs with a tmp overlay
+^ you can stage test look at differences then cp -arf commit it to the original etc 
+you can do loads with it asure youll eventually figure out how epic it actually is
+
+^ probably need a script to boot with a overlay... record mode takes .bash_history and the /mnt/mount/.overlayfs 
+file then dumps that into the container install ie a full on live recorded snapshot that can be dumped into multiple containers
+manually strip bash_history to make install.sh then all the config files get dumped to /mnt/storage/container/airootfs/<snapshot> 
+etc 
+
+###############################################################################################################################################################################################################
+
+internal storage layout
+
+/mnt
+  /luks
+  /mount
+    /.overlayfs
+  /rawfs
+  /storage
+
+###############################################################################################################################################################################################################
+
+temp overlay blag
+
+# random unencrypted overlayfs for tmp booting same shit install some stuff play can take the results and cp -arf into rawfs
+/mnt/mount/.overlay
+  /overlayfs
+
+/mnt/mount/rootfs.overlayfs
+
+###############################################################################################################################################################################################################
+
+general script layout for container stuffz...
+
+###
+if you dont give the correct number of inputs it prints help text (havent had a script that doesnt take input yet...) going for quick and working
+^ last time i made it all "properly" ie spent time on it it was dead within a few weeks so 0 investment time but it will work so suck it
+###
+conditions... easiest way to get error messages is if it fails or passes... echo why and exit... webserver scripts needed to be the opposite 
+^ this is quicker fewest lines with actual useful output 
+###
+actual script - execute exerything on the given input
+###
+container scripts clean up... currently just cleans up empty mount dirs can / will expand as needed
+^ same logic as network discovery everything executed helps make sure its running as it should 
+###
+
+***
+with the webserver it was literally printing buttons based on what you were allowed to do...
+with cli you can call any script regardless of a sanity check
+say for instance you take close.. its main purpose is to cryptsetup close and umount... but if its a running container then should it kill it then do the same
+for the sake of keeping scripts simple they should be conditions match, can execute, and not overlap
+but for convenience sake i say close regardless i want it back in crypted format
+having to go
+...
+./close - cant close its running
+echo muble fucking shit software pfft
+./stop - machinectl poweroff...
+./close - cant close its mounted as unionfs...
+echo serious bro your going out the window
+./unionfs - 
+etc etc...
+...
+
+webserver has epic perks in terms of dont be an idiot mode but
+
+the amount of times ive done this and its been fucked and not even working within weeks after i have no want
+for this to be anything more complex than say 30 lines per script
+regardless if that gimps functionality
+
+but say wipe...
+./wipe rawfs - quicker to prompt for a reinstall
+^ should that automagic stop or not?
+
+i need to get the cross over stuff sorted
+
+i dont give a shit how it works its error checking input and state that takes more time and code but then that is the entire point of a wrapper
+hardcode paths and alias commands to reduce input and run quicker?
+
+###############################################################################################################################################################################################################
 rootfs
 /home/user
   /gnupg
@@ -76,7 +159,7 @@ close     - doesnt handle unionfs
 
 unionfs   - need to mv /usr/bin/unionfs to /usr/bin/not_unionfs and insert my own script there or come up with a decent name
 
-install   - not even started but /mnt/storage/container is currently the dir
+install   - not even started but /mnt/storage/container is currently the dir CANT USE INSTALL AS A SCRIPT NAME fail moa7
 wipe      - not even started
 
 start     - drop caps full working, copy rng id_rsa to allow ssh in... twerks ish install script needed
@@ -88,6 +171,8 @@ query     - not started only decided to use it after webserver attempt... show s
 delete    - total fail doesnt support unionfs, booted machines, mounted maps or maps in general if its all off use it or it will fuck your day up
 
 list      - works... wont scale well uses a variable to abuse column -t pipe looks pretty wont scale well
+
+poweroff - doesnt exist anymore need a name kill all the running things till there all good and dead
 
 rdp       - start a Xephyr session running not even started 
 

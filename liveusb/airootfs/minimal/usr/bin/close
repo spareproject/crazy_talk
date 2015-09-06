@@ -1,9 +1,4 @@
 #!/bin/env bash
-
-
-# no unionfs support
-
-
 ###############################################################################################################################################################################################################
 if [[ $# != 1 ]];then
 echo "
@@ -13,21 +8,36 @@ arg0 - rawfs name
 exit
 fi
 ###############################################################################################################################################################################################################
+
+# if rawfs exists
 if [[ ! -f /mnt/luks/${1} && ! -f /mnt/rawfs/${1} ]];then echo "luks and rawfs do not exist...";exit;fi
+
 ###############################################################################################################################################################################################################
 
+# if its running
 if [[ $(machinectl|grep "${1} ") ]];then
   while [[ $(machinectl | grep "${1} ") ]];do
     machinectl poweroff ${1}
   done
 fi
 
+# if its unionfs
+# 
+# mount|grep unionfs|grep name
+# ^ only problem was node1 node 11 would trigger 
+# search for underlay |grep "name\." 
+# search for overlay  |grep "\.name"
+# then your fault if you fuck the naming scheme up
+#
+
+# if its mounted
 if [[ $(mount|grep "/mnt/mount/${1} ") ]];then
   while [[ $(mount | grep "/mnt/mount/${1} ") ]];do
     umount /mnt/mount/${1}
   done
 fi
 
+# if its mapped
 if [[ -b /dev/mapper/${1} ]];then
   while [[ -b /dev/mapper/${1} ]];do
     cryptsetup close /dev/mapper/${1}

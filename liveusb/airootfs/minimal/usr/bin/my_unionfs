@@ -10,17 +10,31 @@ exit
 fi
 ###############################################################################################################################################################################################################
 
-if [[ ! $(mount|grep "/mnt/mount/${1} ") ]];then echo "underlay isnt a rawfs...";fi
-if [[ -d /mnt/mount/${2} ]];then echo "overlayfs directory already exists...";fi
+# if underlay exists...
+if [[ ! -f /mnt/rawfs/${1} || ! -f /mnt/luks/${1} ]];then echo "underlayfs doesnt exist";exit;fi
 
+# if underlayfs isnt mapped and mounted
+if [[ ! -b /dev/mapper/${1} || ! $(mount|grep "/mnt/mount/${1} ") ]];then echo "underlayfs isnt mapped or mounted";exit;fi
 
-if [[ $(mount|grep "/mnt/mount/${1}.${2} ") ]];then echo "something already mounted on /mnt/mount/${1}.${2}";fi
+# if overlay exists... delete or reuse it
+if [[ -d /mnt/mount/.overlayfs/${2} ]];then 
+echo "/mnt/mount/.overlayfs/${2} already exists delete or reuse it (d|r)?"
+unset input;while [[ ${input} != @("d"|"r") ]];do read -rp "input: " input;done
+if [[ $input == "d" ]];then
+rm -r /mnt/mount/.overlayfs/${2}/*
+fi
+else
+mkdir /mnt/mount/.overlayfs/${2}
+fi
 
-if [[ ! -d /mnt/mount/${1}.${2} ]];then mkdir -p /mnt/mount/${1}.${2};fi
+# if somethings mounted on the resulting directory
+if [[ $(mount|grep "/mnt/mount/${1}.${2} ") ]];then echo "something already mounted on /mnt/mount/${1}.${2}";exit;fi
 
 ###############################################################################################################################################################################################################
 
-unionfs -o allow_other,use_ino,suid,dev,nonempty -o cow /mnt/mount/${2}=RW:/mnt/mount/${1}=RO /mnt/mount/${1}.${2}
+if [[ ! -d /mnt/mount/${1}.${2} ]];then mkdir -p /mnt/mount/${1}.${2};fi
+
+unionfs -o allow_other,use_ino,suid,dev,nonempty -o cow /mnt/mount/.overlayfs/${2}=RW:/mnt/mount/${1}=RO /mnt/mount/${1}.${2}
 
 ###############################################################################################################################################################################################################
 for i in $(ls /mnt/mount);do if [[ ! $(mount | grep ${i}) ]];then rmdir /mnt/mount/${i};fi;done

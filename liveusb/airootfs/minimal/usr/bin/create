@@ -11,7 +11,7 @@ fi
 umask 077
 ###############################################################################################################################################################################################################
 
-# internal storage isnt mounted - doesnt check for dir layout...
+# if internal isnt mounted... should probably check dir structure
 if [[ ! $(mount | grep /mnt) ]];then echo "internal storage isnt mounted";exit;fi
 
 # if gpg-agent isnt running or persistent is empty...
@@ -20,9 +20,9 @@ if [[ ! $(ps aux|grep gpg-agent|grep /home/user/gnupg/persistent) || $(ls /home/
 # if luks or rawfs already exist
 if [[ -f /mnt/luks/${1} || -f /mnt/rawfs/${1} ]];then echo "rawfs &| key exist";exit;fi
 
-if [[ ! -d /mnt/mount/${1} ]];then mkdir -p /mnt/mount/${1};fi
-
 ###############################################################################################################################################################################################################
+
+if [[ ! -d /mnt/mount/${1} ]];then mkdir -p /mnt/mount/${1};fi
 
 dd if=/dev/random bs=1 count=8192 | gpg --homedir /home/user/gnupg/persistent -o /mnt/luks/${1} -e
 

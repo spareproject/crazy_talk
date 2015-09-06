@@ -87,7 +87,7 @@ if [[ ${input} == "2" ]];then timestamp="+1d";fi
 if [[ ${input} == "3" ]];then timestamp="+1w";fi
 if [[ ${input} == "4" ]];then timestamp="+4w";fi
 if [[ ${input} == "5" ]];then timestamp="+52w";fi
-echo "$(gpg --homedir /home/user/gnupg/persistent -d /home/user/mount/openssh/server_ca.asc 2>/dev/null)"|
+echo "$(gpg --homedir /home/user/gnupg/persistent -d /home/user/.mount/key/openssh/server_ca.asc 2>/dev/null)"|
 ssh-keygen -s /dev/stdin -I server_ca -h -n host -V ${timestamp} /home/user/openssh/sshd/ssh_host_rsa_key.pub
 
 echo -e "Client Certificate Uptime\n1 - 1 hour\n2 - 1 day\n3 - 1 week\n4 - 1 month\n5 - 1 year\n"
@@ -97,7 +97,7 @@ if [[ ${input} == "2" ]];then timestamp="+1d";fi
 if [[ ${input} == "3" ]];then timestamp="+1w";fi
 if [[ ${input} == "4" ]];then timestamp="+4w";fi
 if [[ ${input} == "5" ]];then timestamp="+52w";fi
-echo "$(gpg --homedir /home/user/gnupg/persistent -d /home/user/mount/openssh/client_ca.asc 2>/dev/null)"|
+echo "$(gpg --homedir /home/user/gnupg/persistent -d /home/user/.mount/key/openssh/client_ca.asc 2>/dev/null)"|
 ssh-keygen -s /dev/stdin -I user -n user -V ${timestamp} /home/user/openssh/ssh/id_rsa.pub
 
 ###############################################################################################################################################################################################################
@@ -134,7 +134,7 @@ pkill gpg-agent
 umount /home/user/.mount/key
 umount /home/user/.mount/random
 rm -r  /home/user/gnupg/persistent/*
-rm -r /home/user/openssl/index.txt
+rm -r /home/user/openssl/index.txt*
 rm -r /home/user/openssl/serial
 rm -r /home/user/openssl/.random
 rm -r /home/user/openssl/certs

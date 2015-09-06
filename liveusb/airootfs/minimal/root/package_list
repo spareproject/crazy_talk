@@ -61,10 +61,6 @@ abs
 base-devel
 git
 ##
-chromium
 android-tools
 android-udev
-##
-libwebkit
-xorg-xprop
 ##
