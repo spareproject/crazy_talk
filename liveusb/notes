@@ -1,5 +1,36 @@
 ###############################################################################################################################################################################################################
 
+close and delete...
+takes input...
+
+1 unionfs rootfs.overlayfs running
+cant use machinectl|grep $1|wc -l
+
+rootfs...
+if running
+if mounted
+if mapped
+
+unionfs...
+if running
+if mounted
+
+if running '${1}\.*' is an underlay, has deps
+if mounted '${1}\.*' is an underlay, has deps
+
+if running or mounted...
+
+prompt kill all... or quit if rawfs only
+
+erm... half here half else where epic notage
+
+
+
+
+
+
+###############################################################################################################################################################################################################
+
 unionfs is far to useful to not have but its a proper pain and bloats everything...
 so only doing boot a rawfs or boot a rawfs with a tmp overlay
 ^ you can stage test look at differences then cp -arf commit it to the original etc 
@@ -155,7 +186,7 @@ oneshot   - should work... probably needs a prompt if cached wipe and clean up (
 create    - should work...
 
 open      - should work...
-close     - doesnt handle unionfs
+close     - doesnt handle unionfs either... unionfs underlay kill all overlayfs... or unionfs rootfs.overlayfs kill top layer... unionfs is pretty much just umount and maybe delete
 
 unionfs   - need to mv /usr/bin/unionfs to /usr/bin/not_unionfs and insert my own script there or come up with a decent name
 

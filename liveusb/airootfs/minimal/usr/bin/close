@@ -14,21 +14,39 @@ if [[ ! -f /mnt/luks/${1} && ! -f /mnt/rawfs/${1} ]];then echo "luks and rawfs d
 
 ###############################################################################################################################################################################################################
 
+# if input was an underlay with deps
+if [[ $(machinectl|grep "${1}\.") || $(mount|grep "/mnt/mount/${1}\.") ]];then
+  echo "rawfs with $(mount|grep unionfs|grep /mnt/mount/${1}\.|wc -l) unionfs dependency kill all (y|n)?"
+  unset input;while [[ ${input} != @("y"|"n") ]];do read -rp "input: " input;done
+  if [[ ${input} == "n" ]];then exit;fi
+
+  # kill all machines matching input
+
+  # for every machine running check if the output contains input. if it does kill it
+  for i in $(machinectl|sed 1d|sed '/^$/d'|sed '$ d'|awk '{print $1}');do
+    if [[ $i =~ ${1}\. ]];then
+      while [[ $(machinectl|grep "${i} ") ]];do machinectl poweroff ${i};done
+    fi
+  done
+
+  # umount all dirs matching input
+  for i in /mnt/mount/*;do 
+    if [[ $i =~ ${1}\. ]];then
+      while [[ $(mount|grep /mnt/mount) ]];do umount /mnt/mount/*;done
+    fi
+  done
+fi
+
+# either none of the above executes kills what you entered
+# or you hit exit
+# or it continues to kill the input that had dependencies
+
 # if its running
 if [[ $(machinectl|grep "${1} ") ]];then
   while [[ $(machinectl | grep "${1} ") ]];do
     machinectl poweroff ${1}
   done
 fi
-
-# if its unionfs
-# 
-# mount|grep unionfs|grep name
-# ^ only problem was node1 node 11 would trigger 
-# search for underlay |grep "name\." 
-# search for overlay  |grep "\.name"
-# then your fault if you fuck the naming scheme up
-#
 
 # if its mounted
 if [[ $(mount|grep "/mnt/mount/${1} ") ]];then

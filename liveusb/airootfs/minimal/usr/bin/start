@@ -5,7 +5,8 @@ if [[ $# != 2 ]];then echo -e "${0} - help\narg0 - rawfs name\narg1 - bridge nam
 if [[ ! -d /mnt/mount/${1} ]];then echo "/mnt/mount/${1} doesnt exist...";exit;fi
 if [[ ! $(mount | grep "/mnt/mount/${1} ") ]];then echo "mapped device isnt mounted ... ";exit;fi
 ###############################################################################################################################################################################################################
-caps="CAP_AUDIT_CONTROL,CAP_AUDIT_WRITE,CAP_SYS_BOOT,CAP_SYS_RESOURCE,CAP_SYS_TTY_CONFIG,CAP_SYS_PTRACE,CAP_SYS_NICE,CAP_SYS_CHROOT,CAP_SETFCAP,CAP_LINUX_IMMUTABLE,CAP_LEASE,CAP_FSETID,CAP_FOWNER,CAP_DAC_READ_SEARCH,CAP_DAC_OVERRIDE"
+caps="CAP_AUDIT_CONTROL,CAP_AUDIT_WRITE,CAP_SYS_BOOT,CAP_SYS_RESOURCE,CAP_SYS_TTY_CONFIG,CAP_SYS_PTRACE,CAP_SYS_NICE,CAP_SETFCAP,CAP_LINUX_IMMUTABLE,CAP_LEASE,CAP_FSETID,CAP_FOWNER,CAP_DAC_READ_SEARCH,CAP_DAC_OVERRIDE"
+#CAP_SYS_CHROOT       - no chromium
 #CAP_IPC_OWNER        - no ssh
 #CAP_KILL             - no ssh
 #CAP_NET_BIND_SERVICE - no ssh

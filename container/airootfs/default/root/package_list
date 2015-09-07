@@ -20,5 +20,6 @@ xorg-xauth
 ##
 terminator
 ##
-libwebkit
-xorg-xprop
+chromium
+ttf-bitstream-vera
+##
