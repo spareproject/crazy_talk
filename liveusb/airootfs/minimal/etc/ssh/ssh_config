@@ -36,7 +36,7 @@ TCPKeepAlive yes
 #ServerAliveInterval
 
 StrictHostKeyChecking ask
-UserKnownHostsFile ~/ssh/known_hosts
+UserKnownHostsFile ~/openssh/ssh/known_hosts
 HashKnownHosts yes
 UpdateHostKeys ask
 CheckHostIP yes

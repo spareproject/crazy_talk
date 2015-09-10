@@ -9,6 +9,12 @@ exit
 fi
 ###############################################################################################################################################################################################################
 
+# if it has unionfs deps 
+if [[ $(machinectl|grep "${1}\.")||$(mount|grep "/mnt/mount/${1}\.") ]];then
+echo "rawfs has $(mount|grep unionfs|grep /mnt/mount/${1}\.|wc -l)  unionfs dependencies"
+exit
+fi
+
 # if its running
 if [[ $(machinectl|grep "${1} ") ]];then
   while [[ $(machinectl | grep "${1} ") ]];do

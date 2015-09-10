@@ -2,18 +2,15 @@
 ###############################################################################################################################################################################################################
 mount ${1}1 /boot
 ###############################################################################################################################################################################################################
-read -rp "sgdisk, dd, syslinux"
 sgdisk ${1} --attributes=1:set:2
 dd bs=440 conv=notrunc count=1 if=/usr/lib/syslinux/bios/gptmbr.bin of=${1}
 syslinux-install_update -i
 sed "s/CHANGEMEH/$(blkid ${1}1 -s PARTUUID -o value)/" /root/syslinux.cfg > /boot/syslinux/syslinux.cfg
 ###############################################################################################################################################################################################################
-read -rp "bootctl"
 bootctl --path /boot install
 sed "s/CHANGEMEH/$(blkid ${1}1 -s PARTUUID -o value)/" /root/arch.conf > /boot/loader/entries/arch.conf
 cp /root/loader.conf /boot/loader
 ###############################################################################################################################################################################################################
-read -rp "mkinitpcio"
 mkinitcpio -p linux
 rm -r /boot/initramfs-linux-fallback.img
 ###############################################################################################################################################################################################################
@@ -21,7 +18,7 @@ rm -r /boot/initramfs-linux-fallback.img
 ###############################################################################################################################################################################################################
 locale-gen
 loadkeys uk
-ln -sf /usr/share/zoneinfo/UTC /etc/localtime
+#ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 if [[ -f /usr/bin/pinentry ]];then rm /usr/bin/pinentry;ln -s /usr/bin/pinentry-curses /usr/bin/pinentry;else ln -s /usr/bin/pinentry-curses /usr/bin/pinentry;fi
 ###############################################################################################################################################################################################################
 chmod -R 700 /root
@@ -37,11 +34,18 @@ chown -R user:group /home/user;
 chmod -R 700 /home/user
 passwd -l user
 ###############################################################################################################################################################################################################
+
 systemctl enable iptables
+#systemctl enable nftables
+
 systemctl enable haveged.service
+
 systemctl enable systemd-networkd.service
+systemctl enable systemd-resolved.service
 systemctl enable dnscrypt-proxy.service
+
 systemctl enable combine.service
+
 ###############################################################################################################################################################################################################
 umount /boot
 rm -r /boot

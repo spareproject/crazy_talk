@@ -3,6 +3,11 @@ Name=container
 
 [Network]
 Address=10.0.0.1/8
+DNS=10.0.0.1
 DHCPServer=true
 IPForward=yes
 IPMasquerade=yes
+LinkLocalAddressing=ipv4
+LLMNR=true
+LLDP=true
+

@@ -6,7 +6,6 @@ sed
 ##
 tmux
 vim-minimal
-conky
 htop
 lsof
 strace
@@ -18,8 +17,7 @@ gnupg
 dmenu
 xorg-xauth
 ##
-terminator
-##
-chromium
-ttf-bitstream-vera
+libwebkit
+xorg-xprop
+ttf-liberation
 ##

@@ -20,7 +20,7 @@ RSAAuthentication no
 RhostsRSAAuthentication no
 
 IdentitiesOnly yes
-IdentityFile ~/ssh/id_rsa
+IdentityFile ~/openssh/ssh/id_rsa
 
 ConnectionAttempts 1
 ConnectTimeout 7
@@ -36,7 +36,7 @@ TCPKeepAlive yes
 #ServerAliveInterval
 
 StrictHostKeyChecking ask
-UserKnownHostsFile ~/ssh/known_hosts
+UserKnownHostsFile ~/openssh/ssh/known_hosts
 HashKnownHosts yes
 UpdateHostKeys ask
 CheckHostIP yes

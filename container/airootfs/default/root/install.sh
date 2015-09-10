@@ -11,7 +11,7 @@ passwd -l root
 user=$(shuf -i 1000-60000 -n 1)
 group=$(shuf -i 1000-60000 -n 1)
 groupadd --gid ${group} group
-useradd -m --uid ${user} -g group -s /bin/bash user;
+useradd --uid ${user} -g group -s /bin/bash user;
 gpg --homedir /home/user/gnupg/user --passphrase-fd 0 --gen-key --batch /etc/gnupg/batch.user <<< "" 2>/dev/null
 gpg --homedir /home/user/gnupg/user --output /home/user/gnupg/user.public --export user  2>/dev/null
 ssh-keygen -t rsa -b 4096 -f "/home/user/openssh/ssh/id_rsa" -N ""
@@ -24,6 +24,7 @@ chown -R user:group /home/user;
 chmod -R 700 /home/user
 passwd -l user
 rm /etc/securetty
+rm -r /boot
 ###############################################################################################################################################################################################################
 systemctl enable iptables.service
 systemctl enable systemd-networkd.service

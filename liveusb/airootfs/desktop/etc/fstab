@@ -1,10 +1,14 @@
+###############################################################################################################################################################################################################
 tmpfs /dev/shm tmpfs rw,nodev,nosuid,noexec 0 0
 tmpfs /var/tmp tmpfs rw,nodev,nosuid,noexec 0 0
 tmpfs /tmp     tmpfs rw,nodev,nosuid,noexec 0 0
-proc /proc proc defaults,hidepid=2 0 0
-/dev/archiso2 /tmp/mount ext4 ro,noload,nodev,nosuid,noexec,user,noauto,noatime
-/dev/archiso3 /tmp/random ext4 ro,noload,nodev,nosuid,noexec,user,noauto,noatime
+proc /proc     proc  defaults,hidepid=2 0 0
+###############################################################################################################################################################################################################
+/dev/archiso2 /home/user/.mount/key    ext4 ro,noload,nodev,nosuid,noexec,user,noauto,noatime
+/dev/archiso3 /home/user/.mount/random ext4 ro,noload,nodev,nosuid,noexec,user,noauto,noatime
+###############################################################################################################################################################################################################
 /dev/md127 /mnt ext4 rw,nodev,nosuid,noexec,user,noauto,noatime,discard
 /dev/sda   /mnt ext4 rw,nodev,nosuid,noexec,user,noauto,noatime,discard
 /dev/sdb   /mnt ext4 rw,nodev,nosuid,noexec,user,noauto,noatime,discard
 /mnt/storage/torrents /home/user/torrents none bind,user,noauto
+###############################################################################################################################################################################################################

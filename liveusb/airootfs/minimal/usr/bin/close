@@ -16,7 +16,7 @@ if [[ ! -f /mnt/luks/${1} && ! -f /mnt/rawfs/${1} ]];then echo "luks and rawfs d
 
 # if input was an underlay with deps
 if [[ $(machinectl|grep "${1}\.") || $(mount|grep "/mnt/mount/${1}\.") ]];then
-  echo "rawfs with $(mount|grep unionfs|grep /mnt/mount/${1}\.|wc -l) unionfs dependency kill all (y|n)?"
+  echo "rawfs with $(mount|grep unionfs|grep /mnt/mount/${1}\.|wc -l) unionfs dependencies kill all (y|n)?"
   unset input;while [[ ${input} != @("y"|"n") ]];do read -rp "input: " input;done
   if [[ ${input} == "n" ]];then exit;fi
 

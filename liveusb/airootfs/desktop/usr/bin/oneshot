@@ -1,32 +1,31 @@
 #!/bin/env bash
 ###############################################################################################################################################################################################################
 umask 077
-###############################################################################################################################################################################################################
 clear;cat /etc/banner
-while [[ ! -b /dev/archiso1 && ! -b /dev/archiso2 && ! -b /dev/archiso3 ]];do
-read -p "plugin usb... (hit enter)"
-if [[ ! -b /dev/archiso1 && ! -b /dev/archiso2 && ! -b /dev/archiso3 ]];then clear;cat /etc/banner;echo "device /dev/archiso does not exist... ";fi
-done
 ###############################################################################################################################################################################################################
+if [[ ! $(ps aux|grep gpg-agent|grep /home/user/gnupg/persistent) && $(ls /home/user/gnupg/persistent) == "" && -b /dev/archiso1 && -b /dev/archiso2 && -b /dev/archiso3 ]];then
 mount /dev/archiso2
 mount /dev/archiso3
-###############################################################################################################################################################################################################
-cp -ar /home/user/mount/gnupg/persistent/* /home/user/persistent
-###############################################################################################################################################################################################################
-read -rp "enter pin: " PIN
-gpg --homedir /home/user/persistent --passphrase-fd 0 -d /home/user/mount/gnupg/trigger.asc 2>/dev/null <<< $(dd if=/home/user/random/randomfs bs=1 count=100 ibs=1 skip=${PIN} 2>/dev/null)
-###############################################################################################################################################################################################################
-touch /home/user/unlocked
-umount /home/user/mount
-umount /home/user/random
-###############################################################################################################################################################################################################
-function detach_meh {
-  sleep 63
-  rm -r /home/user/persistent/*
-  rm -r /home/user/unlocked
-  umask 077
+cp -ar /home/user/.mount/key/gnupg/persistent/* /home/user/gnupg/persistent
+echo -e "gnupg uptime\n1 - 1m\n2 - 5m\n3 - 10m\n4 - 15m\n"
+unset input;while [[ $input != @("1"|"2"|"3"|"4") ]];do read -p "input: " input;done
+if [[ ${input} == "1" ]];then timestamp="60";fi
+if [[ ${input} == "2" ]];then timestamp="300";fi
+if [[ ${input} == "3" ]];then timestamp="600";fi
+if [[ ${input} == "4" ]];then timestamp="900";fi
+sed -i "s/60/${timestamp}/" /home/user/gnupg/persistent/gpg-agent.conf
+read -rp "enter pin: " pin
+if gpg --homedir /home/user/gnupg/persistent --passphrase-fd 0 -d /home/user/.mount/key/gnupg/trigger.asc 2>/dev/null <<< $(dd if=/home/user/.mount/random/randomfs bs=1 count=100 ibs=1 skip=${pin} 2>/dev/null);then
+  echo "$(($(date +%s)+${timestamp}))" > /home/user/gnupg/unlocked
+  (sleep ${timestamp} && pkill gpg-agent && rm -r /home/user/gnupg/persistent/* && rm -r /home/user/gnupg/unlocked &)&
+else
   pkill gpg-agent
-  mkdir /home/user/persistent
-}
-(detach_meh &)&
+  rm -r /home/user/gnupg/persistent/*
+fi
+umount /dev/archiso2
+umount /dev/archiso3
+###############################################################################################################################################################################################################
+else
+  echo "!bail - dem errorz doe"
+fi
 ###############################################################################################################################################################################################################

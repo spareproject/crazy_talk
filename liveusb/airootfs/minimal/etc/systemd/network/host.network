@@ -4,3 +4,12 @@ Name=host
 DHCP=ipv4
 IPForward=yes
 IPMasquerade=yes
+[DHCP]
+UseDNS=false
+UseNTP=false
+UseMTU=false
+UseDomains=false
+UseRoutes=true
+SendHostname=false
+UseHostname=false
+

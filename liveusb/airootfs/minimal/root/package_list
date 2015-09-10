@@ -64,3 +64,8 @@ git
 android-tools
 android-udev
 ##
+nftables
+##
+libwebkit
+xorg-xprop
+##
