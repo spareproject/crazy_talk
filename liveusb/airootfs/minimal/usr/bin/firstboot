@@ -53,7 +53,7 @@ if gpg --homedir /home/user/gnupg/persistent --passphrase-fd 0 -d /home/user/.mo
 
 #gnupg
 ###############################################################################################################################################################################################################
-gpg --homedir /home/user/gnupg/user --passphrase-fd 0 --gen-key --batch /etc/gnupg/batch.user <<< "" 2>/dev/null
+gpg --homedir /home/user/gnupg/user --passphrase-fd 0 --gen-key --batch /etc/key/gnupg/batch.user <<< "" 2>/dev/null
 gpg --homedir /home/user/gnupg/user --output /home/user/gnupg/user.public --export user 2>/dev/null
 
 cp /home/user/.mount/key/gnupg/root.public       /home/user/gnupg/
@@ -61,7 +61,7 @@ cp /home/user/.mount/key/gnupg/persistent.public /home/user/gnupg/
 cp /home/user/.mount/key/gnupg/persistent.sig    /home/user/gnupg/
 
 gpg --homedir /home/user/gnupg/persistent --output /home/user/gnupg/user.sig --sign /home/user/gnupg/user.public
-gpg --homedir /home/user/gnupg/user --import /home/user/persistent.public
+gpg --homedir /home/user/gnupg/user --import /home/user/gnupg/persistent.public
 gpg --homedir /home/user/gnupg/user --sign-key persistent
 
 ###############################################################################################################################################################################################################
@@ -126,6 +126,11 @@ cat /home/user/openssl/localhost.key /home/user/openssl/localhost.cert > /home/u
 rm /home/user/openssl/localhost.csr
 cp /home/user/.mount/key/openssl/ca-certificates.crt /home/user/openssl/ca-certificates.crt
 
+rm -r /home/user/openssl/index.txt*
+rm -r /home/user/openssl/serial
+rm -r /home/user/openssl/.random
+rm -r /home/user/openssl/certs
+
 ###############################################################################################################################################################################################################
 
 ###############################################################################################################################################################################################################
@@ -134,10 +139,6 @@ pkill gpg-agent
 umount /home/user/.mount/key
 umount /home/user/.mount/random
 rm -r  /home/user/gnupg/persistent/*
-rm -r /home/user/openssl/index.txt*
-rm -r /home/user/openssl/serial
-rm -r /home/user/openssl/.random
-rm -r /home/user/openssl/certs
 ###############################################################################################################################################################################################################
 chown -R user:group /home/user/
 chmod -R 700 /home/user/

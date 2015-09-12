@@ -27,19 +27,30 @@ mount ${1}3 ./mount/random
 #gnupg
 ###############################################################################################################################################################################################################
 mkdir -p ./mount/key/{gnupg,openssh,openssl}
-mkdir -p ./mount/key/gnupg/{root,persistent}
+mkdir -p ./mount/key/gnupg/{root,persistent,revoke}
 cp ./key/gnupg/gpg* ./mount/key/gnupg/root
+cp ./key/gnupg/gpg* ./mount/key/gnupg/revoke
 cp ./key/gnupg/gpg* ./mount/key/gnupg/persistent
 read -p "enter root pin: " root
 hexdump -C <<< $(dd if=./mount/random/randomfs bs=1 count=100 ibs=1 skip=${root} 2>/dev/null)
 gpg --homedir ./mount/key/gnupg/root --passphrase-fd 0 --gen-key --batch ./key/gnupg/batch.root <<< $(dd if=./mount/random/randomfs bs=1 count=100 ibs=1 skip=${root} 2>/dev/null)
 gpg --homedir ./mount/key/gnupg/root --output ./mount/key/gnupg/root.public --export root
+
+read -p "enter revoke pin: " revoke
+hexdump -C <<< $(dd if=./mount/random/randomfs bs=1 count=100 ibs=1 skip=${revoke} 2>/dev/null)
+gpg --homedir ./mount/key/gnupg/revoke --passphrase-fd 0 --gen-key --batch ./key/gnupg/batch.revoke <<< $(dd if=./mount/random/randomfs bs=1 count=100 ibs=1 skip=${revoke} 2>/dev/null)
+gpg --homedir ./mount/key/gnupg/revoke --output ./mount/key/gnupg/revoke.public --export revoke
+
 read -p "enter persistent pin: " persistent
 hexdump -C <<< $(dd if=./mount/random/randomfs bs=1 count=100 ibs=1 skip=${persistent} 2>/dev/null)
 gpg --homedir ./mount/key/gnupg/persistent --passphrase-fd 0 --gen-key --batch ./key/gnupg/batch.persistent <<< $(dd if=./mount/random/randomfs bs=1 count=100 ibs=1 skip=${persistent} 2>/dev/null)
 gpg --homedir ./mount/key/gnupg/persistent --output ./mount/key/gnupg/persistent.public --export persistent
+
 gpg --homedir ./mount/key/gnupg/persistent --import ./mount/key/gnupg/root.public
 gpg --homedir ./mount/key/gnupg/persistent --passphrase-fd 0 --sign-key root <<< $(dd if=./mount/random/randomfs bs=1 count=100 ibs=1 skip=${persistent} 2>/dev/null)
+gpg --homedir ./mount/key/gnupg/persistent --import ./mount/key/gnupg/revoke.public
+gpg --homedir ./mount/key/gnupg/persistent --passphrase-fd 0 --sign-key revoke <<< $(dd if=./mount/random/randomfs bs=1 count=100 ibs=1 skip=${persistent} 2>/dev/null)
+
 gpg --homedir ./mount/key/gnupg/root/ --passphrase-fd 0 --output ./mount/key/gnupg/persistent.sig --sign ./mount/key/gnupg/persistent.public <<< $(dd if=./mount/random/randomfs bs=1 count=100 ibs=1 skip=${root} 2>/dev/null)
 gpg --homedir ./mount/key/gnupg/persistent -e <<< "mounted gnupg && cached passphrase" > ./mount/key/gnupg/trigger.asc
 ###############################################################################################################################################################################################################
@@ -90,16 +101,29 @@ rm -r /tmp/openssl
 #
 chown root:wheel ./mount/key/gnupg
 chmod 750 ./mount/key/gnupg
+
 chown -R root:root ./mount/key/gnupg/root
 chmod -R 700 ./mount/key/gnupg/root
+
+chown -R root:root ./mount/key/gnupg/revoke
+chmod -R 700 ./mount/key/gnupg/revoke
+
 chown -R root:wheel ./mount/key/gnupg/persistent
 chmod -R 750 ./mount/key/gnupg/persistent
+
 chown root:wheel ./mount/key/gnupg/persistent.*
 chmod 750 ./mount/key/gnupg/persistent.*
+
+chown root:wheel ./mount/key/gnupg/revoke.public
+chmod 750 ./mount/key/gnupg/revoke.public
+
 chown root:wheel ./mount/key/gnupg/root.public
 chmod 750 ./mount/key/gnupg/root.public
+
 chown root:wheel ./mount/key/gnupg/trigger.asc
 chmod 750 ./mount/key/gnupg/trigger.asc
+
+
 #./mount/openssh      - 700 - root:root
 # /client_ca.asc      - 600
 # /client_ca.pub      - 600

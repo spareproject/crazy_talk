@@ -1,7 +1,7 @@
 #!/bin/env bash
 ###############################################################################################################################################################################################################
 clear;cat /etc/banner
-echo " [firstboot|oneshot] [create] [open|close] [unionfs] [install|wipe] [start|stop|restart] [query] [delete] [list] [poweroff] [rdp]"
+echo " [firstboot|oneshot] [setup|unlock|lock] [create] [open|close] [unionfs] [install|wipe] [start|stop|restart] [query] [delete] [list] [poweroff] [rdp]"
 echo ""
 ###############################################################################################################################################################################################################
 
