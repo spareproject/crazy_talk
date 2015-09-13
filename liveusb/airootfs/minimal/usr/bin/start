@@ -1,9 +1,16 @@
 #!/bin/env bash
 ###############################################################################################################################################################################################################
-if [[ $# != 2 ]];then echo -e "${0} - help\narg0 - rawfs name\narg1 - bridge name";exit;fi
+if [[ $# != 2 ]];then
+echo "
+${0} - help
+arg0 - rawfs name
+arg1 - bridge name
+"
+exit
+fi
 ###############################################################################################################################################################################################################
-if [[ ! -d /mnt/mount/${1} ]];then echo "/mnt/mount/${1} doesnt exist...";exit;fi
-if [[ ! $(mount | grep "/mnt/mount/${1} ") ]];then echo "mapped device isnt mounted ... ";exit;fi
+if [[ ! -f /mnt/luks/${1} || ! -f /mnt/rawfs/${1} ]];then echo "luks and or rawfs doesnt exist";fi
+if [[ ! $(mount|grep "/mnt/mount/${1} ") ]];then echo "mapped device isnt mounted ... ";exit;fi
 ###############################################################################################################################################################################################################
 caps="CAP_AUDIT_CONTROL,CAP_AUDIT_WRITE,CAP_SYS_BOOT,CAP_SYS_RESOURCE,CAP_SYS_TTY_CONFIG,CAP_SYS_PTRACE,CAP_SYS_NICE,CAP_SETFCAP,CAP_LINUX_IMMUTABLE,CAP_LEASE,CAP_FSETID,CAP_FOWNER,CAP_DAC_READ_SEARCH,CAP_DAC_OVERRIDE"
 #CAP_SYS_CHROOT       - no chromium
@@ -21,5 +28,5 @@ caps="CAP_AUDIT_CONTROL,CAP_AUDIT_WRITE,CAP_SYS_BOOT,CAP_SYS_RESOURCE,CAP_SYS_TT
 ###############################################################################################################################################################################################################
 cat /home/user/openssh/ssh/id_rsa.pub > /mnt/mount/${1}/home/user/openssh/ssh/authorized_keys
 ###############################################################################################################################################################################################################
-for i in $(ls /mnt/mount);do if [[ ! $(mount | grep ${i}) ]];then rmdir /mnt/mount/${i};fi;done
+for i in /mnt/mount/*;do if [[ $i != '/mnt/mount/*' && ! $(mount|grep "${i} ") ]];then rmdir "${i}";fi;done
 ###############################################################################################################################################################################################################

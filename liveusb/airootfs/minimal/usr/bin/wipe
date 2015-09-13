@@ -10,18 +10,19 @@ fi
 umask 077
 ###############################################################################################################################################################################################################
 
+#dont take overlayfs
+if [[ $(grep '\.' <<< ${1}) ]];then echo "doesnt handle overlays";exit;fi
+
 # if it doesnt exists...
 if [[ ! -f /mnt/rawfs/${1} && ! -f /mnt/luks/${1} ]];then echo "${1} - doesnt exist";exit;fi
 
-# if its mapped && mounted...
-if [[ ! -b /dev/mapper/${1} ]];then echo "${1} - isnt mapped";exit;fi
-
-# it isnt in a unionfs...
-
+# if its mapped
+if [[ ! -b /dev/mapper/${1} ]];then echo "isnt mapped";exit;fi
+if [[ ! $(mount|grep /mnt/mount/${1}) ]];then echo "isnt mounted";exit;fi
 
 # it isnt running...
 if [[ $(machinectl|grep "${1} ") ]];then echo "machinectl currently booted";exit;fi
 
 ###############################################################################################################################################################################################################
-
 rm -r /mnt/mount/${1}/*
+###############################################################################################################################################################################################################

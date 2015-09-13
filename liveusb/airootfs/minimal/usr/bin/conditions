@@ -1,0 +1,51 @@
+#!/bin/env bash
+###############################################################################################################################################################################################################
+
+# usb unplugged
+if [[ ! -b /dev/archiso1 || ! -b /dev/archiso2 || ! -b /dev/archiso3 ]];then echo "usb unplugged";exit;fi
+
+###############################################################################################################################################################################################################
+
+# if internal isnt mounted
+if [[ ! $(mount|grep /mnt) ]];then echo "internal storage isnt mounted";exit;fi
+
+# if container isnt mounted
+if [[ ! $(mount|grep /mnt/container) ]];then echo "container rawfs isnt mounted";exit;fi
+
+# container name reserved
+if [[ ${1} == "container" ]];then echo "container name reserved";exit;fi
+
+###############################################################################################################################################################################################################
+
+# if host isnt cached
+if [[ ! $(ps aux|grep gpg-agent|grep /home/user/gnupg/persistent) ]];then echo "host isnt cached";exit;fi
+
+# if container isnt cached
+if [[ ! $(ps aux|grep gpg-agent|grep /mnt/container/gnupg/persistent) ]];then echo "container isnt cached";exit;fi
+
+###############################################################################################################################################################################################################
+
+# if luks or rawfs do not exist
+if [[ ! -f /mnt/luks/${1} || ! -f /mnt/rawfs/${1} ]];then echo "luks and or rawfs doesnt exist";exit;fi
+
+# if luks or rawfs already exist
+if [[ -f /mnt/luks/${1} || -f /mnt/rawfs/${1} ]];then echo "luks and or rawfs doesnt exist";exit;fi
+
+# something already mounted on /mnt/mount/${1}
+if [[ $(mount|grep "/mnt/mount/${1} ") ]];then echo "something already mounted on /mnt/mount/${1}";exit;fi
+
+# if rawfs isnt mapped and mounted
+if [[ ! -b /dev/mapper/${1} || ! $(mount|grep "/mnt/mount/${1} ") ]];then echo "rawfs isnt mapped or mounted";exit;fi
+
+###############################################################################################################################################################################################################
+
+# if rawfs has unionfs dependencies
+if [[ $(machinectl|grep "${1}\.")||$(mount|grep "/mnt/mount/${1}\.") ]];then echo "has unionfs dependencies";exit;if
+
+###############################################################################################################################################################################################################
+
+# container rawfs for usb partition does not exist
+if [[ ! -f "/mnt/$(blkid /dev/archiso2 -s PARTUUID -o value).luks" || ! -f "/mnt/$(blkid /dev/archiso2 -s PARTUUID -o value).rawfs" ]];then echo "container rawfs for usb key partition doesnt exist";exit;fi
+
+###############################################################################################################################################################################################################
+

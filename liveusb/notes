@@ -263,6 +263,8 @@ container partition - pretty much a duplicate
 
 ###############################################################################################################################################################################################################
 firstboot - host network setup
+^ 
+
 oneshot   - host persistent gnupg key
 
 setup     - internal container key partition

@@ -17,6 +17,4 @@ kill $(ps aux|grep gpg-agent|grep '/mnt/container/gnupg/root'|awk '{print $2}')
 umount /mnt/container
 cryptsetup close /dev/mapper/container
 
-echo "done"
-
 ###############################################################################################################################################################################################################

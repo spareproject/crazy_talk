@@ -6,6 +6,8 @@ umask 077
 if [[ $(ps aux|grep gpg-agent|grep /home/user/gnupg/persistent) || $(ls /home/user/gnupg/persistent) != "" || ! -b /dev/archiso1 || ! -b /dev/archiso2 || ! -b /dev/archiso3 ]];then exit;fi
 # if container directory for given usb already exists...
 if [[ -f /mnt/$(blkid /dev/archiso2 -s PARTUUID -o value).rawfs || -f /mnt/$(blkid /dev/archiso2 -s PARTUUID -o value).luks ]];then echo "container rawfs already exists";exit;fi
+#
+if [[ ! $(mount|grep /mnt) ]];then echo "internal storage isnt mounted";exit;fi
 ###############################################################################################################################################################################################################
 mount /dev/archiso2
 mount /dev/archiso3
