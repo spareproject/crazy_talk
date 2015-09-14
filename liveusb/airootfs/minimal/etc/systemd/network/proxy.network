@@ -7,5 +7,3 @@ DNS=172.16.0.1
 DHCPServer=true
 IPForward=yes
 IPMasquerade=yes
-LLMNR=true
-LLDP=true

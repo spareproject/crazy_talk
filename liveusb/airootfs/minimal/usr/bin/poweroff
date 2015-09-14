@@ -12,7 +12,7 @@ echo "unmount /mnt/mount..."
 while [[ $(mount|grep /mnt/mount) ]];do umount /mnt/mount/*;done
 
 echo "close /dev/mapper"
-for i in /dev/mapper/*;do if [[ $i != '/dev/mapper/*' && $i != "/dev/mapper/control" ]];then cryptsetup close $i;fi;done
+for i in /dev/mapper/*;do if [[ $i != '/dev/mapper/*' && $i != "/dev/mapper/control" && $i != "/dev/mapper/container" ]];then cryptsetup close $i;fi;done
 
 ###############################################################################################################################################################################################################
 for i in /mnt/mount/*;do if [[ $i != '/mnt/mount/*' && ! $(mount|grep "${i} ") ]];then rmdir "${i}";fi;done

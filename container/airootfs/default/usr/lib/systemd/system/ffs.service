@@ -5,6 +5,7 @@ After=systemd-networkd.service
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/systemctl restart systemd-networkd
+ExecStart=/usr/bin/bash -c 'sleep 3;echo fu > /dev/udp/10.0.0.1/31279'
 
 [Install]
 WantedBy=multi-user.target

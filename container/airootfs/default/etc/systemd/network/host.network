@@ -2,3 +2,5 @@
 Name=host*
 [Network]
 DHCP=ipv4
+LLMNR=false
+LLDP=false

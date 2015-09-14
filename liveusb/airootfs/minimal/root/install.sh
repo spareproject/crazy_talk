@@ -41,7 +41,7 @@ systemctl enable iptables
 systemctl enable haveged.service
 
 systemctl enable systemd-networkd.service
-systemctl enable systemd-resolved.service
+#systemctl enable systemd-resolved.service
 systemctl enable dnscrypt-proxy.service
 
 systemctl enable combine.service

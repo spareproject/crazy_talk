@@ -17,7 +17,7 @@ if [[ ! $(mount | grep /mnt/mount/${1}) ]];then echo "mount point doesnt have an
 pacstrap -C /etc/pacman.conf -cGMd /mnt/mount/${1} $(for i in $(cat ./airootfs/default/root/package_list);do if [[ ! $(grep "#" <<< ${i}) ]];then echo -n "${i} " ;fi;done)
 cp -arfv ./airootfs/default/* /mnt/mount/${1}
 arch-chroot /mnt/mount/${1} /root/install.sh
-
+echo ${1} > /mnt/mount/${1}/etc/hostname
 ###############################################################################################################################################################################################################
 
 

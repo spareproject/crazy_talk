@@ -16,4 +16,24 @@ cryptsetup --cipher aes-xts-plain64 --key-size 512 --hash sha512 --iter-time 500
 
 mount /dev/mapper/container /mnt/container
 
+if [[ -p /mnt/ip.socket ]];then rm /mnt/ip.socket;fi
+if [[ -f /mnt/ip.txt ]];then rm /mnt/ip.txt;fi
+mkfifo /mnt/ip.socket
+touch /mnt/ip.txt
+
+function listen {
+nc -vulnz 10.0.0.1 31279 1>/dev/null 2>/mnt/ip.socket
+}
+(listen &)&
+function socket {
+while true;do
+  if read line </mnt/ip.socket;then
+    line=$(echo "$line"|awk '{print $4}'|awk -F ':' '{print$1}')
+    if [[ $(wc -l </mnt/ip.txt) -gt 9 ]];then sed -i 1d /mnt/ip.txt;fi
+    echo $line >> ip.txt
+  fi
+done
+}
+(socket &)&
+exit
 ###############################################################################################################################################################################################################

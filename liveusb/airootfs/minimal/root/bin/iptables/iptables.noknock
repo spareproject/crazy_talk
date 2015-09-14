@@ -43,22 +43,25 @@ iptables -A INPUT -j DROP
 ########################################################################################
 iptables -A LO -p udp -d 127.0.0.1 --dport 53 -j ACCEPT
 iptables -A LO -p tcp -d 127.0.0.1 --dport 6010:6023 -j ACCEPT
-iptables -A LO -p tcp -d 127.0.0.1 --dport 31279 -j ACCEPT
-iptables -A LO -p tcp -d 127.0.0.1 --dport 31297 -j ACCEPT
+iptables -A LO -p tcp -d 127.0.0.1 --dport 31279 -j ACCEPT # ssh
+iptables -A LO -p tcp -d 127.0.0.1 --dport 31297 -j ACCEPT # lightty
 iptables -A LO -j LOG --log-prefix "LO" --log-level 6
 iptables -A LO -j DROP
 ########################################################################################
-iptables -A HOST -p tcp --dport 31279 -j ACCEPT
-iptables -A HOST -p tcp --dport 31297 -j ACCEPT
+iptables -A HOST -p tcp --dport 31279 -j ACCEPT # ssh
+iptables -A HOST -p tcp --dport 31297 -j ACCEPT # lighyty
 iptables -A HOST -j LOG --log-prefix "HOST" --log-level 6
 iptables -A HOST -j DROP
 ########################################################################################
-iptables -A CONTAINER -p udp --dport 53 -j ACCEPT
-iptables -A CONTAINER -p udp --dport 67 -j ACCEPT
-iptables -A CONTAINER -p tcp --dport 31279 -j ACCEPT
+iptables -A CONTAINER -p udp --dport 68 -j ACCEPT
+iptables -A CONTAINER -p tcp --dport 31279 -j ACCEPT # ssh
+iptables -A CONTAINER -p udp --dport 31279 -j ACCEPT # nc listener
 iptables -A CONTAINER -j LOG --log-prefix "CONTAINER" --log-level 6
 iptables -A CONTAINER -j DROP
 ########################################################################################
+iptables -A PROXY -p udp --dport 68 -j ACCEPT
+iptables -A PROXY -p tcp --dport 31279 -j ACCEPT # ssh
+iptables -A PROXY -p udp --dport 31279 -j ACCEPT # nc listener
 iptables -A PROXY -p tcp --dport 9050 -j ACCEPT
 iptables -A PROXY -p udp --dport 9053 -j ACCEPT
 iptables -A PROXY -j LOG --log-prefix "PROXY" --log-level 6
@@ -69,6 +72,7 @@ iptables -A FORWARD        -i host      -o proxy      -m conntrack --ctstate EST
 iptables -A FORWARD        -i host      -o proxy      -m conntrack --ctstate ESTABLISHED,RELATED --ctproto tcp -j ACCEPT
 iptables -A FORWARD        -i host      -o container  -m conntrack --ctstate ESTABLISHED,RELATED --ctproto udp -j ACCEPT
 iptables -A FORWARD        -i host      -o container  -m conntrack --ctstate ESTABLISHED,RELATED --ctproto tcp -j ACCEPT
+iptables -A FORWARD -i host -o container -p udp --dport 31279 -j ACCEPT # netcat
 iptables -A FORWARD -p udp -i container -o host       -j ACCEPT
 iptables -A FORWARD -p tcp -i container -o host       -j ACCEPT
 iptables -A FORWARD -p udp -i proxy     -o host       -j ACCEPT
