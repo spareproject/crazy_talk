@@ -22,16 +22,16 @@ mkfifo /mnt/ip.socket
 touch /mnt/ip.txt
 
 function listen {
-nc -vulnz 10.0.0.1 31279 1>/dev/null 2>/mnt/ip.socket
+nc -vulnzp 31279 1>/dev/null 2>/mnt/ip.socket
 }
 (listen &)&
 function socket {
 while true;do
-  if read line </mnt/ip.socket;then
-    line=$(echo "$line"|awk '{print $4}'|awk -F ':' '{print$1}')
-    if [[ $(wc -l </mnt/ip.txt) -gt 9 ]];then sed -i 1d /mnt/ip.txt;fi
-    echo $line >> ip.txt
-  fi
+if read line </mnt/ip.socket;then
+line=$(echo "$line"|awk '{print $4}'|awk -F ':' '{print $1}')
+if [[ $(wc -l </mnt/ip.txt) -gt 9 ]];then sed -i 1d /mnt/ip.txt;fi
+echo $line >> /mnt/ip.txt
+fi
 done
 }
 (socket &)&

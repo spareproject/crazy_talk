@@ -53,13 +53,13 @@ iptables -A HOST -p tcp --dport 31297 -j ACCEPT # lighyty
 iptables -A HOST -j LOG --log-prefix "HOST" --log-level 6
 iptables -A HOST -j DROP
 ########################################################################################
-iptables -A CONTAINER -p udp --dport 68 -j ACCEPT
+iptables -A CONTAINER -p udp --dport 67 -j ACCEPT
 iptables -A CONTAINER -p tcp --dport 31279 -j ACCEPT # ssh
 iptables -A CONTAINER -p udp --dport 31279 -j ACCEPT # nc listener
 iptables -A CONTAINER -j LOG --log-prefix "CONTAINER" --log-level 6
 iptables -A CONTAINER -j DROP
 ########################################################################################
-iptables -A PROXY -p udp --dport 68 -j ACCEPT
+iptables -A PROXY -p udp --dport 67 -j ACCEPT
 iptables -A PROXY -p tcp --dport 31279 -j ACCEPT # ssh
 iptables -A PROXY -p udp --dport 31279 -j ACCEPT # nc listener
 iptables -A PROXY -p tcp --dport 9050 -j ACCEPT

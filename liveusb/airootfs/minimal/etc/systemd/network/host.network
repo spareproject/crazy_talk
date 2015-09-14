@@ -4,6 +4,8 @@ Name=host
 DHCP=ipv4
 IPForward=yes
 IPMasquerade=yes
+LLMNR=false
+LLDP=false
 [DHCP]
 UseDNS=false
 UseNTP=false
