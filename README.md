@@ -1,6 +1,2 @@
 #READMAH
-<br>
-i may totally suck but i wont go to sleep till i get it done...<br>
-needs cleaning need to implement the rest of it but general layout / structure<br>
-doesnt need to be run as root etc etc apperently i just like shooting myself in the foot alot<br>
-<br>
+considering this only started out as a way for me to ssh into all my machines at home i think its atleast some double tap overkill by now<br>
