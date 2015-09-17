@@ -56,14 +56,19 @@ if gpg --homedir /home/user/gnupg/persistent --passphrase-fd 0 -d /home/user/.mo
 gpg --homedir /home/user/gnupg/user --passphrase-fd 0 --gen-key --batch /etc/key/gnupg/batch.user <<< "" 2>/dev/null
 gpg --homedir /home/user/gnupg/user --output /home/user/gnupg/user.public --export user 2>/dev/null
 
-cp /home/user/.mount/key/gnupg/root.public       /home/user/gnupg/
 cp /home/user/.mount/key/gnupg/persistent.public /home/user/gnupg/
 cp /home/user/.mount/key/gnupg/persistent.sig    /home/user/gnupg/
+cp /home/user/.mount/key/gnupg/revoke.public     /home/user/gnupg/
+cp /home/user/.mount/key/gnupg/root.public       /home/user/gnupg/
 
 gpg --homedir /home/user/gnupg/persistent --output /home/user/gnupg/user.sig --sign /home/user/gnupg/user.public
+
 gpg --homedir /home/user/gnupg/user --import /home/user/gnupg/persistent.public
 gpg --homedir /home/user/gnupg/user --sign-key persistent
-
+gpg --homedir /home/user/gnupg/user --import /home/user/gnupg/revoke.public
+gpg --homedir /home/user/gnupg/user --sign-key revoke
+gpg --homedir /home/user/gnupg/user --import /home/user/gnupg/root.public
+gpg --homedir /home/user/gnupg/user --sign-key root
 ###############################################################################################################################################################################################################
 
 #openssh
@@ -135,7 +140,9 @@ rm -r /home/user/openssl/certs
 
 ###############################################################################################################################################################################################################
 sync
-pkill gpg-agent
+kill $(ps aux|grep gpg-agent|grep '/home/user/gnupg/user'|awk '{print $2}')
+kill $(ps aux|grep gpg-agent|grep '/home/user/gnupg/persistent'|awk '{print $2}')
+#pkill gpg-agent
 umount /home/user/.mount/key
 umount /home/user/.mount/random
 rm -r  /home/user/gnupg/persistent/*
@@ -153,7 +160,8 @@ systemctl status lighttpd
 ###############################################################################################################################################################################################################
 
 else
-pkill gpg-agent
+kill $(ps aux|grep gpg-agent|grep '/home/user/gnupg/persistent'|awk '{print $2}')
+#pkill gpg-agent
 rm -r /home/user/gnupg/persistent/*
 umount /dev/archiso2
 umount /dev/archiso3

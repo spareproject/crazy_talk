@@ -19,7 +19,8 @@ if gpg --homedir /home/user/gnupg/persistent --passphrase-fd 0 -d /home/user/.mo
   echo "$(($(date +%s)+${timestamp}))" > /home/user/gnupg/unlocked
   (sleep ${timestamp} && pkill gpg-agent && rm -r /home/user/gnupg/persistent/* && rm -r /home/user/gnupg/unlocked &)&
 else
-  pkill gpg-agent
+  kill $(ps aux|grep gpg-agent|grep '/home/user/gnupg/persistent'|awk '{print$2}')
+  #pkill gpg-agent
   rm -r /home/user/gnupg/persistent/*
 fi
 umount /dev/archiso2

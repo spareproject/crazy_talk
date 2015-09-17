@@ -21,13 +21,13 @@ AllowGroups group
 
 PubkeyAuthentication yes
 AuthenticationMethods publickey
-PubkeyAcceptedKeyTypes ssh-rsa,ssh-rsa-cert-v01@openssh.com
-HostbasedAcceptedKeyTypes ssh-rsa,ssh-rsa-cert-v01@openssh.com
+PubkeyAcceptedKeyTypes id_rsa,ssh-rsa-cert-v01@openssh.com
+HostbasedAcceptedKeyTypes ssh-rsa-cert-v01@openssh.com
 AuthorizedKeysFile %h/openssh/ssh/authorized_keys
 
 HostKey /home/user/openssh/sshd/ssh_host_rsa_key
-#HostCertificate /home/user/openssh/sshd/ssh_host_rsa_key-cert.pub
-#TrustedUserCAKeys /home/user/openssh/sshd/client_ca.pub
+HostCertificate /home/user/openssh/sshd/ssh_host_rsa_key-cert.pub
+TrustedUserCAKeys /home/user/openssh/sshd/client_ca.pub
 RevokedKeys none 
 IgnoreUserKnownHosts no
 #HostKeyAgent 

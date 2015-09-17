@@ -15,7 +15,7 @@ umask 077
 if [[ ! $(mount|grep /mnt) ]];then echo "internal storage isnt mounted";exit;fi
 
 # container isnt mounted
-if [[ ! $(mount|grep /mnt/container) ]];then echo "container rawfs isnt mounted";exit;fi
+if [[ ! $(mount|grep /mnt/internal) ]];then echo "internal rawfs isnt mounted";exit;fi
 
 # already mapped or mounted
 if [[ -b /dev/mapper/${1} || $(mount|grep "/mnt/mount/${1} ") ]];then echo "is already mapped or mounted";fi
@@ -27,7 +27,7 @@ if [[ ! -f "/mnt/luks/${1}" || ! -f "/mnt/rawfs/${1}" ]];then echo "luks or rame
 
 mkdir -p /mnt/mount/${1}
 
-gpg --homedir /mnt/container/gnupg/persistent -d /mnt/luks/${1} 2>/dev/null|
+gpg --homedir /mnt/internal/gnupg/persistent -d /mnt/luks/${1} 2>/dev/null|
 cryptsetup --cipher aes-xts-plain64 --key-size 512 --hash sha512 --iter-time 5000 --key-file - --type=plain --offset 0 open /mnt/rawfs/${1} ${1}
 
 mount /dev/mapper/${1} /mnt/mount/${1}

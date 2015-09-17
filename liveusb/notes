@@ -1,303 +1,209 @@
 ###############################################################################################################################################################################################################
 
-basically ~/.config/bookmarks
-alias surf='surf ~/.config/bookmarks'
-
-so general logic is...
-root key...
-revoke key...
-persistent uses meta data
-rng uses meta data
-
-if someone fucks your root signing key your pretty much dead 
-keep the pair together wont make any difference if someone gets root and revoke the worst they can do with revoke is inform everyone your fucked
-worst case you loose the revoke copy and root is owned then you totally suck at puters and should go cry in a corner somewhere
-never shipping a container or key without both in the persistent keyring etc then regardless of source if its signed by that key stops clients getting owned 
-
-basically physical key exchange or gtfo
-isp level packet injection giefs zero fauks if your servers even turned on
-can literally automate the thing to leverage any tiny fuck up and the only thing stopping an entire hijack from the isp is a key they dont know
-and even then it would be after the fact damage control running your own sanity test to check you still own your own network 
-
-sign the root public with revoke and dump it everywhere
-
-going to try and blag my own catch all...
-means it fails hard 
-surf https://ip.ad.dr.ess.:31297
-^ wont throw any errors
-openssl and its total wtf setup mode allows pointing to a resolvable name... given you arent tard enough to use isp revol but no idea what the format to actually
-netcat blag it to work with the default is : /
-
-but im going to start my own throw up netcat and gnupg pipe network 
-say port 44123 is a simple contents page with key / host information send name matches returns signed revoked key if its been uploaded
-
-the only script im missing for nc|gpg would be a throw up listen here for X close once youve got it needs a bit of work
-and grab something close it after... couple of exchanges that i cant pull of yet mostly out of lack of doing it yet i played it with a while ago
-
-internal container keys means i still need to do oneshot over the network... for any type of cluster to get remote
-
-literally doing
-for i in {1..254};do (nc -vznw 1 192.168.1.$i 31279 &>>/tmp/anything &);done
-basically cheap throw up stuff that will work in webserver | grep for refused / timed out etc need an actual node up cant nc myself? /shrug 
-
-nc on boot dump ip+hostname to gateway
-basically setting hosts + an ip address... 
-^ totally insecure just want quick and working
-ssh user@name works with ip in hosts file... systemd-resolved was like wtf? i have no idea what im doing mode so meh
-
-but going to play with an entire network based on gnupg and abuse nc|gpg for key exchange checking ips etc 
-
-basically i still cant get systemd-resovled to work and i cant blag hostname+ip to hosts without entire container key backend : /
-
-erm yeh 
-
-it will work eventually 
-
-^ id rather blag my own stuff than use pre existing pretty much the entire point of playing around with it but its not exactly sane 
-rushing because i want some sleep
-
-still want butterface and nftables but started this first
-and need to kill steam 
-
-basically i have no idea what the fuck im doing anymore and want some smoke heard dhl was good? and someone started dumping drop boxes everywhere haha
-
-moar sleep 
+no need to ever delete anything but always good to hide the crazy...
 
 ###############################################################################################################################################################################################################
 
-people that dont get that pretty much all of this 'cloud' computing bollox was done to death with botnets before some marketing reject needed an idiot proof sales buzzword
-and botnets are one of the best privacy tools available the crypto you can do over them is on par with how much fun can be had with radio
-so grief them all you want /shrug 
+# HOST
+
+/sda1 - 
+sign everything pulled straight from mirrorlist script in pacman-init
+https://www.archlinux.org/mirrorlist/?county=all&protocol=https&use_mirror_status=on
+can only view finger print on boot... fingerprint collisions || mkinitramfs to just keylog and print excpected output...
+^ hence the pulling out (boot without eth (safe mode up to wireless or sim enabled cpus))
+
+/sda2 - 
+host.luks
+host.rawfs
+gnupg{root,revoke,persistent},openssh{ca_server,ca_client},openssl{root,persistent}
+^ could go nfc read/write for gnupg dir and private keys rather than gnupg + crypted private keys (still isnt even finished or in use)
+
+/sda3 - 
+random.luks
+random.rawfs
+gnupg{root,revoke,persistent},openssh{ca_server,ca_client},openssl{root,persistent}
+^ can add multiple password protected pin generations as in rawfs or rawfs with salt (still havent done random scatter algo to increase pin numbers would still need to eat it ;P)
+
+tmpfs: gnupg{rng},openssh{id_rsa,ssh_host_key_rsa},openssl{server}
+^ random generate and sign user uid/gid key set for the 'live' running network
+
+# INTERNAL
+
+part-uuid.luks
+part-uuid.rawfs
+gnupg{root,persistent},openssh{ca_server,ca_client},openssl{root,persistent}
+^ current gnupg for netcat c&c, either 10.0.0.1/172.16.0.1 reverse sshd internal server (did make a dhcp attempt for that) openssl could do internal facing access to wan network
+^^ currently stumped on where to leave ssh host key vs internal handover needs seperating
+
+tmpfs: gnupg{rng},openssh{id_rsa,ssh_host_key_rsa},openssl{server}
+
+# CONTAINER
+gnupg{root,persistent},openssh{ca_server,ca_client},openssl{root,persistent}
+
+tmpfs: gnupg{rng},openssh{id_rsa,ssh_host_key_rsa},openssl{server}
 
 ###############################################################################################################################################################################################################
 
-hasciicam + steganography == win 
-mostly because i like ascii art : / 
-
 ###############################################################################################################################################################################################################
 
-
-
-###############################################################################################################################################################################################################
-#
-so poweroff will shit the bed if container is up....
-everything needs container name banned for all the things
-gpg-agent kill needs ps aux with enough grep to check open directory
-etc etc
-....
-...
-#
-
-close and delete...
-takes input...
-
-1 unionfs rootfs.overlayfs running
-cant use machinectl|grep $1|wc -l
-
-rootfs...
-if running
-if mounted
-if mapped
-
-unionfs...
-if running
-if mounted
-
-if running '${1}\.*' is an underlay, has deps
-if mounted '${1}\.*' is an underlay, has deps
-
-if running or mounted...
-
-prompt kill all... or quit if rawfs only
-
-erm... half here half else where epic notage
-
-###############################################################################################################################################################################################################
-
-unionfs is far to useful to not have but its a proper pain and bloats everything...
-so only doing boot a rawfs or boot a rawfs with a tmp overlay
-^ you can stage test look at differences then cp -arf commit it to the original etc 
-you can do loads with it asure youll eventually figure out how epic it actually is
-
-^ probably need a script to boot with a overlay... record mode takes .bash_history and the /mnt/mount/.overlayfs 
-file then dumps that into the container install ie a full on live recorded snapshot that can be dumped into multiple containers
-manually strip bash_history to make install.sh then all the config files get dumped to /mnt/storage/container/airootfs/<snapshot> 
-etc 
-
-###############################################################################################################################################################################################################
-
-internal storage layout
-
-/mnt
-  /luks
-  /mount
-    /.overlayfs
-  /rawfs
-  /storage
-
-###############################################################################################################################################################################################################
-
-temp overlay blag
-
-# random unencrypted overlayfs for tmp booting same shit install some stuff play can take the results and cp -arf into rawfs
-/mnt/mount/.overlay
-  /overlayfs
-
-/mnt/mount/rootfs.overlayfs
-
-###############################################################################################################################################################################################################
-
-general script layout for container stuffz...
-
-###
-if you dont give the correct number of inputs it prints help text (havent had a script that doesnt take input yet...) going for quick and working
-^ last time i made it all "properly" ie spent time on it it was dead within a few weeks so 0 investment time but it will work so suck it
-###
-conditions... easiest way to get error messages is if it fails or passes... echo why and exit... webserver scripts needed to be the opposite 
-^ this is quicker fewest lines with actual useful output 
-###
-actual script - execute exerything on the given input
-###
-container scripts clean up... currently just cleans up empty mount dirs can / will expand as needed
-^ same logic as network discovery everything executed helps make sure its running as it should 
-###
-
-***
-with the webserver it was literally printing buttons based on what you were allowed to do...
-with cli you can call any script regardless of a sanity check
-say for instance you take close.. its main purpose is to cryptsetup close and umount... but if its a running container then should it kill it then do the same
-for the sake of keeping scripts simple they should be conditions match, can execute, and not overlap
-but for convenience sake i say close regardless i want it back in crypted format
-having to go
-...
-./close - cant close its running
-echo muble fucking shit software pfft
-./stop - machinectl poweroff...
-./close - cant close its mounted as unionfs...
-echo serious bro your going out the window
-./unionfs - 
-etc etc...
-...
-
-webserver has epic perks in terms of dont be an idiot mode but
-
-the amount of times ive done this and its been fucked and not even working within weeks after i have no want
-for this to be anything more complex than say 30 lines per script
-regardless if that gimps functionality
-
-but say wipe...
-./wipe rawfs - quicker to prompt for a reinstall
-^ should that automagic stop or not?
-
-i need to get the cross over stuff sorted
-
-i dont give a shit how it works its error checking input and state that takes more time and code but then that is the entire point of a wrapper
-hardcode paths and alias commands to reduce input and run quicker?
-
-###############################################################################################################################################################################################################
-rootfs
-/home/user
+/host
   /gnupg
     /persistent
-    /user
-    /persistent.public
-    /persistent.sig
-    /root.public
-    /user.public
-    /user.sig
-/home/user
-  /openssh
-    /ssh
-      /id_rsa
-      /id_rsa.asc
-      /id_rsa-cert.pub
-      /id_rsa.pub
-      /known_hosts
-      /server_ca.pub
-    /sshd
-      /client_ca.pub
-      /sshd_config
-      /ssh_host_rsa_key
-      /ssh_host_rsa_key.asc
-      /ssh_host_rsa_key-cert.pub
-      /ssh_host_rsa_key.pub
-/home/user
-  /openssl
-    /ca-certificates.crt
-    /localhost.cert
-    /localhost.key
-    /localhost.key.asc
-    /localhost.pem
-
-key partition
-/mount
-  /gnupg
-    /persistent
+    /revoke
     /root
     /persistent.public
     /persistent.sig
+    /revoke.public
     /root.public
-    /trigger.asc
-  /openssh
-    /client_ca.asc
-    /client_ca.pub
-    /known_hosts
-    /server_ca.asc
-    /server_ca.pub
-  /openssl
-    /ca-certificates.crt
-    /persistent.cert
-    /persistent.cnf
-    /persistent.key
-    /persistent.key.asc
-    /root.cert
-    /root.cnf
-    /root.key
-    /root.key.asc
 
-container partition - pretty much a duplicate
+one to many relationship
+multibooting host and creating multiple signed internal key rawfs setups
+
+/internal
+  /gnupg
+    /persistent
+    /revoke
+    /root
+    /persistent.public
+    /persistent.sig
+    /revoke.public
+    /root.public
+
+    /persistent.host.sig  - host persistent signed
+    /revoke.host.sig      - host persistent signed
+    /root.host.sig        - host persistent signed
+
+    /import persistent.host - import host persistent
+    /import revoke.host     - import host revoke
+    /import root.host       - import host root
+
+one to many relationship
+creating multiple signed container key setups
+
+/container
+  /gnupg
+    /persistent
+    /revoke
+    /root
+    /persistent.public
+    /persistent.sig
+    /revoke.public
+    /root.public
+
+    /persistent.internal  - internal persistent signed
+    /revoke.internal      - internal persistent signed
+    /root.internal        - internal persistent signed
+
+    /import persistent.internal - import internal persistent
+    /import revoke.internal     - import internal revoke
+    /import root.inernal        - import internal root
+
+###############################################################################################################################################################################################################
+
+###############################################################################################################################################################################################################
 /mnt
-  /container
-    /gnupg
-      
+  /internal
+  /luks
+  /mount
+  /rawfs
+  /storage
+  /tmpfs
+  /xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.luks
+  /xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.rawfs
 
-###############################################################################################################################################################################################################
-firstboot - host network setup
-^ 
+firstboot -
 
-oneshot   - host persistent gnupg key
+setup -
 
-setup     - internal container key partition
-lock      - close it requires host persistent gnupg
-unlock    - open it requires host persistent gnupg
+unlock -
 
-create    - create a new container requires unlock
+lock -
 
-open      - open an existing container requires unlock
-close     - cloes a rawfs
+install -
 
-unionfs   - needs to be replaced with butter face... but its going to fuck with everything else
+start -
 
-install   - currently a directory in /mnt/storage stub holder and a name that doesnt work
-wipe      - rm -r path/container/* probably pretty dangerous
-
-start     - ...
-stop      - ...
-restart   - ...
-
-query     - depending on state pull information closed size running tracked services ip address hostname etc procs running anything that works
-
-delete    - kill a rawfs luks stops running unmounts and unmaps first
-
-list      - default output of current state doesnt scale well
-
-poweroff - kill everything quick execute before shutting down to make sure nothing hangs or fucks up
-
-rdp       - xephyr execute dwm, can make it do more things but default stub
 
 ###############################################################################################################################################################################################################
 
-ive had nspawn running but it shits the bed within about 5 minutes so even if this cleaned up i might not have anything other than playing with a webserver to do or harden desktop 
-^ entire iso went down hard killed everything
+###############################################################################################################################################################################################################
+
+current notes
+
+cant decide how to do openssh/openssl
+currently just takes the host cluster network public key and gives it access internally...
+
+either host is wan facing...
+internal can run exact setup... seperate user facing 10.0.0.1 and 172.16.0.1
+
+then containers...
+internal gets full root access because i need to play / debug over the network...
+either host bridge or internal bridge, proxy bridge not really implemented 
+
+but sshd/https facing 10.0.0.1...
+
+i cant really play with sshd keys if i only want access to all the things
+
+but minimum...
+
+internal uses ssh -F /mnt/internal /mnt/tmpfs/keys rdp < - easy hide
+internal doesnt really need sshd or https < - havent even finished the host node
+but https graphical representation of current internal network would be good for debugging not actual use
+
+probably need to seperate more uid/gid based on role 
+wan - eventually other peoples networks api turn around time vs mainting scripts for all your internet belongs to us meh
+host - lan facing easy cluster
+internal - bridged containers
+proxy - bridged containers hopping somewhere random
+container - user configured or test network setup (only doing 1 default install for now)
 
 ###############################################################################################################################################################################################################
+
+###############################################################################################################################################################################################################
+
+container install...
+systemd
+iptables
+st
+surf - doing internal https facing ca-certificates.cert
+chromium - meh still like google
+weechat its a much better chat client
+ii can probably dump a c&c on freenode with little cares obvious botnet is obvious still think random social media hijack + stein and the million other less blatent connections (stuff that gets through firewalls)
+
+###############################################################################################################################################################################################################
+
+^ internal https
+could do a proxy / tor / openvpn / ssh / socks interface sets ip specific settings host firewall request... etc etc... pretty huge
+then internal bridge with container / arch install and play around with interface
+
+###############################################################################################################################################################################################################
+
+###############################################################################################################################################################################################################
+
+general changes to liveusb layout coming up...
+
+/mount
+  /boot       bootable stuff + rootfs
+  /key        host key set
+  /random     big raw blob + luks salts
+  /rootfs     persistent rootfs rather than hammering arch servers... quicker dev
+  /overlayfs  pretty much grouping pacakges and configs i can dump
+
+really i would rather be doing ./container build a rootfs ./boot setup syslinux and bootctl on a vfat32 usb partition
+then chop and change syslinux/bootctl menus with whatever squashfs exists... still is chop and change random sizes /shrug
+but ive spent to much time on rebootable key infrastructure to care about scrapping it all for a ext4 partiton full of squashfs images
+
+###############################################################################################################################################################################################################
+
+###############################################################################################################################################################################################################
+
+forgot how none runnable this actually is...
+openssl screwed up hardcoded directories
+needs alot of general maintence and testing
+hasnt been stable for awhile still trying to define networking
+then clean up and reduce scripts to make sense 
+
+###############################################################################################################################################################################################################
+
+
+

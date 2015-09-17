@@ -26,7 +26,12 @@ caps="CAP_AUDIT_CONTROL,CAP_AUDIT_WRITE,CAP_SYS_BOOT,CAP_SYS_RESOURCE,CAP_SYS_TT
 #CAP_CHOWN            - wont boot
 (/usr/bin/systemd-nspawn --quiet --boot --network-bridge ${2} --directory /mnt/mount/${1} --drop-capability=${caps} &>/dev/null &)&
 ###############################################################################################################################################################################################################
-cat /home/user/openssh/ssh/id_rsa.pub > /mnt/mount/${1}/home/user/openssh/ssh/authorized_keys
+
+if cat /home/user/openssh/ssh/id_rsa.pub > /mnt/mount/${1}/home/user/openssh/ssh/authorized_keys;then
+echo "copied over user id_rsa"
+else
+echo "no ida_rsa run firstboot, stop and start..."
+fi
 ###############################################################################################################################################################################################################
 for i in /mnt/mount/*;do if [[ $i != '/mnt/mount/*' && ! $(mount|grep "${i} ") ]];then rmdir "${i}";fi;done
 ###############################################################################################################################################################################################################
