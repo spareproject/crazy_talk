@@ -1,0 +1,11 @@
+*, *:before, *:after, input, button, textarea, select, input[type=file]  {
+  /*font-family: "Input Mono", "Source Code Pro", Menlo, Consolas, monospace !important;*/
+  font-family: monospace !important;
+}
+
+input[type=button], input[type=submit],
+input[type=file]::-webkit-file-upload-button {
+  /*font-family: "Input Mono", "Source Code Pro", Menlo, Consolas, monospace !important;*/
+  font-family: monospace !important;
+  -webkit-appearance: button !important;
+}

@@ -1,0 +1,38 @@
+#!/bin/env bash
+###############################################################################################################################################################################################################
+if [[ $# != 2 ]];then
+echo "
+${0} - help
+arg0 - read only underlay
+arg1 - read write overlay
+"
+exit
+fi
+###############################################################################################################################################################################################################
+
+# luks or rawfs doesnt exist.
+if [[ ! -f /mnt/rawfs/${1} || ! -f /mnt/luks/${1} ]];then echo "underlayfs doesnt exist";exit;fi
+
+# isnt mapped or mounted
+if [[ ! -b /dev/mapper/${1} || ! $(mount|grep "/mnt/mount/${1} ") ]];then echo "underlayfs isnt mapped or mounted";exit;fi
+
+# if overlay exists... delete or reuse it
+if [[ -d /mnt/mount/.overlayfs/${2} ]];then 
+  if [[ $(mount|grep '.${2} ') ]];then echo "overlayfs already mounted";exit;fi
+  echo "/mnt/mount/.overlayfs/${2} already exists delete or reuse it (d|r)?"
+  unset input;while [[ ${input} != @("d"|"r") ]];do read -rp "input: " input;done
+  if [[ $input == "d" ]];then rm -r /mnt/mount/.overlayfs/${2}/*;fi
+else
+  mkdir /mnt/mount/.overlayfs/${2}
+fi
+
+###############################################################################################################################################################################################################
+
+mkdir -p /mnt/mount/${1}.${2}
+
+unionfs -o allow_other,use_ino,suid,dev,nonempty -o cow /mnt/mount/.overlayfs/${2}=RW:/mnt/mount/${1}=RO /mnt/mount/${1}.${2}
+
+###############################################################################################################################################################################################################
+for i in /mnt/mount/*;do if [[ $i != '/mnt/mount/*' && ! $(mount|grep "${i} ") ]];then rmdir "${i}";fi;done
+
+###############################################################################################################################################################################################################

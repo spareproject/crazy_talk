@@ -1,0 +1,11 @@
+html {
+  -webkit-filter: contrast(80%) brightness(115%) grayscale(100%) !important;
+}
+
+
+/* WORKAROUND: Fix for rendering on HiDPI devices */
+@media (-webkit-min-device-pixel-ratio: 2) {
+  html {
+    transform: translateZ(0);
+  }
+}

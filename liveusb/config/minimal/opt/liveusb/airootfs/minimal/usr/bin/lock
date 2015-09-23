@@ -1,0 +1,20 @@
+#!/bin/env bash
+###############################################################################################################################################################################################################
+
+# if /mnt/container is mounted and mapped
+if [[ ! -b /dev/mapper/internal ]];then echo "container isnt mapped";exit;fi
+if [[ ! $(mount|grep /mnt/internal) ]];then echo "container isnt mounted";exit;fi
+
+# kill any gpg-agent stragglers
+kill $(ps aux|grep gpg-agent|grep '/mnt/internal/gnupg/persistent'|awk '{print $2}')
+kill $(ps aux|grep gpg-agent|grep '/mnt/internal/gnupg/revoke'|awk '{print $2}')
+kill $(ps aux|grep gpg-agent|grep '/mnt/internal/gnupg/root'|awk '{print $2}')
+
+# nothing else should hang it...
+
+###############################################################################################################################################################################################################
+
+umount /mnt/internal
+cryptsetup close /dev/mapper/internal
+
+###############################################################################################################################################################################################################

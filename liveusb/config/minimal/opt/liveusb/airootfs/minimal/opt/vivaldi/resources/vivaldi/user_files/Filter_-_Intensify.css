@@ -1,0 +1,10 @@
+html {
+  -webkit-filter: saturate(150%) contrast(115%) !important;
+}
+
+/* WORKAROUND: Fix for rendering on HiDPI devices */
+@media (-webkit-min-device-pixel-ratio: 2) {
+  html {
+    transform: translateZ(0);
+  }
+}

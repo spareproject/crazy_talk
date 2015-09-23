@@ -1,0 +1,102 @@
+#!/bin/env bash
+###############################################################################################################################################################################################################
+umask 077
+###############################################################################################################################################################################################################
+function listen {
+echo stub
+# untill netcat shuts the fuck up and learns how to bind to ips this cant be run... either 3 ports or one single port apperently : / booo
+
+#internal
+#if [[ ! -p /mnt/tmpfs/internal.socket ]];then mkfifo /mnt/tmpfs/internal.socket fi
+#if [[ ! -f /mnt/tmpfs/internal.txt ]];then    touch /mnt/tmpfs/internal.txt;fi
+#(nc -vulnz 10.0.0.1 31279 1>/dev/null 2>/mnt/tmpfs/internal.socket &)&
+#(while :;do 
+#if read line </mnt/tmpfs/internal.socket;then
+#line=$(echo "$line"|awk '{print $4}'|awk -F ':' '{print $1}')
+#if [[ $(wc -l </mnt/tmpfs/internal.txt) -gt 9 ]];then sed -i 1d /mnt/tmpfs/internal.txt;fi
+#echo $line >> /mnt/tmpfs/internal.txt
+#fi
+#done &)&
+##proxy
+#if [[ ! -p /mnt/tmpfs/proxy.socket ]];then    mkfifo /mnt/tmpfs/proxy.socket fi
+#if [[ ! -f /mnt/tmpfs/proxy.txt ]];then       touch /mnt/tmpfs/proxy.txt;fi
+#(nc -vulnz 172.16.0.1 31279 1>/dev/null 2>/mnt/tmpfs/proxy.socket &)&
+#(while :;do
+#if read line </mnt/tmpfs/proxy.socket;then
+#line=$(echo "$line"|awk '{print $4}'|awk -F ':' '{print $1}')
+#if [[ $(wc -l </mnt/tmpfs/proxy.txt) -gt 9 ]];then sed -i 1d /mnt/tmpfs/proxy.txt;fi
+#echo $line >> /mnt/tmpfs/proxy.txt
+#fi
+#done &)&
+}
+###############################################################################################################################################################################################################
+if [[ -f "/mnt/$(blkid /dev/archiso2 -s PARTUUID -o value).luks" && -f "/mnt/$(blkid /dev/archiso2 -s PARTUUID -o value).rawfs" ]];then
+###############################################################################################################################################################################################################
+if [[ $(ps aux|grep gpg-agent|grep /home/user/gnupg/persistent) && -b /dev/archiso1 && -b /dev/archiso2 && -b /dev/archiso3 ]];then
+###############################################################################################################################################################################################################
+
+# trigger password prompt...
+###############################################################################################################################################################################################################
+#mount /dev/archiso2
+#mount /dev/archiso3
+#cp -ar /home/user/.mount/key/gnupg/persistent/* /home/user/gnupg/persistent
+#unset input;read -rp "enter pin: " input;if [[ ${input} =~ ^0-9+$ ]];then echo "numeric pin";exit;fi
+#if gpg --homedir /home/user/gnupg/persistent --passphrase-fd 0 -d /home/user/.mount/key/gnupg/trigger.asc <<< $(dd if=/home/user/.mount/random/randomfs bs=1 count=100 ibs=1 skip=${input} 2>/dev/null);then
+###############################################################################################################################################################################################################
+
+###############################################################################################################################################################################################################
+
+mkdir -p /mnt/internal
+gpg --homedir /home/user/gnupg/persistent -d /mnt/$(blkid /dev/archiso2 -s PARTUUID -o value).luks 2>/dev/null|
+cryptsetup --cipher aes-xts-plain64 --key-size 512 --hash sha512 --iter-time 5000 --key-file - --type=plain --offset 0 open /mnt/$(blkid /dev/archiso2 -s PARTUUID -o value).rawfs internal
+mount /dev/mapper/internal /mnt/internal
+
+###############################################################################################################################################################################################################
+
+mkdir -p /mnt/tmpfs
+mount -t tmpfs tmpfs /mnt/tmpfs
+mkdir /mnt/tmpfs/user
+cp /etc/key/gnupg/gpg* /mnt/tmpfs/user
+
+# internal tmpfs
+gpg --homedir /mnt/container/ --passphrase-fd 0 --gen-key --batch /etc/key/gnupg/batch.user <<< "" 2>/dev/null
+gpg --homedir /mnt/container/ --output /mnt/tmpfs/user.public --export user 2>/dev/null
+
+# copy over all the public keys associated with the internal keyset
+cp /mnt/internal/gnupg/persistent.public /mnt/tmpfs/
+cp /mnt/internal/gnupg/persistent.sig    /mnt/tmpfs/
+cp /mnt/internal/gnupg/revoke.public     /mnt/tmpfs/
+cp /mnt/internal/gnupg/root.public       /mnt/tmpfs/
+
+# implies firstboot has been run... hence access to persistent cache and usb? - internal group to cluster based on running the machine or using someone elses
+echo "dumping the host rawfs public keyset into the tmpfs"
+cp /mnt/internal/gnupg/persistent.host.sig /mnt/tmpfs/
+cp /mnt/internal/gnupg/revoke.host.sig    /mnt/tmpfs/
+cp /mnt/internal/gnupg/root.host.sig       /mnt/tmpfs/
+
+# import and sign all the public keys associated with the internal keyset still all internal random keys only ability to check cluster if it exists
+gpg --homedir /mnt/tmpfs/user --import /mnt/tmpfs/persistent.public
+gpg --homedir /mnt/tmpfs/user --sign-key persistent
+gpg --homedir /mnt/tmpfs/user --import /mnt/tmpfs/revoke.public
+gpg --homedir /mnt/tmpfs/user --sign-key revoke
+gpg --homedir /mnt/tmpfs/user --import /mnt/tmpfs/root.public
+gpg --homedir /mnt/tmpfs/user --sign-key root
+
+# start a listener on host/internal/proxy (container being both internal/proxy boot stamped)
+#listen #erm wtf?
+
+###############################################################################################################################################################################################################
+else echo "still needs oneshot...";fi
+###############################################################################################################################################################################################################
+else echo "run setup - currently setup,lock,unlock or it doesnt spawn tmpfs for internal keyset";fi
+###############################################################################################################################################################################################################
+
+
+# if managing its own oneshot
+#kill $(ps aux|grep gpg-agent|grep '/home/user/gnupg/persistent'|awk '{print $2}')
+#umount /home/user/.mount/key
+#umount /home/user/.mount/random
+#rm -r /home/user/gnupg/persistent/*
+#chown -R user:group /home/user
+#chmod -R 700 /home/user
+

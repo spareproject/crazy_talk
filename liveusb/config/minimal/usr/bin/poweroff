@@ -1,0 +1,23 @@
+#!/bin/env bash
+###############################################################################################################################################################################################################
+unset input;while [[ ${input} != @("y"|"n") ]];do read -r -p "about to kill everything... continue (y/n)?" input;done
+if [[ ${input} == "n" ]];then exit;fi
+###############################################################################################################################################################################################################
+
+MACHINECTL=$(machinectl|sed 1d|sed '/^$/d'|sed '$ d'|awk '{print $1}')
+for i in ${MACHINECTL};do echo "killing machine - ${i}";while [[ $(machinectl|grep "${i} ") ]];do machinectl poweroff ${i};done
+done
+
+echo "unmount /mnt/mount..."
+while [[ $(mount|grep /mnt/mount) ]];do umount /mnt/mount/*;done
+
+kill $(ps aux|grep gpg-agent|grep '/mnt/internal/gnupg/persistent'|awk '{print $2}')
+umount /mnt/internal
+
+
+echo "close /dev/mapper"
+for i in /dev/mapper/*;do if [[ $i != '/dev/mapper/*' && $i != "/dev/mapper/control" ]];then cryptsetup close $i;fi;done
+
+###############################################################################################################################################################################################################
+for i in /mnt/mount/*;do if [[ $i != '/mnt/mount/*' && ! $(mount|grep "${i} ") ]];then rmdir "${i}";fi;done
+###############################################################################################################################################################################################################

@@ -4,6 +4,234 @@ no need to ever delete anything but always good to hide the crazy...
 
 ###############################################################################################################################################################################################################
 
+totally dropping multiple key things sigs not publics unless its signed by itself....
+
+root
+  root.public
+  revoke.public
+  persistent.sig  - signed by root
+  rng.sig         - signed by persistent
+
+internal
+  root.public       root persistent signed
+  revoke.public     root persistent signed
+  persistent.public root persistent signed
+  persistent.sig    internal root signed
+  rng.sig           internal persistent signed
+
+container
+  root.public       root internal sign
+  revoke.public     root internal sign
+  persistent.public root internal sign
+  persistent.sig    container root sign
+  rng.sig           container persistent sign
+
+public key set...
+root,revoke,persistentx2,rng
+
+i wanted kill switch two codes for ages... but its really fail when you think about it...
+^ give  us the password... lulz... duplicate data fail... 
+situational at best
+
+
+setup to verify internal is.... persistent sign? all signed
+
+right /mnt/internal... when unlocked can proof host and internal
+
+locked and only a shady tmp key with an internal sign but no proof internal was signed from host...
+
+tmpfs needs the entire internal keyset... and internal key signed set...
+
+^ doesnt need it isnt logical fluid ocd stress but its definitly fucking needed later on and im not unlocking to tell a cluster im signed... mode
+
+yeh deal with it
+
+root
+revoke
+persistent
+public internal sets
+
+
+
+
+techincally i can just dump the public keys as signed cleartext
+none clear text force it to pipe through gpg and tell you it isnt even a proper sig before you fuck yourself up
+
+
+
+so
+
+host...
+root.public
+revoke.public
+
+persistent.public
+persistent.sig    < - only thing linking you to the root cert
+
+
+
+root.internal
+revoke.internal
+
+persistent.internal
+persistent.sig      < - same linking
+
+root.sig
+revoke.sig
+persistent.sig
+
+
+
+
+
+
+
+
+so less fucks given...
+
+all networks been done with radio mindset so either adapt or QQ more
+
+i cant test radio so fuck it
+
+would need to setup broadcast to fuck up collisions on purpose 
+
+forced wait... 0.2 if more than one ip hits in time interval send out jargon
+
+still a root owned fuck up...
+
+you totally just tried to troll me into the whole udp message shit...
+
+its reading 2 not data anything that gets through is whole.... 
+
+so fuck you in the face with a brick 
+
+running out of drugs is not a good idea...
+
+i dont give any fucks about the actual data transfer
+when it hits netcat 2> spits out the incoming address...
+
+###############################################################################################################################################################################################################
+
+setup... - mounts the finished dir and doesnt "start" ie a unlock run
+
+unlock doesnt support clean up 
+
+^ unlock should be a poweroff for that /mnt/partuuid key
+
+im saying you can have more than one but it mixes them and will fuck up alot
+
+but setup and no tmpfs you can get all the way to boot and still not have the ability to boot no host ssh client key...
+
+^ sucky as well 
+
+###############################################################################################################################################################################################################
+
+host - print out networking related to node on cluster pretty much lan... current openwrt set dhcp... 
+internal - 10.0.0.0/8 in regards to host
+container - 172.16.0.0/16 in regards to host
+
+wan - 
+cluster - nodes made with key... cant test for more than single user
+proxy   - some form of public/private challenge response network out
+
+nftables... 
+
+current state...
+sshd remote desktop down... iptables < - tested it on running and it was up so /shrug 
+
+butterface means backup to raid5....
+
+dumped liveusb and container onto a usb so super bad checkpoint where nothing even worked in the first place 
+
+to butterface and nftables...
+
+^ if copy on write works and handles really bad hardware pulls 
+ive got ssds i can stick in raid 1
+and get a usbhub try btrfs raid and eventually just wipe the raid5 and make some container crypted and signed rawfs from whatever arch manages to keep up 
+
+ipv6... all i wanted is address ranges... scan a port... test its cluster signed or create a new one... perms... 
+
+so usb could in theory be completly open o
+
+its only a rootfs that has a random key on it that being the same setup to boot different images in systemd-nspawn 
+
+setup stamps whatever 
+
+* check running against your keys version - patch search and or super evil c&c server hijack... hence proxy drop your crap setup bridge to still split or create connections signed/crypted etc
+
+but then either setup...
+dumps your stuff unlocked /locked
+leave nodes on / off etc 
+hotplug boot some images unplug 
+crypted storage or running storage
+
+hmm network to network store the nodes 
+
+well networkctl stuff ish i suppose i still need lan...
+
+but it would be host
+do LAN = i know my range so im setting it bash.bashrc
+internal=10.0.0.1/8
+proxy=172.16.0.1/8 its still just tor can do network to network socks5 with your key setup i suppose
+
+./host.sh does a nc scan of 
+LAN
+INTERNAL
+PROXY
+and prints nodes that are up
+
+
+###############################################################################################################################################################################################################
+
+this basically pulls an updated snapshot
+if your installing on a nested vm it takes the newest available everything (working together) from repos
+if your dumping anything on host its taking the exact package you gave it without version checking anything else
+should always be version checking entire /var/lib/pacman/local/ before assuming any of that shit is going to run
+but no kernel images in containers nearly suck qemu back in it...
+^ sort of left qemu when i couldnt get the cli to boot vmlinuz img + initramfs + a rootfs, using qemu-img raw was dir rootfs on an image and a single syslinux boot sda given fixed input
+^^ if that works ill stick it on and see if grsec would work or just compiling kernels in general
+
+desktops going to try and get radio back : / or atleast wifi + bluetooth (never tried got a cheap £3 pound dongle, or probably whatever other bluetooth dongles actually work)
+gnuradio + hackrf, have one porta pack and one normal hackrf + wanted a mag strip 3 read/write :P but yeh nfc read write + otp with a phone and multiple networks is easier to buy + sticker reads etc...
+it still usefull but not for unhashed two factor auth + block at failed for number of attempts period of time so not exactly passwordless
+have one hamitup converter the other one didnt survive a drop would need to resolder it
+and probably dump wifi pineapple on it or atleast internet password on/off to it and sort out the access point for either horizontal signal boost or ap and monitor/deauth 
++ it does antennas 
+wanted a rfjam directional to remote drones till no battery and watch the drop tests ^_^
+
+if you use magentic north to plot the power given to the 4 motors and record vector of time directionally to the compass you can probably easy
+setup turn the remote on... ie release point (can bacon) and record a signle cancelled out section of ram 
+using pre record info in like wise conditions or reading mem sensors+windspeed based on overall shape in a windtunnel
+^^ can do loads with it pointless going into detail 
+but canceling it out in regards to that location based on predicted movement
+reversing input to conditions against wind speed, rain etc to
+yeh 3d metal conducted tips rotate speed based on it or scattered contacts on the inside 
+
+but radio...
+if i can blag echo > /dev/radio0 with easy mapper vs binary input netcat but for fm/am or any modulation 
+and setup tx/rx half vs full duplex?
+
+still want to look at mesh network thrown into spammed point and everything bricking itself 
+
+^ was loads of stuff with wpa2 variables well wifi 
+basically binary fuzzing listeners to check out casino stats of execution...
+
+never checked the statistics sending random armor gpg messages and the off chance itll pass through gpg -d
+thats like size to entry point 
+nc -vulnzp 31297 | gpg --homedir /path/to/socket/key --allow-multiple-messages -d > fifo
+really wanted 
+nc -vulnzp 31297 2>&3 | gpg --homedir /path --allow-multiple-messages -d 3>&1> fifo - so i can fix ips to messages without timer confilts : /
+and it core dumps because pipes... if the same message is repeated 22 times... so totally safe
+nc -vulncp 31297 ? c closes after connection in... dumped on a while loop
+
+###############################################################################################################################################################################################################
+
+
+
+###############################################################################################################################################################################################################
+
+###############################################################################################################################################################################################################
+
 # HOST
 
 /sda1 - 
@@ -191,6 +419,7 @@ general changes to liveusb layout coming up...
 
 really i would rather be doing ./container build a rootfs ./boot setup syslinux and bootctl on a vfat32 usb partition
 then chop and change syslinux/bootctl menus with whatever squashfs exists... still is chop and change random sizes /shrug
+is vfat -F32 max size 2G? these are hitting 500mb a piece
 but ive spent to much time on rebootable key infrastructure to care about scrapping it all for a ext4 partiton full of squashfs images
 
 ###############################################################################################################################################################################################################

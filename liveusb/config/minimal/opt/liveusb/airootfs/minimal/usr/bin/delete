@@ -1,0 +1,42 @@
+#!/bin/env bash
+###############################################################################################################################################################################################################
+if [[ $# != 1 ]];then
+echo "
+${0} - help
+arg0 - rawfs name
+"
+exit
+fi
+###############################################################################################################################################################################################################
+
+# internal isnt mounted
+if [[ ! $(mount|grep /mnt) ]];then echo "internal storage isnt mounted";exit;fi
+
+# luks or rawfs do not exist
+if [[ ! -f /mnt/luks/${1} || ! -f /mnt/rawfs/${1} ]];then echo "luks and or rawfs doesnt exist";exit;fi
+
+# rawfs has unionfs dependencies
+if [[ $(machinectl|grep "${1}\.") || $(mount|grep "/mnt/mount/${1}\.") ]];then echo "has unionfs dependencies";exit;fi
+
+# if its running
+if [[ $(machinectl|grep "${1} ") ]];then echo "rawfs running";exit;fi
+
+# if its mounted
+if [[ $(mount|grep "/mnt/mount/${1} ") ]];then echo "rawfs currently mounted";exit;fi
+
+# if its mapped
+if [[ -b /dev/mapper/${1} ]];then echo "rawfs currently mapped";exit;fi
+
+###############################################################################################################################################################################################################
+echo "
+about to delete
+/mnt/luks/${1}
+/mnt/rawfs/${1}
+continue (y|n)?
+"
+unset input;while [[ ${input} != @("y"|"n") ]];do read -rp "input: " input;done;if [[ ${input} == 'n' ]];then exit;fi
+if [[ -f /mnt/rawfs/${1} ]];then echo "deleting /mnt/rawfs/${1}";rm /mnt/rawfs/${1};fi
+if [[ -f /mnt/luks/${1} ]];then echo "deleting /mnt/luks/${1}";rm /mnt/luks/${1};fi
+###############################################################################################################################################################################################################
+for i in /mnt/mount/*;do if [[ $i != '/mnt/mount/*' && ! $(mount|grep "${i} ") ]];then rmdir "${i}";fi;done
+###############################################################################################################################################################################################################

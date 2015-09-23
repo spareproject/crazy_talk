@@ -1,11 +1,16 @@
 #!/bin/env bash
-
-# setup
 ###############################################################################################################################################################################################################
 trap "exit" SIGINT
 umask 077
 ###############################################################################################################################################################################################################
-function usage { echo -e "${0} - help\narg0 - usbstick /dev/sdXYZ\n${2}";exit ${1}; }
+function usage {
+echo "
+${0} - help
+arg0 - usbstick /dev/sdXYZ
+${2}
+"
+exit ${1}
+}
 if [[ $# != 1 ]];then usage 1;fi
 ###############################################################################################################################################################################################################
 mkdir -p ./mount/key
@@ -91,7 +96,6 @@ rm -r /tmp/openssl
 
 # permissions
 ###############################################################################################################################################################################################################
-#./mount/gnup         - 750 - root:wheel
 # /root               - 700 - root:root
 # /persistent         - 750 - root:wheel
 # /persistent.public  - 750 - root:wheel
@@ -123,7 +127,6 @@ chmod 750 ./mount/key/gnupg/root.public
 chown root:wheel ./mount/key/gnupg/trigger.asc
 chmod 750 ./mount/key/gnupg/trigger.asc
 
-
 #./mount/openssh      - 700 - root:root
 # /client_ca.asc      - 600
 # /client_ca.pub      - 600
@@ -131,8 +134,10 @@ chmod 750 ./mount/key/gnupg/trigger.asc
 # /server_ca.asc      - 600
 # /server_ca.pub      - 600
 #
+
 chown -R root:root ./mount/key/openssh
 chmod -R 700 ./mount/key/openssh
+
 #./mount/openssl      - 700 - root:root
 # /ca-certificatates  - 600
 # /persistent.cert    - 600
@@ -144,6 +149,7 @@ chmod -R 700 ./mount/key/openssh
 # /root.key           - 600
 # /root.key.asc       - 600
 #
+
 chown -R root:root ./mount/key/openssl
 chmod -R 700 ./mount/key/openssl/
 ###############################################################################################################################################################################################################

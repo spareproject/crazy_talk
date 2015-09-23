@@ -23,12 +23,13 @@ iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED --ctproto tcp -j AC
 iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED --ctproto udp -j ACCEPT
 iptables -A INPUT -p tcp --dport 31279 -j ACCEPT
 iptables -A INPUT -p udp --dport 68 -j ACCEPT
-iptables -A INPUT -j DROP
+iptables -A INPUT -i lo -p tcp --dport 6010:6023 -j ACCEPT
 ###################################################################################################
 iptables -A OUTPUT -p icmp -j DROP
-iptables -A OUTPUT -o LO -j ACCEPT
 iptables -A OUTPUT -p tcp --sport 31279 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+iptables -A OUTPUT -p tcp -d 127.0.0.1 --dport 6010:6023 -j ACCEPT
+iptables -A OUTPUT -p tcp -s 127.0.0.1 --sport 6010:6023 -j ACCEPT
+#iptables -A OUTPUT -o lo -j ACCEPT
 iptables -A OUTPUT -p tcp -m multiport --dport 80,443 -j ACCEPT
 iptables -A OUTPUT -p udp -m multiport --dport 53,67,31279  -j ACCEPT
 ###################################################################################################
-

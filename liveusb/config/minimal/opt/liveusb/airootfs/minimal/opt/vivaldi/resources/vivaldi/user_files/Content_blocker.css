@@ -1,0 +1,108 @@
+/*
+  Simplistic content blocker.
+  Blocks common iframe ad sizes.
+*/
+
+
+/*
+  Google - most common ad sizes
+  https://support.google.com/adsense/answer/6002621
+*/
+iframe[width="300"][height="250"],
+iframe[width="300"][height="600"],
+iframe[width="320"][height="100"],
+iframe[width="336"][height="280"],
+iframe[width="728"][height="90"],
+iframe[width="728px"][height="90px"] { /* Special case found on theverge.com */
+  display: none !important;
+}
+
+/*
+  Google - other ad sizes
+*/
+iframe[width="120"][height="240"],
+iframe[width="120"][height="600"],
+iframe[width="125"][height="125"],
+iframe[width="160"][height="600"],
+iframe[width="180"][height="150"],
+iframe[width="200"][height="200"],
+iframe[width="234"][height="60"],
+iframe[width="240"][height="400"],
+iframe[width="250"][height="250"],
+iframe[width="250"][height="360"],
+iframe[width="300"][height="100"],
+iframe[width="300"][height="150"],
+iframe[width="300"][height="1050"],
+iframe[width="320"][height="50"],
+iframe[width="468"][height="60"],
+iframe[width="580"][height="400"],
+iframe[width="600"][height="125"],
+iframe[width="728"][height="90"],
+iframe[width="750"][height="100"],
+iframe[width="750"][height="200"],
+iframe[width="750"][height="300"],
+iframe[width="930"][height="120"],
+iframe[width="930"][height="180"],
+iframe[width="970"][height="66"],
+iframe[width="970"][height="90"],
+iframe[width="970"][height="250"],
+iframe[width="980"][height="120"] {
+  display: none !important;
+}
+
+/*
+  Various - sizes seen in the wild
+*/
+iframe[width="180"][height="500"],
+iframe[width="230"][height="130"],
+iframe[width="230"][height="400"],
+iframe[width="318"][height="400"],
+iframe[width="300"][height="154"],
+iframe[width="468px"][height="400px"],
+iframe[width="980"][height="150"],
+iframe[width="980px"][height="150px"],
+iframe[width="980"][height="225"],
+iframe[width="980"][height="300"],
+iframe[width="1920"][height="850"] {
+  display: none !important;
+}
+
+/*
+  Repeat of the above for mostly Adobe Flash content
+*/
+object[width="120"][height="240"],
+object[width="120"][height="600"],
+object[width="125"][height="125"],
+object[width="160"][height="600"],
+object[width="180"][height="150"],
+object[width="180"][height="500"],
+object[width="180"][height="1000"],
+object[width="200"][height="200"],
+object[width="230"][height="130"],
+object[width="230"][height="400"],
+object[width="234"][height="60"],
+object[width="240"][height="400"],
+object[width="250"][height="250"],
+object[width="250"][height="360"],
+object[width="300"][height="250"],
+object[width="300"][height="600"],
+object[width="300"][height="1050"],
+object[width="320"][height="100"],
+object[width="320"][height="50"],
+object[width="336"][height="280"],
+object[width="468"][height="60"],
+object[width="580"][height="400"],
+object[width="728"][height="90"],
+object[width="750"][height="100"],
+object[width="750"][height="200"],
+object[width="750"][height="300"],
+object[width="930"][height="180"],
+object[width="970"][height="90"],
+object[width="970"][height="250"],
+object[width="980"][height="120"],
+object[width="980"][height="150"],
+object[width="980"][height="225"],
+object[width="980"][height="300"],
+object[width="1010"][height="150"] {
+  display: none !important;
+}

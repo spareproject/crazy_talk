@@ -1,0 +1,493 @@
+[{
+  "title": "Speed Dial",
+  "speeddial": true,
+  "children": [
+    {
+     "url": "https://vivaldi.com/",
+     "add_date": "1422175643",
+     "last_modified": "1422175643",
+     "thumbnail": "/resources/sd_vivaldi.jpeg",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVQ4jdWTMQqDMBiFvZYhiHdwcPQsjl5B8AJ6ARcH0VM4Co4aLS1JpPF1KA1VUapd2gf/Et7/De9/MZhp4psxfgsgswwT52CWtTL2tg1IiTHPtwGTEAAA1TQrwC0IAAAYx23AWBR4aXCcmfHiec/9stzJgFINmNp2ZhxcFwDAKN0PUaaphlx9X7/fqwoyTT+4AiF4l6prnQ0j5LMzijjGUiJJjvVgqcNF4mGol3kUnWui6jqovv+nv3BmHkuWoxxItS5MAAAAAElFTkSuQmCC",
+     "title": "Vivaldi"
+    },
+    {
+     "url": "https://vivaldi.net/",
+     "add_date": "1422175643",
+     "last_modified": "1422175643",
+     "thumbnail": "/resources/sd_vivaldi_community.png",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACX0lEQVQ4jV2TsU4UURSGz+5EEzWEEAkGI3vvHdiEQitKeAF5AxKinbbaaUsjWPACxhAKOoUGo4Wx0NCRKBTaKLuz9y4kgxtAWAjszv0s7jCINznVOfnmn/P/R+pDMp/GV3DqduaGY5wZwGnBmehyacGZPpwxOHUnS+Me6kMyL2lcpmmERkV8ogWr5QKio7wEZ3qxWkh0mG0aIY2vI05dyxoV8ftv33CyucHO40fUlJDoWyS6nFcfdS3Y+5O0v37jaG0Na5S3FcnEVsT/nnvJ+Tvd3qauhUTfJNFXSXQZOxxTU8LR2loxd7CyTKMiXqwW0mfPAcg6HQD2lpaoKcGOjJDoEtYYako4ePeuAOwtLGC1IC5vttfXi2Z2eIibGM+V9JHofupa2JmeDiqbjkQLzvQgzgyQaKE5NYU/O8N7D8Cfj5+CirEx7N17AfDwAQDp7Bw1JTRNBXFasNVqkPj+AwA+y/CdDjtPnrKlhJoStpTQ3tjg9OevADYGZ8qIMxFW94Ytj47S3du/+JXjYw5WV2m9fsXJj+8AhUvWDOJMdA4QkuERakpoLS4GFd0u/7/DL5+DxdVqnpcCEOWWhWWdWltAfLeLB7J2Gzc5WVhsdfQvIATGGkVNCenMzMUuciX7K8u5tdVgrS7nACXeFokrkcS5rZsbhfROq0WiJfT1jfAxXcYp8eKUZOEOziED1HNbO7u7ZCcnpC9m83irHFKmURHvlGSSxiWaJsJWxFsd5cvpD0EZHqE5MZ6HZgCrBavDbNNEpHEJCedcwinJLp/u+UUKzgxePnElWRqXqA/J/F/Jp4roAb8x4QAAAABJRU5ErkJggg==",
+     "title": "Vivaldi Community"
+    },
+    {
+     "url": "https://www.facebook.com/",
+     "add_date": "1422175643",
+     "last_modified": "1422175643",
+     "thumbnail": "/resources/sd_facebook.png",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAl0lEQVQ4jWNgoAYw86k/bOXX9J8UbOZTfxhugEvs7P8eSYtJwi6xs//DDcCnMCx31f9j5x79//X7z//3H7//v3H3NVyOKAP2n7j3Hx2QZMDXbz///////39+3RK4/0kyAAZcYmdhyOE1ABd4/PwjZQYsWXecOANg/oUBGN8hYhJ5YYBNbjgZ4BK/4DCpBrjFLzxCZF7FDwAGzvrijJjlXgAAAABJRU5ErkJggg==",
+     "title": "Facebook"
+    },
+    {
+     "url": "http://www.booking.com/index.html?aid=807124",
+     "add_date": "1425585855",
+     "last_modified": "1425585855",
+     "thumbnail": "/resources/sd_booking.com.jpg",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAh0lEQVQ4jWNgYGBgEAmZ+Z/BtIEkLBIy8z8DuZpRDSFTMxwjcyYsP/F/z6m7cDxh+Yn/BF2IzPnz5y9WTLIB6PwJy0+QZ8CeU3f///nz979DxgI6ewEdk+wC5FihKAxgBuw5dReecKSnXfkvPe0KaV6AuQCmmSQDkJ1P0AUUJ2VSMUWZCZadAYCvKbtgIJF8AAAAAElFTkSuQmCC",
+     "title": "Booking.com"
+    },
+    {
+     "url": "https://twitter.com/",
+     "add_date": "1421888136",
+     "last_modified": "1421888136",
+     "thumbnail": "/resources/sd_twitter.png",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABzElEQVQ4jc2Sv4sTURDHn03QRlCRa7QVjsihjSAoiCByHGzee/O2tLGxEUsbm/SCdoJuuNvNJW9/vBT3H1heZ+ERTvNjl0s22c1u3sGBIuKZsVBzhFz0wMaBbzV8PzN8Zwj5L6q0vnN5Ue/OxtvTzO48Z06kaTU8oHa3srrevkjtFrA3u1eIYe0sUScc043WteMA1IkkyBjBS1B4KYIcIKv1Jmwz8o1K+zph1dYy1GPkm71P1AkfE0JO/TYbVrjEZTwRQY5mQ6PZ0CjUGIWfIZfxYK3SuUqK5WZBuGkq/BFCPUZaDd+X7M4TZrWWDSdcEf7ol3n/SEojk4N7hBBCmLN7gcvkqRnoryLIEbwEQcbIaz0EGePP6fszEkGO1OnfIIQQcr/SPA8y+W4qPaULNUYRZHi0+iwAgmyy9mrv3DQo7g5fTwEnEHijdzNJF8vNgvCzl6Yaf/krQGnkcvho7lzcS7ZPsgX4WXTzRf/MPKAWXwI/2/4jINCHJXd4e+FHrtbaZyHIveOCM5U+BDd9OGcyrA8rzO48o04kod4/EH42l7xQustkenfhZFbt3uL1vgVu8hFU/lk09DdT6T2hxls8GD0olpuFheZ/rR/yA54y0AklvwAAAABJRU5ErkJggg==",
+     "title": "Twitter"
+    },
+    {
+     "url": "http://www.dohop.com/?aff_wlname=Vivaldi",
+     "add_date": "1422175643",
+     "last_modified": "1422175643",
+     "thumbnail": "/resources/is-SD-dohop.jpeg",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABXUlEQVQ4jd2SzSuEURTG75JSkp2SUmw0SSnb2UhSNF73nAULpWxlqWws+BeklP0spTTve89ZWBhjw8LHgvm455SSklJKyrUw7zQZKwvJqbO5v+c+dZ5zjPmfNZdUs8gagPT8dwxmCre9QLKNJBdAUkLSfLOBzWs7kKwDySmSXCHLbuR8vzHGmCguDyDrA7KGrw2k59m9ahuQHrcyebKJZgyQ7KdiSGQCnc4D6X3jjWX185M8WpJFSGQCSE7rnA2QvCJrsIlm0pGs06Umg0NkDdb5lZTPUqUPWQOwvhtgfUPWkHPlwVQAzi/UBUUgiZE1WPbLKZ+OpScdxaQCJDmKYhm1zo8jaQ1ZAzjZAvZrn2ZyN0e1ySipjSCrq+dQMsiVYWB9bgmJ5WbqwHfZ/GUHkFx+w1+iQnWseRM7wHqGrCfAsplz192NTJJyJ7LfANYisJ4hyV7EfuhHR/b36gOiCjogMTDrjwAAAABJRU5ErkJggg==",
+     "title": "Dohop"
+    },
+    {
+     "url": "http://www.ted.com/",
+     "add_date": "1422175643",
+     "last_modified": "1422175643",
+     "thumbnail": "/resources/en-US-SD-ted.jpeg",
+     "faviconurl": "data:image/png;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGK/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA/D8AAPw/AAD8PwAA/D8AAPw/AAD8PwAA/D8AAPw/AAD8PwAA/D8AAMADAADAAwAAwAMAAMADAAD//wAA",
+     "title": "TED"
+    },
+    {
+      "title": "Nyheter",
+      "children": [
+    {
+     "url": "http://sverigesradio.se/",
+     "add_date": "1422175764",
+     "last_modified": "1422175764",
+     "thumbnail": "/resources/sv-SD-sverigesradio.jpeg",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABZklEQVQ4jd2SzyuDARzGv7W9tVq9Gy9lVz/eMrV/YFzspt23JZHccNNOmvy8KY6axvJjliZFQ00Ysr29IzIpiihvbX/Ex0EpVy44PKenPs/z1CMiwg/1bwA2m+17gJPzM3r6enHXuHHXuDEuS4xEo1wYBsf5PJ2BALv7e5wXC6guFy26zuZWBqtaYS29gTidTlZTKbqCQQqmyc5eFhGh1eslkUwiIiiKwkI8zsFhjomZabxtbdRqGo1NjR8TUuk0XcEgY+PjWNXKl4oOhwOfz8f1XZlQOPTFUxQFMa+uGI3FaPA0ICK0d3QwOT2FVa3QPzDATbnMTjaLx+NBRAhFwlyXb3l6ffkI0zQNu92O3+/n+DT/SU9vZSiaJs0tzVjVCpntbUSEg8McdfX1iAi6riOPz08klpdQVRWjZJI7OmJweAjjsoTqUhERwpEIr9Ybi4kEke5uVtbXuH98YHZ+7jcd6e8C3gE3bXVmEYVEoQAAAABJRU5ErkJggg==",
+     "title": "Sveriges Radio"
+    },
+    {
+     "url": "http://www.svt.se/nyheter/",
+     "add_date": "1422175764",
+     "last_modified": "1422175764",
+     "thumbnail": "/resources/sv-SD-svt.jpeg",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABM0lEQVQ4jdWSwUoCcRCH/7CwsCAIwoKwIAgLwoLgS3jak48hePLkA+xjCILgA8iubmqa4aWlg2BEoicrsAxpy5BM6+vkhpBe6uLAHAZ+881vhhG2EPwlxfEBGqqKI0m/A2qyfLC5m0wC4IbDu4CGqjJrNlkvFrxPp4wsi9fBIBDdVyrclcu8jcds4zQW+wFc5XIshkNsIWhGo3QNA4B2PE5dUVj7Phfp9H4H56kUa9/n0XHo6Dq2ELz0+9wUCnimyXIywZGk/YDt5NtSic1ySdcwuM7nmfd6TIpFRpZ1+AYnkQhuKERNlvmYz7nMZGhpGp+rFWvf5yyRwBaCjq4DBHUA8EyTr82G1WzGQ7VKXVGwheCp3ebZ8wKxI0nMXBeAQTa7u0JdUXasHcqWph3zK/874BskfQgF5G9JRwAAAABJRU5ErkJggg==",
+     "title": "SVT.se"
+    },
+    {
+     "url": "http://svenska.yle.fi/",
+     "add_date": "1422175764",
+     "last_modified": "1422175764",
+     "thumbnail": "/resources/sv-SD-yle.jpeg",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAY0lEQVQ4jc2Qyw2AQAgFXxUUTynWQSyEC8fnaZU1GsyauJLMgQSGD5YVfAP+JQCe8Z2A5MQN8vTzJqWgRSUQtUMgal1RRNyeIGo7EDW6O929fN6loDVnQUU3dETQ9eRkhPmCDYV+V+VSMos6AAAAAElFTkSuQmCC",
+     "title": "Svenska.yle.fi"
+	}]
+    }]
+},
+{
+   "title": "Teknik",
+   "children": [
+    {
+     "url": "http://www.idg.se/",
+     "add_date": "1422176003",
+     "last_modified": "1422176003",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABCklEQVQ4jZ1SQbHEIAythBAFKwEJlYCESqiEdVAJSEhQUAmV0AtDclsJ/QdglrKz/zM/pwzJe3l5ZJoGA+gEIHmM9nfg5AzrYVj2f4CjRRbfqxkmMKzUAoCiNayv4XUw6HWfnlZk8YblHFQgO5I8P0i6t6YYrWE5MehlWF/I4ktOQMlh0K33pAfvdT+gtGLQCyi5LFsJSJb8pZ2RjTnzzQMW38qtfTcjyyNVc+6uy9wSIMmzEBxA0TaT01on5mJmL7JnoBNy3iqIdgJK7r2rLA1JNXDLYNkN61H65o87AJKlJTGshEG3UntU2XnFL0dUSZDFAyVXwW8VZe/fAll8+8/1LoZP988JXfwACsT49JrIRpIAAAAASUVORK5CYII=",
+     "title": "IDG.se - Störst på it-nyheter"
+    },
+    {
+     "url": "http://www.nyteknik.se/",
+     "add_date": "1422176003",
+     "last_modified": "1422176003",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,AAABAAEAEBAAAAAAAABoAwAAFgAAACgAAAAQAAAAIAAAAAEAGAAAAAAAQAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACEjfU3RvCCi/X6+v8AAAAAAAAAAAAAAAAAAAAAAACjqvjGyvsAAAAAAACxt/mssvnFyvuRmfYwP++0u/4AAAD9+fTkxZfiwpD69OsAAAAwP+93gfQAAAC7wPowP+81RO8AAAC2u/kwP+9kcfsAAAD58ui/dge8cgDy5M4AAAAwP++EjfXz9P5GU/EwP+9DUPDz9P5ncvMwP+8yQe/h5P/59fHGfxS9dAPz5tEAAAAwP++EjfWEjfYwP+8wP+9GU/HP0/s1RO9PXPE8SvCUnf38+vjGfxS9dAPz5tEAAAA2RfBCUPA1RO86SPA8SvBLWPGEjfUwP++dpPeRmfc7TPrv6urIgRi9dAPz5tEAAAA5R/AwP+8wP++VnfdqdPM7SfBqdfRUYPLe4PzW2f1OYv/S0vHMhR29dAP27N0AAAA2RO8wP+9JVvH6+v9ibvM0Q+/n6f35+f4AAAAAAADCrq3AnX3AdgW8cgDTolfasnREUvE8SvC8wfoAAABpdPNEUvHz9P4AAAAAAAAAAADcrmnDdwa/eg7Aeg++dQbAeg8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD////////////////8P///MCH//yIh//8AAf//AAH//wAB//8AAf//AMD//xHA////////////////////////",
+     "title": "NyTeknik - It & Telekom, Populär Teknik, Energi, Miljö, Fordon, Automation, Bioteknik, Karriär, Lediga jobb, Ingenjörsjobb"
+    },
+    {
+     "url": "http://m3.idg.se/",
+     "add_date": "1422176003",
+     "last_modified": "1422176003",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB40lEQVQ4jaWTzUtUYRTG52+oVXOH0nsv6ZQLpU20jBYVRIEUSaAb15GKjoOkG5ct2iQNQpsoWggGbaJCiWSSiGxG+qBvWjSC895x7txprvN+/Fpcximzklwc3vO8ix+c5zwnVrSceWE56n+qaDnzMWG5UiRcRMJFWA4b/WZtOc3a+HNlTFiOEgkXYR/AS3YiWtoRloNnJ5s6buO5HZS6DuO5BxFxuwFVESBuE6THkfllgsEUYk8r369cRS7l8Hv6WDt2kvqjOdSnz9QfzlE+cTqC/AyoTWUAWL//gNKhI6hXbwAIBkYIZ2ZBStS792AM63fvIVraNgGuXQdAf/lKMJzG+BXQmiA1hny6iHr9lvKZc+hvBVR+GS/ZhYjbvwNMLUQu5UBr0JrKpWHKp7rxe/vx+/oxwqO+kMVzO7YGRBQTvVpTuThEcVecYGgUE1RBa6oTk1t40ABo04Q0ALst/LMXqD9+AkoR3ryN2Lv/Dx6sroJS6MIKSEkwmCIYvUx1YpK1o8fRhRVkLh+t+NcRMqA1MruIKZWoL2QjQGoM+ew56sNH/O6ev5g4lQFjqE3fIJyZJbx1B4zZ/hqD9DjyxUv8872IhEswMBLpbQWpEeX2TsS+tijvrclI/zvKOzymnZ7zD1kPu7f3oZolAAAAAElFTkSuQmCC",
+     "title": "M3.se - Sveriges prylsajt"
+    },
+    {
+     "url": "http://feber.se/",
+     "add_date": "1422176003",
+     "last_modified": "1422176003",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA4UlEQVQ4jaXTvwqCUBTH8SZbnexiJ7s0yCHsTYKkeobaCqKHcKqXEZOe4UKX2oTeoMGhQSj4tUQYVqgN3/UznD8NzxuAmWvleQM0mBlSyloxcxEgcr7mON3fABFhNpsjCIKPjceTN6QAWFYLYbhDlt0/ttlsQUTfASEEwjBClt1xuaSIohhxvH+1WCxB1CkHKKVhGE2YpvnKttu/Z5AH0vQKpQ5QSj87wHW5PFDsBuZ+eSBJzhgOR/D96bMJpOyVB7Q+Qgi72iHl16j1qTqQP6TVav22slqnXOsXKj/Tv+/8AHXIywAqs25qAAAAAElFTkSuQmCC",
+     "title": "Feber"
+     }]
+},
+{
+    "title": "Spel",
+    "children": [
+    {
+     "url": "https://svenskaspel.se/",
+     "add_date": "1422176144",
+     "last_modified": "1422176144",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA7ElEQVQ4jc2SsYnDMBSGNYJG0AgewSNohIyQEbyBRtAIGkGtwYUgRcDFoSsCBhcWLgIuDN9V1iWOwx265n5QJf3f+9/TE60Q/OWI/wXopOTWNOWA2XsGY8oAn+czAJeqKgOsKQGUzaDXGoAlxjLAYAwAa0pPl7emYfae2fu3rYlteJs6KWmF4FrXPGqfbrT2GPBxOuXqe23mDX4IWGKkk5JLVT2Z7yHkXVliZPb+GLA97qSk15rJOUZrCUoRlOIeAkBeOPEu7poSgzFc65pea0Zr81cDBKW+Afu4P2ly7nWRJud+ZV5TytVbIfgCsCR3RSF0qvQAAAAASUVORK5CYII=",
+     "title": "Svenska Spel - Lotto, Livescore, Stryktipset, Keno, Bingo Triss"
+    },
+    {
+     "url": "http://www.game.se/",
+     "add_date": "1422176144",
+     "last_modified": "1422176144",
+     "title": "GAME - Vi köper, säljer och byter dina spel!"
+    },
+    {
+     "url": "http://www.gamereactor.se/",
+     "add_date": "1422176145",
+     "last_modified": "1422176145",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABT0lEQVQ4jZWTrZHEMAyFVYVRkFlwUGh6WBzmFkwXqYTMhB24ClxBClhuZBRmlgq+Azv22be74DQjYuk9/T3Luq4YY9i2jWLnefL19Y2qoqqEELiuq8aP42CeZ1QVERGKO+dwztG+FTfGoKps29bHXh4awDzPTNOEMeZtjnMOAQghdMB932ntui7u93sHVlWAJ0HbxXEcfLI27/F4/BKM44iI4L0nhEDO+QUcY6zLK+0DSM65spZRysIAcs51scMwsO87IoK19kkQY+zab+f03teKf3OMMU+ClFINnufJsiw1IcbYLbiM2BEA9UwhhDpvK5ycMyklALz3iAjLsvwSrOuKiDCO48cLwFOhpVhRrpSKpc3b7dZVb8HlWsMw1Bx5d2Nrbf0DIQS8950aW61IW2Xbto+yLYv7K7SOACClhHMOa20FTdOEqr4V2AvBf+0HW62TddX8ZjUAAAAASUVORK5CYII=",
+     "title": "Gamereactor - Nordens största speltidning"
+     }]
+},
+{
+    "title": "Shopping",
+    "children": [
+    {
+     "url": "http://cdon.se/",
+     "add_date": "1422176194",
+     "last_modified": "1422176194",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,AAABAAEAEBAAAAEAGABoAwAAFgAAACgAAAAQAAAAIAAAAAEAGAAAAAAAAAAAABMLAAATCwAAAAAAAAAAAAAAvGEBvWEBvGEBvGEBvGEAvWEAvWEBvGEBvWEAvWEBvWEBvWEBvGEAvGEAvWABvGEBu14Bu14Aul4Aul4AuFgAtlQAtlMAtlMAtlQAtlMAtlUAulwAu14Bul4Bul4Au14BuFsBuFsAuFsAtlY8yYF926yA3K1/3K2A3K6A3K5h05oIumAAt1gBuFwBuFsBuFsBtlkAtlgAs1Ff0Zb8/v3///////////////////////+16s8It1oAtlcAtlgAtlkAtFYAtFQItlrf9en////////g9uvZ8+Xa9OX4/fr///////9KyocAsU4AtFYAtFYAslMAsVATuF/v+vT///+l5MINs1UHtFcHsVFTy4v///////9o0pkArkkAslMAslMAsFAAr00Stlzs+fL///9t0psAqkIAr04ArkwIs1Zv0px81qUxv3IArksBsFAAsFAArk0ArUoRtFns+fL///9z0p0AqUMArk0Ar04ArkwAqUMAqUMArEkArk4Brk0Ark4ArEsAqkcRslfs+fH///9z0ZwAp0AArEsArUsArEoAqkYAqkYArEkArUsArEsArEsAqkgAqUURsFXs+fH///9xz5kApT0AqkgAqkcCq0obtFwetF4LrlAAqkcAqkgAqkgAqUYAp0ITr1Tt+fL///980qAAoDQApT4AojghtF7s+fH0+/ddyIoApT4AqEUAqUYAp0MJqkoktF/u+fP////m9u2C1KR60Z530Ju86M7///////9uzZUKq0oMrE0Ap0MOq0wyt2gstmO35sr////////////////////////////y+/ZNwXsttmMzuGgOq0w1uGlXxIJPwXxaxYW+6M7t+fLz+/by+vXy+vby+/bZ8uN+0p9LwHlTw39XxII1uGlcxoaI1aaC06J+0Z950JyI1aaL1qmL1qiL1qiL1qh/0qB60JyC06KB06GI1aZcxoYvtmRNwHtKv3hKv3hJv3hHvnZHvnZHvnZHvnZHvnZIv3dKv3hKv3hKv3hNwHsvtmQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+     "title": "CDON.COM – Nordens största varuhus"
+    },
+    {
+     "url": "http://www.coolstuff.se/",
+     "add_date": "1422176194",
+     "last_modified": "1422176194",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABb0lEQVQ4jbWRzytEURzFn/Leu0/DRjRZSk0iC5bWiP0sbaxt/At205gZM8Pkx7yZEUYUorAQE2psLGShJovJKD+SIlGa8T4WVzMeL9n41umeb/d7zvl2r6L8V5Gue2SjLfRvAb+nZ0cM5owiUPV3UdKgwoVF0oCEgKRhKYqikPG6vt47myy3jmIKbGUaXyDANCzWehsxK4FSnG7vYVbArIB4jRRfbsv++gBmdMjNy35rwG0XL3U3MaXjiNtj2B+C/Kbs705gWnxLj+mw4IEdL1gWxHQovkLxRfKYDrlFOA2D6YZ4fdZuMKHB2xOkmuXqExpkhiGqSv5wLs9P/Hy8ydobIhpMuiCi2VHYq/CwCikPRJxMxjXKmOuQm6z2yT6kgvUO92flGedvDFRDulu+Q9gF7yUIqnCxLg2DqkRILzkbzLQM4lfh6ggKhxAQ4Fcl8rtl7igum/iqsWFMPJPo6sSnQtSd+lVsM1rpb/jL3AeXtm8Odw/I7QAAAABJRU5ErkJggg==",
+     "title": "Roliga prylar, presenter och gadgets på CoolStuff"
+    },
+    {
+     "url": "http://www.webhallen.com/",
+     "add_date": "1422176194",
+     "last_modified": "1422176194",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4jZ2RsWqEQBCG5zkSOLC08UW2tBESOBBsfQm3shCOHJxgrY0vIIhwPoG9pe12CoLVn+KYyR4mBG/gK3Zn/n9mZ4mISOkGr0AsDq93JPVwiPB6f5iwQZB1h9gZ+Gl7CDHw4gpB1iGpB3BwcjILJrOAm3Ak9YAg6+DF1cPAT1so3WBeNymwBbwjAJjXDUo38NP2x4C3OpkFAFD249NEST2g7EcAkImUbvYGXFT2I8p+xLxumNdNzpzbGTBKN9LlNwCIkCE3yuHFFdwohxvlmMzytAv77ZNZpI415IQFvLiCExZwwkJGBSB/zlH2o9SxZmdgd+Q7e6I/DU7n2yHE4HS+wY1ySbx/fv2LrSH74gjcjIiI3j4ueAUiom8o/KVtxZ6dDAAAAABJRU5ErkJggg==",
+     "title": "WEBHALLEN.com"
+    },
+    {
+     "url": "http://www.tradera.com/",
+     "add_date": "1422176194",
+     "last_modified": "1422176194",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAByUlEQVQ4jaWTz2sTURDH3z9jssEouC+Z193Ne0Njirk3puAPeulFvdirxaMooiCCINKK/QG2F0FKoxasYKWVLGHXHkR78OhFPSi0BWP36+FBynZDc+hh4PGG+TDzne8IIYTodtxqElGYRNRNYsKREVE3iSjsdtyqEEIIxHI4ico7AwszoPIOYjkskpjah5Pf1xSeP/DxetobBGqLfm0vPfRx4gzj8gU9cBzRL3F3KoAjGVPXAySfjh4lC9giXJuowJGMJ7f9HmA/Ivzt2NiPCb837TsF+LNJGL+kIQMDRzJG6gbNhsbqjIevLYWz5wzGmhp3bgQgbXC+odOAb28UTpYZhdJB5CVjbdbD22ceci6n8k6J04C9kLCx6OGUYpxWjI9LQ9huKeyFhPn7PvKSUa4YjF/UcCTDkZzVYOulgiMZlarBbvvgf/KK1eXmZIB3cx5qdYOrE5UsYPWpbZVHDHZDK9iLRx6KZMeZu+cjia2AfbfwatoCCiVGY1RjrKlRJEaRGDnX6pFe4yEj/Vgn1OoGOZeRdxmkDR7f8mFqBoUS4/OyyhgpY+VfHwjvFzxsLA7h57rCv4iw3VL4sqJ6rfesfOxjOu45/wfGZ5j92iE0uAAAAABJRU5ErkJggg==",
+     "title": "Köp och sälj på auktion & till fast pris på Tradera.com - Nya auktioner idag!"
+    },
+    {
+     "url": "http://www.prisjakt.nu/",
+     "add_date": "1422176194",
+     "last_modified": "1422176194",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAC/0lEQVQ4jW2TS09TURSFT9uIMIRoQwf2ttzXOQYlmOBAx4DUiq/YH6BojAwl5R8YppZLUzAMhdqrsVcjjwmkraa2pKTcBrAPqChioFQSnCC0LAclRK17urNXsr+1FiF/zAQRTi7w8pUlkY6nRbqeEWgpI9BSWqTrSxLz67zUNUGEk+R/Ez9ta1zmqSfLsx85kSHfImPtkoC1ywLyLTJyIkOWZzvLPPXET9saq46zrVJwq9eCjdscim4z9tQ6lGdNKM+asKfWoeg2Y+MWh61eC7IXRO1YJEBIzbL9rGfzkQWHSQPKcSMOUwYUEvVIhhiSIYZCoh6HqaNd0oDNXguWeeoJEFJDdF7qygis+OUGh1LMiF+pE3j9thN3fR44B1U4lVe492wIwXcO/EqdQClmxOebHDICK+pNkoMsiXQ8JzJsu81AiuD12044nqpoV6bgGvHDNeJHhzIN55AGbcIJpAg23WbkRIZPEvOTtEi/5ltk7Kl1KCTqcdfnQbsyhQG1H6sxO1Zjdgyo/ehQptEz6kNhvgE/A3VYPCcjLdKvJC2yg7VLAsqzJiRDDM5BFa4RP1ZiTcAiARYJVj7a4RoeR7c3iIVIM/ZnTEhcFKDz7KBK4Jry8m+BJYJc1AbX8NhfAnNtPD5wcqnqhZ5nQ+hQpjGgurH6kcNqlMMT/2O0K1PoGR1GYb4Bu4FaRJmECCevH0MsHkHUJhxwerUKxOEx3PE9R7syBadXgzZZgZjvMyPCUby3yf5jGzducSjHKza+mbyK+6M+dHuD6PYGcX/UB23SWbExbkTquhURKy2GOMlRCRJPPd8fWVBOGnAQqwRpe74BeqQZeqQZ2/MNOEwZUIoZUU4akH3YiPAZOhggpOY4youtorb20ILMdSs+PzZjN1CL/RkT9meM2A3UIt9nhn7NiuwDC6LnhTfhU8xS1QfdTj1pnu0kmhiiTMJcG4+5Nv4IGEWYk3fCZ+hg1fGfddZ5qWuBZ/4PNnk9bJVLYatces/J3yI2+UWIkxz/1vk3mGETan/SgNAAAAAASUVORK5CYII=",
+     "title": "Prisjakt - Kunskap före köp"
+    },
+    {
+     "url": "http://www.pricerunner.se/",
+     "add_date": "1422176194",
+     "last_modified": "1422176194",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACCUlEQVQ4jZ2RXUgTcBTF/5YaJEVC9LJJIbmx5QiyD2O0oQ9RVCBD0wilhDHSbLHQyZihTxmWKbhCMQTdzMq00jIoJCXdyAdLZWaGtMYqv8AsnYr568nIcGaexwu/c869V4hVCggC9gM7V8ssUXyTP39D7nNCclvnjJ/RrJQUcqjFf0Ze3l+qaZnVAaFCCKGt++LcYm0lzPICzd3h/GXhq6BQOYZ6pCUuJMVOJEWdRNl6vMldpHVCuqzINbevon8EiF4uWRFdOzhy5OnXj3a4pHs52SYtcSG57uRo8+hAw3sUwB4gDAiLO2XJBtb9NngGjhwPTUC4EEKkvKE0oqwL7UOvzw3ZyiTrzO4ky0Si+XaWOsXiOqgz/gDW/9lg0+LgBsRHVnbPx94bGn8HRmVqoV+WmIc8wYz8+EVUJy7Me2c5HeiI4XsbP3lVDvfsGJzfZSifiDHYpoDYKw+67akFNZ5pSA74BV0fVfLqXl7DZaW58cP29JtEphVT2P7tWEBoUTaIk9W5Fwq+U6+t8TzammFHoq9kx9ky1Dm1fUt2XqZ6sLZjovfwq3HfHcgMNTWzOes+285VI9VXINPfmgeiAhqYZjAoGwYWxiDhLRzI7PhpvTZIxpNpTgIaQLpS+kZ1+6gvb4p6IOifu/6tKjBp24YngYj/hoUQItWD+zGY1wQLIQQQAwSvhf0FVKNEW7VagqIAAAAASUVORK5CYII=",
+     "title": "Jämför priser och hitta bästa köpet i Sverige - PriceRunner"
+    },
+    {
+     "url": "http://www.kelkoo.se/",
+     "add_date": "1422176194",
+     "last_modified": "1422176194",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAmYfUAMmr3AD5y+QBPfvcAWof5AGyT9gB3nPgAi6v8AJ24/wCpw/sAvc36ANPe+wDn7PwA7vb+APz//gAAAAAAAO7tAG7u5AAAvu4wru7AAAGe7lLu7mAAAG7uh+7MAAAAPu7M7ugAAAAe7u7u4QAQABru7u7nAAAACO7Yzu5AAAAF7upO7tIAAALu7Aju6yAAAM7uIL7ukAAAru5AFERAAACO7nAAAAABAU7usBAQEAAAHu7QAAAAAAAL7uIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+     "title": "Handla billigt på nätet | Shopping och e-handel - Kelkoo"
+    },
+    {
+     "url": "http://www.blocket.se/",
+     "add_date": "1422176194",
+     "last_modified": "1422176194",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACjElEQVQ4jb2TW0jTARTGj0t6KXrwwV4qM0JIcvPWsrA3iepBKoTUeiiTJCMlyoqKnIOMxGmprXm/U/2RMXdzSPlf5mVu/83LrqWZN6IsZ5tmNYSvh8qc5ksPHfi9HL7vO5wDh+h/FstSoNtEuz1GOjVjoE2rBAzDrF/Z+2yiJK+ZZF6ODHMcLcxbCHMc+ewM+WtVA3ah1u6a1lgdPo3VOa2xOl1qm8MwMHBtat5CWM6cmTg/s3rIkaC2Ob1auwursNkxYt4PVh8OzpzFeYyU6emhnX8mD9qTNDbnt7+af3GiRYXLTAoO1DPo4PJ0w9pl+yss9vAUVfdCqroLpzXdyGo34CZrwr0uC6R9gyjo7MXmB5U403wOIaVleKg5PubhSOzpoaClkKsvh2yF5tdQjb7DlmqtH8ElNYiR3YHhxTbMcIFLd/ByNDprpEgiIhL32ZXF/cNgXr1BSEUtQmWliKiWIKq2DGHSu+BL8/Gpl/f7gPCYCDN9AfjQHTBGRET7njy/n6jsQrOlBY+6y+FemMUtTTa8X93wLX6H1tUBXVsorGwQOtu3MpN6XsM4y7s+qedVEBFRiKzqyi5pDp72M8jViWGZ6kedsR6PuRK4v7zH6EcryvUX0aLariORiDf+jBImWDo6pefdIIFEGBZTtHfxYOlhRBcJ/YgviUVyTRTSmyKXONvAd2Q08fN7dBtSJ9h1ySTIF4RlVJ33KVtbkSg9hugiIeKK43G7MRc/Q/fgZF2kX0h6UyQ62zYmv2UpjoiIWuXyQ60KxciFyqwjfElsYnb1pQKVUom8RjEXXRirTmsQtKQ18gskTM6EhMmRptVE7BCJiLfm04hEokCFQpEpl8uDV/TXNv1r/QCgH7rS1A/l6gAAAABJRU5ErkJggg==",
+     "title": "Blocket"
+     }]
+},
+{
+    "title": "Sport",
+    "children": [
+    {
+     "url": "http://www.aftonbladet.se/sportbladet/",
+     "add_date": "1422176264",
+     "last_modified": "1422176264",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABRklEQVQ4jcWSvY2DQBCFYa0lQ6IJBDVATgmbIQJr2iChAkQBSAjogYSEgMAgApq40JGz5V2Ado1tLnJwwdP+fzvzZgwpN4zTgiS2QSQQBi7GaYGUG4gEiASKPEKRR3pNJJClDEQChpQbqqZFXVp43BmKPILvORr6uDOss6nPOWfI0n1vnc0nYJ1NfZlzhqppQST0Y86fZ3VpIQxcJLG9A4o8wuPOXn6pmlaDFSCJbT36nrMDxmlBkUdYZ1OH7HsOiMQH4F1/ApLYRhi4H6kdwURiB3T9oEPPUqZH33NOIyASkHJD1w87QFXgaJSav5t4ClBhHwHKyDBwXyrT9QOk3HSP1KUFw/ccZOmrsyoF33NQl5Z2X/0u5fYsY9W0pw6fKQxcDej6AZyzvQ/GaUHXDx9S+6onjikoiPFzveIbGbfLBd/o/wG/hXs+EdQN/78AAAAASUVORK5CYII=",
+     "title": "Sportbladet | Aftonbladet"
+    },
+    {
+     "url": "http://sporttv.nu/",
+     "add_date": "1422176264",
+     "last_modified": "1422176264",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACTklEQVQ4jX2TMUiUcRjG/7QY5HC4CLk46FK4OTjY1NDQEJhcw7k4aHTIecuJccQJJ3oKGkEpiSCIhqgH8uHpiVR4ICLKJXig5hAowglJYFFg9vwa3k/LhoY/Hx/v8z487/M+rwPBr5/oeB8VsmhtHOVG0fokbC/AtxM4OYDtBasXsmhvBa2OodUxHAiOCtbYVw+RAEQCKF4FXsIa91bQVBQ9u40mwuj1IxQtQ08rcZwWUT6NYpUQdAbqqoGQg+hNWB4EL4EG7qNGB00O2m6g1hJocjiOCuAlIeRQvAptzsDyIAqXGdhLonQn6q0zTFcNKmRhqt0IVNxF8z2XzHhJKO6g+R6U8ZszSVMYcjDbYXgvgZodjs+fbIT4LWhyqLXEGvJpU+J/iQRQs0OZJCz1w2yHPwIyo96/Qu3lpiTkYDhom9iYhsUUanEQvg5vX8BiCt60+SMUsmh9Em3NoeIu6q1DzT6JlzT3052mLlpmapb6YajBJ8iNwsBdiFfDxjTanDHDgg6l7kBuBE2EL7eiTBItpqC71idYm7jq+Pqk5SHoj7E6BsNBU9BiHiiTRK3XUIvDKZ822Y0OHpeaD0GH2svNMC8Bz+9dEhDys9DkIBLAaecd5EZgqMHSF69GLx9YnAtZq3XXGunwQ/MkVoH66v0on5/B4QeL69acZf3jCpwW0Y+vfkorLEQzMbuPi3gXd/01Xryz73B+9uf/yxHKjcKTUlOQ7kSHW1bzcVcJ/nk63rd8xCpMxfKgXeZfmP8ScHJgBGvjdr75tJ33X5jfrPAjQM7I/6oAAAAASUVORK5CYII=",
+     "title": "Sport på TV idag"
+    },
+    {
+     "url": "http://www.svt.se/sport/",
+     "add_date": "1422176264",
+     "last_modified": "1422176264",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABM0lEQVQ4jdWSwUoCcRCH/7CwsCAIwoKwIAgLwoLgS3jak48hePLkA+xjCILgA8iubmqa4aWlg2BEoicrsAxpy5BM6+vkhpBe6uLAHAZ+881vhhG2EPwlxfEBGqqKI0m/A2qyfLC5m0wC4IbDu4CGqjJrNlkvFrxPp4wsi9fBIBDdVyrclcu8jcds4zQW+wFc5XIshkNsIWhGo3QNA4B2PE5dUVj7Phfp9H4H56kUa9/n0XHo6Dq2ELz0+9wUCnimyXIywZGk/YDt5NtSic1ySdcwuM7nmfd6TIpFRpZ1+AYnkQhuKERNlvmYz7nMZGhpGp+rFWvf5yyRwBaCjq4DBHUA8EyTr82G1WzGQ7VKXVGwheCp3ebZ8wKxI0nMXBeAQTa7u0JdUXasHcqWph3zK/874BskfQgF5G9JRwAAAABJRU5ErkJggg==",
+     "title": "Sport - Sport | SVT.se"
+    },
+    {
+     "url": "http://www.sportal.se/",
+     "add_date": "1422176264",
+     "last_modified": "1422176264",
+     "title": "Fotboll - Sportal.se - Vi ger allt inför matchen!"
+    },
+    {
+     "url": "http://www.tv4.se/sport",
+     "add_date": "1422176264",
+     "last_modified": "1422176264",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB00lEQVQ4jX2Tv2sUQRTHH2rKQwgp5s3b2d3LRZBceWDhX6HgIYFAbLQRUiqigtj6H8QzhZWktVCjcDpvNgoKEq4SjVwRUPDHophEzO4+C7l1f3FfmGJm3+ezb4YZgEretFpzFsNrjN7IahMzms8OAzdU5vLDVmuuWp9nA+CoI3/Fai92RBKRyceWWZDRuSVhrb+xNksAcKQGW2XuOMS0CEZkxBHJ7tpAREQckVjExGpzuyQZKlqxiEkTvH2mL8nBgYhIvm4Rky1q9//BYVc9115chSMy8rKzKL/ef5BJit8s0pfHXW8WHLVvVvectz5YlyzLGgWOSKwyF8Bi8K7p79tn+5IeHkoxtTod3ANG72e99ZOyPx5LlmX5/psEjGYIVpu43JqR3bsDyTKRr4+eSERmiiBgYPTeFhdH55clTRP58z2W16dOTxcoWgfG4EZ+YYITsrfzUUREYst5YVFQPHBG/xI8ne/5FtWeI18+PdgonXpTJvALxB/DsKsAAIC1t/pqYTGdShYFiKnFzsX/Dwh6M4z+/ahylSft1mCvvXYL4Fj5FUJvxqrwCmv9uyrI51rvR9pfrcEl0XHTYaTrrPxnDoMxo9lhDDdZ+VfZ9+er9X8BygADNPvazuwAAAAASUVORK5CYII=",
+     "title": "Sport - tv4.se"
+    },
+    {
+     "url": "http://www.fotbollskanalen.se/",
+     "add_date": "1422176264",
+     "last_modified": "1422176264",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACs0lEQVQ4jX2TTUgUcRjGXy12nf+MILnrJ+7OzO5gmHWLDhEVQdChAk2wEA+17uruzuyqs35GGHQQrEMYKmUYkUFQSicTL1IQZAfrUJAQQuRXqa3ZLso6+3QYXdKs5/w8vz/v839fop2qII4LO8uY6upmqjRKNfZRqtzTTeVUTkTcX/4/xfyOsyzs+ihEFPBNblDAjtLOk2h70YnBd8N4O/3+UzKZfJZMJocTiUTXtrBVdQYF3Q1Bd4PXZJAnG7WDEayuxbCbDMOYSoV5v3Ra0N3g613gNRlp3hwcu3l+1+CWEonEGzPdIWbwdeKUEDFfZpoEqrFheHIkZd4wNtAzPoCL/T5U9vtwacCPst7Ln6mCOGJB6dxWmNdkWAJFsOkl+PpjLgVofNoBqrKAruwDebJBNdkgNQ8Wv+MC8QHxttCsmHN77aBqhrzIQcTW4wCA5VgUnCqCqhnIlwshZI4pNCvgVOkOMVUcYboLnCqi/XknesYf4PHEEDYMAwCwuvYLd189Qt/Lhwg9uYq9dYUmIOIGU8URYkHHGNcowxp04MvyzH+Lm5ieBNXYwTTJBASlMbKqrntcxASMfhjHbHQBCz+/I4nkZoEGZqMLmFv5hsGJIaT5ck1AkwKmiveJV6Vqocks0a4fQFZ9MY50nsFaYh0AMLeyAKntMOx6CWx6CZgmpTrI0JweourCbC4oLvENLlgDDpDHhuJrR1OAmegcssIKyJcLa9Bh/laDC5wqLmZ6C2zmCmuSV2hRwIdkpNcWoPT68RRgNjoPe2MJLIEiMxySIbQoYEGxdtsqZ2hyr9CqID1Q+G9AvQtCqwIhIPfteky8JrdSID92qOvUZoXAYnwZOa2lsOgiWL0czwg72/97kVRlLT5xq7wrnogvGYaxPBudX8qJlL62+PNvZHrF/TvtvwEctPFvYYp49AAAAABJRU5ErkJggg==",
+     "title": "fotbollskanalen.se - fotbollskanalen.se"
+     }]
+},
+{
+    "title": "Nyheter/portaler",
+    "children": [
+    {
+     "url": "http://www.dn.se/",
+     "add_date": "1422176377",
+     "last_modified": "1422176377",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA0UlEQVQ4jcWSwYkGMQiFxRIsZwpIARaRAlJCysjREizBIqaAKWKu7z8shk1YfgbmsIKQZ8jH00j076GqEBGICFQVYwyUUuDuICLqvYOZ532+q7Wi1gpydzAzmBmqivu+p44InOc5NTNPsLv/nHfAdV1TH8ex6KwlwMy+A9KFqi613jsi4hnAzODuqLXOmojgsYME7LMopSAinrVgZsjJ7/A/ASKyDHGMASKi3cUY4/s3pvUEEBG11lbAvkhmtixSa21ZoN8tZmvvIpjxJt8D3sYHbu5fEDr8BXIAAAAASUVORK5CYII=",
+     "title": "Nyheter - DN.SE"
+    },
+    {
+     "url": "http://www.svd.se/",
+     "add_date": "1422176377",
+     "last_modified": "1422176377",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAy0lEQVQ4jc3TQa0DMQwE0METGCaxi8EUTGERGEEIhEAILAADyN0AMj1ttlWlf2gPv4ccomSerFECAJhz8pOFb8IL+R0gMxkRnwG1VooIVZWq+nbJ3QmAIsJSCo/jYGbeAACe58k5JyOCZsZa6wqbGQEsUFVpZjew7zsBUFUZEXR3iggzkyLC3vsL8LxfHbTWqKospTAi1si11r+BMQZ776tIABxj0MxYSnkLZCZVle5+A1c5IsLW2upi2zZeJV/n11Q/+JD+D/j2Oz8AxXN+vtPIc6QAAAAASUVORK5CYII=",
+     "title": "SvD | Sveriges kvalitetssajt för nyheter"
+    },
+    {
+     "url": "http://www.aftonbladet.se/",
+     "add_date": "1422176377",
+     "last_modified": "1422176377",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABRklEQVQ4jcWSvY2DQBCFYa0lQ6IJBDVATgmbIQJr2iChAkQBSAjogYSEgMAgApq40JGz5V2Ado1tLnJwwdP+fzvzZgwpN4zTgiS2QSQQBi7GaYGUG4gEiASKPEKRR3pNJJClDEQChpQbqqZFXVp43BmKPILvORr6uDOss6nPOWfI0n1vnc0nYJ1NfZlzhqppQST0Y86fZ3VpIQxcJLG9A4o8wuPOXn6pmlaDFSCJbT36nrMDxmlBkUdYZ1OH7HsOiMQH4F1/ApLYRhi4H6kdwURiB3T9oEPPUqZH33NOIyASkHJD1w87QFXgaJSav5t4ClBhHwHKyDBwXyrT9QOk3HSP1KUFw/ccZOmrsyoF33NQl5Z2X/0u5fYsY9W0pw6fKQxcDej6AZyzvQ/GaUHXDx9S+6onjikoiPFzveIbGbfLBd/o/wG/hXs+EdQN/78AAAAASUVORK5CYII=",
+     "title": "Aftonbladet: Sveriges nyhetskälla och mötesplats"
+    },
+    {
+     "url": "http://www.expressen.se/",
+     "add_date": "1422176377",
+     "last_modified": "1422176377",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACMklEQVQ4jWNgGPrg/38GRgYGBobNm/eLrNq6VQIi9p/xzJkzrAwMDAz79+9nQWYvXjzTSFWDMyo5OdqagQGil2HxmpbIXjuen5vbNN60lGkc7apocGNgYGDIyMhwuHr1Kg8DAwNDX0VJ4Ix0rQsH9qj/v1Rp9HMhN/P/gtiAAgYGBgaGhky3OftSFf7vidX9PjFF7r+LOsNfbVnpaQwMDMcSUlJcu2pD22dJM//fbKz8Y2ui9v+FLkqfz801/F9SaLKGobW1zHGzo/yvE7Um7988cPxe7Cz/3sbJ85uRrvr/CRNm/PMP1Ph0uEPx764+ix+3bln9OFus8/tUnM6ft9ddPu1s1f3PMHVGg8f+UvH/Z60kfr7bqvO/u1D639xZs/4Fh9v/sDBW+xMarvlnqqPc17upGn+eH7X4+3iq4d8jZpL/H6/R+rd9mcJ3BgYGBoZN0+c5Lc5M6F27NLd1xuymGCEhnqu6Oqr/FRVkPjIyMvxoqFD+H2Ao+mNat8afzSttTk6J9ly9uDOhd82mNdoMq1atYoaHJgQwrlq1irm/v9+FT0BwEj8f+x4REY79KZmqj0qKBL+sWrVKFKYOruPq1atsz5494/r//zb7ixcvuBkYGBg6OztNNDSUU+XlVaK1NER6rYyZn5WUNDsxMDAwvHjxgvv//9vssOjFkT7+M69atUnRzcWkMNBPbdWZy3uVYWkBm3pGbLisrNqkvDzXd//+/SwNDQ1MSDYiqxvqAAA99e9YL/yELQAAAABJRU5ErkJggg==",
+     "title": "Expressen | Senaste nytt - Nyheter Sport Nöje TV | Expressen"
+    },
+    {
+     "url": "http://sverigesradio.se/",
+     "add_date": "1422176377",
+     "last_modified": "1422176377",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABZklEQVQ4jd2SzyuDARzGv7W9tVq9Gy9lVz/eMrV/YFzspt23JZHccNNOmvy8KY6axvJjliZFQ00Ysr29IzIpiihvbX/Ex0EpVy44PKenPs/z1CMiwg/1bwA2m+17gJPzM3r6enHXuHHXuDEuS4xEo1wYBsf5PJ2BALv7e5wXC6guFy26zuZWBqtaYS29gTidTlZTKbqCQQqmyc5eFhGh1eslkUwiIiiKwkI8zsFhjomZabxtbdRqGo1NjR8TUuk0XcEgY+PjWNXKl4oOhwOfz8f1XZlQOPTFUxQFMa+uGI3FaPA0ICK0d3QwOT2FVa3QPzDATbnMTjaLx+NBRAhFwlyXb3l6ffkI0zQNu92O3+/n+DT/SU9vZSiaJs0tzVjVCpntbUSEg8McdfX1iAi6riOPz08klpdQVRWjZJI7OmJweAjjsoTqUhERwpEIr9Ybi4kEke5uVtbXuH98YHZ+7jcd6e8C3gE3bXVmEYVEoQAAAABJRU5ErkJggg==",
+     "title": "Sveriges Radio - lokala och rikstäckande radiokanaler"
+    },
+    {
+     "url": "http://www.svt.se/",
+     "add_date": "1422176377",
+     "last_modified": "1422176377",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACNElEQVQ4jY1R32vPURg+a22K0nxl3+1zzvs873nfLK1hTQlt3GjLkBpulNWMNpYlKTVxIRGWG0S7ULsQysXy2yVxIXGzW1kp/g4X333na7PynJ6r8z7P+zznhPAHdQDWWFHARTp0nbZUL0Sk0Kid2qKaUiqFEOrCItR7udwMwEh2ZZHeDAwWRSFWFMjksJF7c0pbLaX18+b1tQYrLMY2jbotA/szcMKASw6MZHLMySuZHDPyoAHdANpDCI1/RSC5IwOHMnDagKsOnXbojJEvjXzk5KQJz1riEU1p1+IKIce4OZPnjLzl0CcOfjTyrkHvG/jZoTMmvJOFEyS7lhiEEEIGjhr0mYNfHPrDREdN9KSBvwycNehbEx1aIvRyudmAfVl4wciHWaTXgG5tqpws0qMifUY+yMLLljiw8EsppagifQ6MG3DPwA8G/ZRT2lRbz8mv88mmDTivIgesKBBIZgO6TXQogzeMfGXgd4NeX0hITjr406DvXHjbhKcM2G0xtoWUUnRgSwYOO3nRoY8NnHWRDgenHJyylDY6+M3A5wZcy8AgI7fn1laGlFIJQLsn7jHoGQenDHxq4Asj54ycqwj1feV9OGGJAxq1M8a4NhRFsRKAZZGdmTxuokMOjDj0zQLJ1w6MVBZgXEX6tNAN5XJ5VbVmY6lUWh1CaAghBBMddeHNWpro6PxsgzZpU3X2n7DE/kwOV2nCY5bYv6xgMUTEs0hPLUXE/9sghNBAMtdyuci/AQLTiLLSFJ/0AAAAAElFTkSuQmCC",
+     "title": "Förstasidan | SVT.se"
+    },
+    {
+     "url": "http://svenska.yle.fi/",
+     "add_date": "1422176377",
+     "last_modified": "1422176377",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAY0lEQVQ4jc2Qyw2AQAgFXxUUTynWQSyEC8fnaZU1GsyauJLMgQSGD5YVfAP+JQCe8Z2A5MQN8vTzJqWgRSUQtUMgal1RRNyeIGo7EDW6O929fN6loDVnQUU3dETQ9eRkhPmCDYV+V+VSMos6AAAAAElFTkSuQmCC",
+     "title": "Svenska.yle.fi | svenska.yle.fi"
+    },
+    {
+     "url": "http://hbl.fi/",
+     "add_date": "1422176377",
+     "last_modified": "1422176377",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABPklEQVQ4jZ3RoaoCURSF4Q3zAAZtCqOmQQ76BD7BNLvRaDYICoIIVoPBYBMcmKDMC6hTDGIVDhYRFQSxzZj+m+4F4QpnXLDaXl/ZIh8SBAHVapVut8vz+eTT3ces12vq9Tq+7xPHcXLgfr/jeR5RFCUfi4g8Hg/m8zmv1+s7YL/f47ou5/P5O6DRaCAiDIfD5IDWmnQ6jYiglEr2Ba017XYbEfnrZDLhdDqZIePxmFwu9wYopfB93wxotVpv499Op1MzYLlcIiLUajXCMMRxHCzL4nA4mAFBEJDNZjkej4iILBYLUqkUWmszYLPZoJTicrkgIrJarSgUClyvVzNgu92Sz+fp9XoMBgOazSbFYpHb7WYGzGYzbNtmNBrR7/fpdDpkMhl2u50Z4HkejuOglKJcLlMqlahUKoRh+C/wA3sty4kFObcDAAAAAElFTkSuQmCC",
+     "title": "Hbl.fi | Finlands ledande nyhetssajt på svenska"
+     }]
+},
+{
+    "title": "Resor",
+    "children": [
+    {
+     "url": "http://www.resrobot.se/",
+     "add_date": "1422176457",
+     "last_modified": "1422176457",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAvUlEQVQ4je3TPw4BYRAF8O8CGpdQKMR+M1egkyjYN6XCDRyARtg3FxHbuYJepZa4g0TCZlVUIv5EIyZ5xeRNft2E8I1JY9Yy5RbKE4QHU26g2ehpAMJ1pzavXPdObV6BcH33uFcfVyFcpjHrIWHXhDnUzybMr4H6Cuo7E+apcpA2Zw0Il/1k1g4QP5p6iYRDRE5NvXwURE6RcGjqJcT34Va8AZh6+Qd+BBAWbwPCIkC5MGHxMiAsLGaTjz/3Am/bgoyZZTl/AAAAAElFTkSuQmCC",
+     "title": "Resrobot"
+    },
+    {
+     "url": "http://www.sj.se/",
+     "add_date": "1422176457",
+     "last_modified": "1422176457",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACcnJwAoqKiAKurqwCurq4AtbW1AL29vQDHx8cAzs7OANbW1gDe3t4A5+fnAO/v7wD39/cA////AAAAAAAAAAAA3d3d3d3d3d3d3d3d3d3d3d3d3bqr3d3d3d3WAABt3d3d3YBbpQjd3d1kAl3VIEbd3HZA3QRnfN0QAAbdYAAB3aqqp3dJqqrd3d23NCfd3d3d3cUFR93d3d3dcJxH3d3d3d2hF0fd3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3dEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+     "title": "SJ.se - Tågresor - ett Bra Miljöval - Start"
+    },
+    {
+     "url": "https://www.sas.se/",
+     "add_date": "1422176457",
+     "last_modified": "1422176457",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABrElEQVQ4jd2SMUtbcRTFz/sbhwgPFHTI4KCIEnHM6hcQNx1E8Gu4uQiuD2wS857axOaJTW1QWoqF0FhchIANoQ3VJV2KTbE2lUJLKya/Dn21rbgEOvXCGS7c++Ny7pH+Te0g+W0rFNolAPhIXtvq6PD/U8AKUhIphbSK5N7oU0G/chsgSSTiMzb2kN7ebDDoMTh4n+7uDFKSzs41hodzRKPbNwEJZmeLNBrfqFYbTEw8JhS6Qz7/hqurFpOTT7Ftj4ODd1xcfCcerxIOb/0CZDHG5fj4EwADA1tIy+RyNVotAIhEfObmngPgOC+RHIy5vmADyWFpqQzA1FQBx3lFsXhKufyBev0rUoL+/k2azRZHR2cY42JZ2Z+AaPQJQ0ObTE8XAPC811Qq56TTJwCUSmfEYnlse416/Qu12meMSf0GjI8X2Nt7S6XykYWFEpnMCTMzz+jru8flZZP5+RKLiy84PHzP/v4psVgeKfmniWnC4XVGRh4gLdPTs0FX110sywv8SCElGB3dxphVpPhtOXCDDHjBgnv92r8z4gZ58LCsAGBZO0jZtmXbj/gB5nG/F6Q7M20AAAAASUVORK5CYII=",
+     "title": "Billiga flygbiljetter och flygresor – sök och boka flyg - SAS"
+    },
+    {
+     "url": "https://www.norwegian.com/se/",
+     "add_date": "1422176457",
+     "last_modified": "1422176457",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,AAABAAEAEBAAAAEAGABoAwAAFgAAACgAAAAQAAAAIAAAAAEAGAAAAAAAQAMAABMLAAATCwAAAAAAAAAAAADv7/N1dbpbW7BcXbBZWqxWVqhTU6RRUqFRUaBSU6NUVKdXWKtbXK5eX7NaWrCFhsdOTrYAAIIAAJAAAI8AAI0AAIwAAIsAAIkAAIkAAIoAAIwAAI0AAI4AAJAAAIsJCqAqK7IAAKQICagICacICaUICKQICaMICaIICKMICaMICaMICKUICaYICagAAKM3OLY4ObsAAKgHB64AA74AAMsABL8ICaoICa0ICK4ICK4ICa4ICK4ICK4ICK4AAKk3OLo5Ob4AAK8GBrwDAIchCV0cEYwAAN0AAcYFBrUDBbgCBLoAAsIAAM0AAdEAALg5OLo2N8cAALYyIXGsiVGyhilpOxUnDWAXEaoDB8wGCMUKCr0TD64tHH5IKUgKApAvM9A4OcgAAL5DNHuAdqE8Qc+AcpOTZR5PHwVMK0NNKz5RLTRoNwVlNgM9IFIHAacyNdA5OckAAL8GBsYAALYEAKJKLk6RZRx7TBdbJQBLFABgLwBVLycNCa8AAPYAAMY5OMQ2N9AAAMY0H2xVLixXLx5EHCA/KGRnT2F8Wjm6nG5cKwg3Cw8gFJMAA+QAAMY4N8g5OdAAAMUXD5wXDpsHB78ABdYAANwAALghIr6Pi72/qoSkeTCBSABAIlEAAM80NdI5OdAAAMMDBdYABNsEBtIGB8wHB8gGCNMAANsAALwsLbp9d7R4XGJLJy4AALoxNNo5OdEAAMgGBssGBssFBcoGBssGBssGBsoGBskFBtAAANkAAMgAAMoCBtgAAMw4N9A4ONMAAMsICM0KCs4NDc4ODs8PD88QEM8QEM8QEM8ODs4MDNAHCdYGB9MAAMs1NdI8PNYAAM8XF9IbG9MfH9QiItQkJNYmJtUmJtUlJdYiItUfH9QbG9MXF9IBAdEvL9MmJtUAANMODtUVFdcbG9ggINgkJNklJdklJdkkJNkhIdkbG9gVFdcREdYAAM5GRtp2duM+Pt1XV+BcXOFhYeJlZeNlZeNlZeNlZeNlZeNlZeNiYuNcXOFNTd5aWuDh4fkAAPESAAAAIAAAAAAAAADQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+     "title": "Flyg billigt med - Norwegian"
+    },
+    {
+     "url": "http://www.apollo.se/",
+     "add_date": "1422176457",
+     "last_modified": "1422176457",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACD0lEQVQ4jYWTv08TYRjH+6+wkKYh5Ci2CUSLIcGJxJnVgZWVxQk2N4fuDm4dyF17J20OjIKSiCFC0pgmdrhUDMT4vkd71+Pt3X0c3rYUQX2SZ3re5/N8nx9vhqFFnzfovXlA4C4TuMv0Gov0DtZIAw+ApNsifPeUXmNx/Ea9XyUzAnSP1hHmNNIpIO15RHWG6NsrHUxTgpNNhJnVcaeAcApE7sJdgHCKCCunqysfgMHlIdLOa58E7C1NAD4+Q+xMIaozSDuPOq/r4nGoYxPVbwCPbgDxz0+EZ1v47grBySakKQDKqyCsHNKevwWQ1dnbgJGlgUfSvxgOrs3V/qpWNUqsGQgrx9X+KsqrkIm/v0ad10m6rT9ZqI6lBzvsX1g5/EaJsPmCJPwBQOa6nuOXqQPB8QaDy8Ox/FQJwrMt3X/NIDjeIBanE3JjMtdvHyKcopZmZpG2QXi2Nd5AGoeEX1+ivAqk8Th34DeJm9sTgFGPdh5hTtM9WidV4k5bSf+CfquM3ygR7c7dAxitaWeK8MtzSNQwU6E6lh6qOY2sGfoO/gaQdh5ZnUV1rOE8fHoHa/pWnCLCKf4H4BRuLnIQANBvlcfVZc3Qp/wvgKwZSKegNwPE4hTfXcFvlPDdFf2ZIndhKKlwjxcRZpZ+qzxeWxp4JN02SbdNGnhk4g9PiNzHRHtL9/vuHHFz+842RvYb/QBD7TGYPzYAAAAASUVORK5CYII=",
+     "title": "Resor till hela världen – boka din resa på Apollo.se"
+    },
+    {
+     "url": "http://www.ving.se/",
+     "add_date": "1422176457",
+     "last_modified": "1422176457",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB2klEQVQ4jdWSS0hUYRiG/+OERsU4LQqszCJxERSTi2oXJUTUIgncJBjVIroshKAY2kRBQtGFkMkWURFBHcguQy3KahotWwwoRbNoRpvSmIs5HFNH55zzf0+7E1JI7erdvjwPfBel/plQKFS6+e69euztISYnq37pi8Vqij2tTHS3kM8vmFEWi6PL7Mj6tHvfj7xYCMmdFvbQBg+2R+rJNVnkVsHYZhg/lmIqvdITOK+aO93IEiS2HN4FIbkOcnvGsYeDlHJrGWiw+OiHoRrI18P37YjVFvUE7sMV0xKthv41yKcGdL4FmeqEaTNLekeG/jJIzIfUIvhSC9mNyGiT7Qn00+BX4rUwsAkyzcjEZURnQD+D7GJIKIiXQ58fPlRBajUyuNX6KUjdPCC9NTBYB7k6mGpEvp1HMruQ9wGIKejyQXQuvA5AfCn6czg0Y5FO8lIbw9tgZB8S34LuqUC/9KGfK+SJArMMzDnwqAK39+iV357SSZy8wON5yD2FfmDgmgp9VyHXDKTdgKsGbtf+67P+g+47Hpbb5egOA91uoC8a6DMGclrhmrvvzAp7kjeHb8hZA31K4ZwwcFoVpY7GyB/B3jix0DknFCiUjlRa9q2DYdM0fX8l+H/yA3SVVGqy/ecDAAAAAElFTkSuQmCC",
+     "title": "Resor med charter och reguljärflyg - Boka din resa hos Ving"
+    },
+    {
+     "url": "http://www.fritidsresor.se/",
+     "add_date": "1422176457",
+     "last_modified": "1422176457",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAQElEQVQ4jWNgGLLgPQPDf4o0wzDlLkA2jSyTKTYA3SCSnE+OATjVEet8vGoIGUDQAnyuIDqAccUKxdFLtEa6AwBEuWJrLBedvAAAAABJRU5ErkJggg==",
+     "title": "Resor och charter - Boka charterresor hos Fritidsresor"
+     }]
+},
+{
+    "title": "Näringsliv",
+    "children": [
+    {
+     "url": "http://www.affarsvarlden.se/",
+     "add_date": "1422176523",
+     "last_modified": "1422176523",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,AAABAAEAEBAAAAAAAABoAwAAFgAAACgAAAAQAAAAIAAAAAEAGAAAAAAAQAMAAAAAAAAAAAAAAAAAAAAAAAAAAcQIAMEAAMoAA7sAB7sAA7wAAMMHAMcAAMYAAcQGALoEAsAIA7IAAMkAAMYACLQAA8QAALsGA8oEA79ZWtSoreyusuKiouI4PcgAAMQQJcRyguaoq+8oKdEBAMwGAMMAALwGCbgEAMRHWs359/3//f////77///m8vJvfN6mu+/y//3///hIR9MBAMEBAMYBAMQABscBAL6ls+3//v////zW4PKMpd3X2/P3/v///Pz/+//0+fw8PdMAAMIABr4GAMwAAL8GFb/A1fD/9v/6//xMZOAABbkxPsjU5f///vz5+/+qseoDBrUAArsAAcIFAMEAB8IABcbHyPr///j4/v0wM9IAAcIAAcGPqd/+/P/4//+nrOMHA8ABAMEDBMAAAsIDAbkAA7t0idr5/vz//P+BjOADALYAArh3euL/+P////yzr/AEAMEAAL4CAMABAMYDAMgBAMEZJ8fK1PL6/P/k9vd4keEZNcmDj+f///X2/v2ltOUAAbkAAMkAAMUAAL4ABccAAcIAAMcKFryOoeXz9/z//v7//////f////X7//uisOoAA7wAAMQAA7wACMQAALwDAMYJAMgAAL8CB8A5Q9Bqgdd6m+DK2fn///j/+P+sq+0JAr0CBr0DAM4AAMYKBb8HAcQAAboAAbMAA8MAAMIAAMEAB7yKmd779//4//+WqewAAMQAAL4KBb8AA7wCAMYAAMsECLSUpOePouUHDrwACL0ZKMTBzvT/+//2//90gtsAB7ACAMcHA8AAAMYAAr8AAMRba9b0/P/9+f/l6f/Bwu7k5vH///b///fd8Pg0OsMCBL0AAMkAAMIEAckAAbcABL0uMdOcqeft/vv6/v///vn/+v/3/v/R6f1CVsUAAsgAAMIABMEFAMgBA78AAMMCBMYAALsJE78iOL9EYtNRdeBRbtdDZNIRJboAAMMDAckABMEAALsGAcIKAL8AAccAAL4EBsIAAMAIAMMKArsAAL4GAMIABLsAAMgLAckEAMIABLsAB78AAMIAAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//",
+     "title": "Affärsvärlden - Börs-, näringslivs- och ekonominyheter"
+    },
+    {
+     "url": "http://www.di.se/",
+     "add_date": "1422176523",
+     "last_modified": "1422176523",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACgklEQVQ4jU2TPUwUURSF38xgZyP73qyFRqMkWpgAAU3URPlLNDFRQBsL/kK9q7EhBkW0MBhsbO0Ns/NWXaP4s5KwCKsImgAujaVGgxELK01g3mfxZgeLyZu/e+65554jtKohUA7aF4TKIVT2zPmuPVMu2hdoKdDSS94HykFLgdBKxMXxD2l7H0rPFvouE1LYAlWDjgHyyiVUAhEqhyDtUupso9zXSbmnk7e95yldOE3hUNqykh4P926ncmuIldtXeVJXS6A8tPQQWnpo32W9sgSRAQMQgdnEGKiMDZNXgo/DlwEwbLA6NkIQsxbV+VbHR+Mf4OvzAj8XZi2WgVcnGyieOszftTX+/Fpn+lwroXLQ0kEEys5abGmyAMawkB1gqqM5AVwev0np9DE+XM+yMnyFV8cPkfNdC2DFc5hqrbcdgYVML8/qd9lqA98Lj/h051r8NWIx25dsTFRXUmUA8D7TT6EulTD48eY102dPELGJARYzg3bFaYEIpUdeuRRbGpMO77L9FPbXbgGUpphs3AdERAYWMwMxg/9GKLY2UK2YvzTAZMNuDBHGwLenIZMNezBsYID57CBa2vWKnO8S+IJiWzMRmxB3mOlsSzRZGbvBi6a6RJOFTC85aQ0o8ilr46XRIYht8OXhA9YX5+LniKmOI8xePMNmPOLn+/diO3tWRC09fq0uxx2jRMwogtXxEULlULk7moz4u7JkfeC71olBuoaZrnbKPd2U+7qY6+2m1N3O4wM70KltaOnw8uhBZnu6KPedZ7qrjWCnzY7Iqzg8cZgC384WKI98ykmyMKEEubQVXMut1IoqleSSNmlaOnEyrUZ55dqEShv1fMphQgr+AVTSg0DTkEs1AAAAAElFTkSuQmCC",
+     "title": "di.se - Nyheter"
+    },
+    {
+     "url": "http://www.va.se/",
+     "add_date": "1422176523",
+     "last_modified": "1422176523",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAlklEQVQ4jWO4p+f+nxLMMHgMgAEY/1VdHwofXZ6gAcj8P2/fEzbgVV0vTgOQAd4wQDfg14MncPbr5kkQeSMv/Aa8n7MCq2G4wgHDgP////+/b+6P8P+HT6Qb8Pfbd6z+J2jAs+RSDIUw8GHR2v8fFq2FuxBnQoKBL/uOwvnIGtBdgdOAe3ru/7+fvYzhZIIGDFxeIBcDAFZUvRsLf7DuAAAAAElFTkSuQmCC",
+     "title": "Veckans Affärer - för det nya näringslivet"
+    },
+    {
+     "url": "http://www.dagensnaringsliv.se/",
+     "add_date": "1422176523",
+     "last_modified": "1422176523",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAtElEQVQ4jWNgGHBwIchxEiF8NtjeF6cBJxTU/hODjyuq3cRrQAMnd18DJ08/NnxCQe3/cQW1/49DQznPB1g4IGO4Afi8CTPgUrCDBrrLSDJgv7mKzDxRya3ImCQD8IYBcV6wpMwLFIcBzIA1UvLnMLxw3s/m/3lfa6wYZsBFDxP1Ewpq/0+oa/y/GOn6/2Kk63+iE9ICMakpyBbCXd7Cz29CCDcwMLAhe2kCr4g6TA6f1+kDAAdO6HOxxnAkAAAAAElFTkSuQmCC",
+     "title": "DagensNäringsliv.se | Mötesplatsen för dig inom industri och näringsliv"
+    },
+    {
+     "url": "http://www.nasdaqomxnordic.com/",
+     "add_date": "1422176523",
+     "last_modified": "1422176523",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA+0lEQVQ4jb3Tv2rCUBTH8TPnEUQfoQ5O4hP4HC5SuucFnIq7EhWDENpUkGKtIYKIZLk2opSL/9oQMjWbVaj7r9sBhzukRYfPeL/ncjmXiAj/dMXA8l1CrtaQqzWsh6fkgf33gSW+gaZp+DmdmDIQhCHCKEIYRbjvPIJMD0R0drh8e6cOHI5HRqbHga84ZspHvMlmYTRaLGULpGyBUqUKo9lmyoA/X7BcvoCiK1F0JWb+nKXTGXXg4zNgRARdBNBFgM12x5R7UKsbPF28+SAiWLsY7sTD0Blh6Izw8uqoA+PJlP1pE/sDhyUOPPcHsLs92N0ezI51ub9wkcAv1+ughVPB+tkAAAAASUVORK5CYII=",
+     "title": "NASDAQ OMX Nordic - Share quotes - Indexes - Company news - NASDAQ OMX NORDIC"
+    },
+    {
+     "url": "http://www.privataaffarer.se/",
+     "add_date": "1422176523",
+     "last_modified": "1422176523",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACa0lEQVQ4jVWTa2/aMBiF+f//Y1dtUruy0gJDrHdoUgpkdNIotBAghJHWuRhi7Dz7QBu6V/KH91g60nl8XCgUCoUsy1BKkaaKLMvyo7UmSZL/NGMMUsp8L2RZBsBg+EC/P0ApxevMZh7tdhffX+Taw8Mjl5dN5r4PsDXw/QWVyg9qtTrtdgdjDL7vU6nWODgocXhYJopivJnHl697vHv/mcNSmSiKtgauO+X4uEqlWsOybLTWuJMJ3w4OKRaPKBaPECJkNBrz8dNXPnz8wt5+kSAItgbpOuXiosHZ2QXT2QwAKSXNa5typUan42CMYbVec3HZZH+/SKfjoLWmYIwBYLVak8Qxb2ez2RCFIUbrXFNK8fT0lO+5ged5uO4EKWV+KYTAdV1CEQKwjTvBcXo8Pz/vICZJgmXdcH19Q79/jzGGKIrodrs0GhbdrsNGKYJlwHG5SrFY4vT0HClXW4PlMqDZtLDtFr3eHZvNhuVyiW23sO0WN61bZCKZuBP2v32nVCpTq/1EiJC8RO12h1brFm8+B2C9Tvnz5x7bbnE/GGKMIUkSrq6aHB1VcJwexphdkaI4RgiB1ppXTSlFGIboNxCllPj+Itd2BlFMHEW8QuWFzXw+J37zOkIIxmOXNE13BsYY7gcDhsMhQRAAEMcxjvOLRuMax+mxUYpQhJyfX3Fc/kGn66CUeilSmjIYDnl8HOG6E7TWLBZ/c7CW3SKOE6bTGdVqjXr9hJOTM8Iw3EUYjVzGY5cwDF8grund/caybuj3B3n+RtOiXj/l7u73/wySJHnJmuV5ozjG8+as5CrXnoVgOpmSpttf+w/0DrTyM5rfxQAAAABJRU5ErkJggg==",
+     "title": "Privata Affärer - Placeringstips och råd om aktier, fonder, sparande och privatekonomi"
+     }]
+},
+{
+    "title": "Underhållning",
+    "children": [
+    {
+     "url": "http://www.youtube.com/",
+     "add_date": "1422176599",
+     "last_modified": "1422176599",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAB+UlEQVR42u3XvWtTURgG8Hdqb3LzeWv9ABFUjCj+CU79BwQplA4uUjpYQQcdOhYcjSJasVpKC0UDhYigpKCxlNTWkA52SJWADYHbijdDMiTChcLjc+ES6mcPTehZOvyeA+fA877rEQBaHSwgBcvUSv8CeYbvOmVp1VchdEhlR2+aLpJ45COD0oR9liKRZcvsJ2jSL7m4mSJokpLFeDBP0CQv7+NBm6Bq8fhh7+wUW97Gg9sEFdljPfixtYnGxlcUb4wgeyTm3bdjW+ZjQajKXkjAdd2WxrctrI/exrsTR733PZE3DGXnE2g0Gr9oNpuob9pYu3UTmd6YepdPXjGUnTuDWq32V/V6Hd8/r2PlyqB6H0maoYwLOI7zX9VqFV+ez+JlT1ipU+aiASg7exq2be8qNz2FOSuk1CkphjIuUC6X/+nT8gckL1/CqNmFF4qdMstQljiFUqn0h7VCAeNDVzESNZEMG+p9JDMMZYmTKBaLLYWlJTzi4Gu9Fu6EujGt3tUiU5GAS1AxcSiGlYUF5OYzuDs4gOGIiTGzG0+9971x5VkkUCGomKBhK4qhQBfGQgYH8749G/IkEsgRVI17Z+fk5HHEmCRoMikPw0YfQZM+eRA2PEnCPkuSyH2Gb4Be0+oODqFNzm+dGX+WeOQeQx/9Cxz8DfUv8BPC7tqgW88FVAAAAABJRU5ErkJggg==",
+     "title": "YouTube"
+    },
+    {
+     "url": "https://www.netflix.com/",
+     "add_date": "1422176599",
+     "last_modified": "1422176599",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABr0lEQVQ4ja2ST2sTYRDGp6LN5tCWmXfB2KiZeXejX0nwA/RreBa8BPxzEcGDh17US09+AwuCClpqm/3T7JslYlOz29pqOx7MSiVVF3TguTzw/HiYGYD/PHOrAPOVKvMWwPkeQGMVYF4B5mZSlbnRNO2MgnWH9rVDiVLs3AQAGKHcdmhjR/Zl32vx6cwvgL7X4hT529BYLf1QHckLAIAc7ZNDv6s7KF+3F5avT2PnZgDb3qVOjFxEyCcR8nFGcvChuXwlR/tgbAJNUT6ni5e7v20wBeynJBohHxV+qPESr+Qkd0o/1IS42FpoX6sN2DWBDlGe5yh3JybUlLio3SAl0QGJJmjHCcqbIVlNiffrNCiGxmqCshmj7O2QaDJVSnLwV0CEncnEhPqR+GGO8mzXBBojH/0AcD1A6Yf6Ce29eIlXCj/U6CegVgPeG5tARyiPt9BedSTVWU9S4vKPS+x7LY6RD7/4XR2hfQoA4NCulX6oGVkdoBxXj3QmYKNp2gOUV47E5cj3AQCSRb7hSLKM5J1D+/a9d1FmAKdBPYDGIwBvHeBC5fcAGmtTnRn8l/kONBXx3L0rvAAAAAAASUVORK5CYII=",
+     "title": "Netflix - Watch TV Shows Online, Watch Movies Online"
+    },
+    {
+     "url": "https://play.spotify.com/",
+     "add_date": "1422176599",
+     "last_modified": "1422176599",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACFUlEQVQ4jXWTT1OSURTGf7BrmmZqpl3Lti1b1rZlLdvWsu/gKIoo8iIC/gtF04picErlnwi9wqu+Ioqp2fgRFOtDPC0upRiemd/cueee8zxncS50iUTD+2tuDy00DfN7KLHr/d2ttiMmXG9rtoEWm+jTIcoco6Vj9PkQvW+iZANN7HhbXZvHt1Cijhb2TcPXH6hwalg+QelDIzxTRxPbqKM54njOJ7dRchd9aKLMEVo9QflTQ/YnWjpCHw/QXANNuSjqeM7/CUQdNO2iQAbdvY+gk0ePUaqBUk0030BvXRRz2lNYtuci5qAnz/9vvImEi+IOsmzPBaFvKFpDU1souYMWGyi1j9IHKPPdkD4w7s9eXorEasiyEaEKGttAkw568PBmV+sLmq+jGRdNbqJoFYUqiGAZjdooXkUeD3rdg+Z20Ls6WthFsTy6dftS6FUPitdQxEbBMmKohKwyGrPReBVNb6LpGvKnULSIki6a3UYzW8iXQk9foKiNrAoaLiH8BVrDbZGrI9+5h/B05uJVYxSuoGAJ+QuYpQoUTSJcRpGKcYjbaHzDELfRm5ARCZfRSAkFileWaSDHWaCAgmsoVELhdRQpG8Yq5hxdR1bJ1AQKyJ/jrGMb+7PIn0NDBTRcRCNrnQSL5m0wj/qz11b5b/hWOBtoCw3mUCDfpn0fyCLf6jXnbtG7TKtvBfna9K2g3mW6/sI/IT2r6gpHKdwAAAAASUVORK5CYII=",
+     "title": "Spotify Web Player"
+    },
+    {
+     "url": "http://www.lajkat.se/",
+     "add_date": "1422176599",
+     "last_modified": "1422176599",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACEklEQVQ4jc2SPWhTcRTFbxNoQ2JIkfdFDIkkaZrkvSdOGmgXRchHk6ZiB8VFxQyRDEJFWyjaqvkg1UBsX/7PqeAq4iC4iSAFR3EooXYp0kErtoMOto/X49QkJaWokxfOdO793Qv3EP0XhRmyoCHfga40wRQTutKEJhcwQxYiIjQiMTD1DXRlG7ryBUx5Bk2W2gCm1KGr6BJTXoFFJ8BU4wB/BXOig6DJ0ruC1zCeyN2APW2tAVtrYBck1MfEzgV5QiOaPOa0YqMUbhnmgoIfjyLYqUcBXcXuUg3mUg0PUzyKKR5gKoy6DFOTFwkNZcTjtGKj3Aa8vOrBsM+GIZ8Nn6aDWLzkRmNcQjkjoJIR8OKKBzdiLnyvhJ8TnoY49xHLbifgVy2K5Qk/cqdcqIyKeDwmYjbBoToq4kzAjviAHV/Lg9jR5BwREfX3WX5+q4Rb518+6UQ+1o9EyIFiWkDtvITZBI+5rAhZ6MW5gB2b1fB6YcjuJiIia0/P5uTZo0ZpRMDbvBfDPhv0cQnXT7twP9UGlDICymkBpRRn8g7rayIS9z6Z67PQrXtxbvX9zeNYnQ6imORRTQtoTgVwN87hQZLHx8kAPtz2b38uhi4SUY6IuP2Bmh90Q1dXOl84nxVwQuzF8lQAYKqBhWj28FTW/V4wdf2AUJlgyrU/i7YeGdgH+ZvhLsi/DLcgmhyEJmcO6/kNpj9tjHNt/u4AAAAASUVORK5CYII=",
+     "title": "Lajkat"
+    },
+    {
+     "url": "http://www.sf.se/",
+     "add_date": "1422176599",
+     "last_modified": "1422176599",
+     "thumbnail": "/resources/PATH",
+     "faviconurl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAC2klEQVQ4jX3S3U8TdhTG8f5H55xfAkuJmrTswiiOC7MZeRkXg6vi5gopa6Mk3a4BeZm0Yhspo1ChrFQ7OrVdC+PV8haIuoFebMuyxD/iuwtBs5Ds4lw+n5yT83j2nWPfOfacY9s5Np2x7hwrziib8bMaBTVyqsyZkVZlUoWEKDERPKfhHed47hyb9XX8Fg7zx9QUR2NjvBod5TiVYvvb75jzekmpkBThngh3RfHsOceuc9Sco9bQwF+TkxwGg5TqP2JJjYLXy2ogwP7wMMe5HDN+PxMijIswJvIOqDnHpnP8GYux3dJC6WT10qVLHKenWfT5WOntJX/tGi8yGeLOMabCHRE8O854bo7d5k94MzxC2RxP1Ch6vbzd2iLv85FWZcqUpCjlSIRc5xeMiDAogqfmjA1nvPw6SK2tnadmLKnx+8QEf1erHMbvUb5xg2dffkUpFOLpN2GWQiGGRBgQwbPhHKtmvLp9m63WVpabmyk3NfHP6iob4TCHySTVcJhCZyf3vQ2M19fxuKeXwVNgzYxlMw6CQV5PTFBsaOD1zAz5xo9ZC4dZi0ZJqJFtaWH+83buN/op9PUxcAr8asYvZqx/9ilHiQTLHR0snj/PjCorkQjL/f3ERfhehBER8jdvshAIfAAqZjwzY8mMN9PTFC9fJqPKD6pUI2Eq/f3cFWVUhNiFCxwsLHCnru4DUDKjaMojMwo+P0eZDMXWVh6oUrl1i0o0yqgIk1eusDc7S6Kp6X14QATPEzMKdlJVVebOnaM2OMhBKsVuMsl2IkEtmWQ9FmPc7/9PeEAEz0+qLJoyr8qMKtmLF3nc0UGirp5sWxsP29uJ+/3kg0FijY1ngbwqWVNmT+6uhEK8ffmC+evXedTdTbari414nAdXr3KQy50FflTloSrTqkyqUu7roxKNshWPs9gdYL6ri+rQEPmeHnbS6bPAnCppVVKqJFWI67uXDYu+L8v/zb/0+VAVT+RXuwAAAABJRU5ErkJggg==",
+     "title": "STARTSIDAN på SF Bio - film är bäst på bio"
+     }]
+}]

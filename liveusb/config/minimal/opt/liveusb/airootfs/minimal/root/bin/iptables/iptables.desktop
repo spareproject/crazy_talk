@@ -1,0 +1,101 @@
+#!/bin/env bash
+########################################################################################
+# filter...   INPUT OUTPUT FORWARD
+# nat...      PREROUTING OUTPUT POSTROUTING
+# mangle...   PREROUTING OUTPUT INPUT FORWARD POSTROUTING
+# raw...      PREROUTING OUTPUT
+# security... INPUT OUTPUT FORWARD
+########################################################################################
+iptables -F
+iptables -X
+iptables -t filter -F
+iptables -t filter -X
+iptables -t nat -F
+iptables -t nat -X
+iptables -t mangle -F
+iptables -t mangle -X
+iptables -t raw -F
+iptables -t raw -X
+iptables -t security -F
+iptables -t security -X
+########################################################################################
+iptables -P INPUT DROP
+iptables -P OUTPUT ACCEPT
+#iptables -P OUTPUT DROP
+iptables -P FORWARD DROP
+########################################################################################
+iptables -N UDP
+iptables -N TCP
+iptables -N LO_UDP
+iptables -N LO_TCP
+########################################################################################
+iptables -A INPUT -p icmp -j DROP
+iptables -A INPUT -m conntrack --ctstate INVALID -j DROP
+########################################################################################
+iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED --ctproto tcp -j ACCEPT
+iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED --ctproto udp -j ACCEPT
+########################################################################################
+iptables -A INPUT -i lo -p tcp -m conntrack --ctstate NEW -j LO_TCP
+iptables -A INPUT -i lo -p udp -m conntrack --ctstate NEW -j LO_UDP
+iptables -A INPUT -p tcp -m conntrack --ctstate NEW -j TCP
+iptables -A INPUT -p udp -m conntrack --ctstate NEW -j UDP 
+iptables -A INPUT -j LOG --log-prefix "DROPPED" --log-level 6
+iptables -A INPUT -j DROP
+########################################################################################
+#iptables -A LO_UDP -p udp -d 127.0.0.1 --dport 53 -j ACCEPT
+iptables -A LO_UDP -p udp -d 127.0.0.1 --dport 9053 -j ACCEPT
+iptables -A LO_UDP -j LOG --log-prefix "LO_UDP" --log-level 6
+iptables -A LO_UDP -j DROP
+########################################################################################
+iptables -A LO_TCP -p tcp -d 127.0.0.1 --dport 9051 -j ACCEPT
+iptables -A LO_TCP -j LOG --log-prefix "LO_TCP" --log-level 6
+iptables -A LO_TCP -j DROP
+########################################################################################
+iptables -A UDP -j LOG --log-prefix "UDP" --log-level 6
+iptables -A UDP -j DROP
+########################################################################################
+iptables -A TCP -p tcp --dport 31279 -j ACCEPT
+iptables -A TCP -j LOG --log-prefix "TCP" --log-level 6
+iptables -A TCP -j DROP
+########################################################################################
+iptables -t nat -A OUTPUT -m owner --uid-owner 1001 ! -o lo -p tcp -j REDIRECT --to-ports 9051
+iptables -t nat -A OUTPUT -m owner --uid-owner 1001 ! -o lo -p udp --dport 53 -j REDIRECT --to-ports 9053
+########################################################################################
+iptables -A OUTPUT -p icmp -j DROP
+iptables -A OUTPUT -m owner --uid-owner 1001 -p tcp -d 127.0.0.1 --dport 9051 -j ACCEPT
+iptables -A OUTPUT -m owner --uid-owner 1001 -p udp -d 127.0.0.1 --dport 9053 -j ACCEPT
+iptables -A OUTPUT -m owner --uid-owner 1001 -j DROP
+#
+#iptables -A OUTPUT -m owner --uid-owner 43 -p tcp --dport 9051 -j ACCEPT
+#iptables -A OUTPUT -m owner --uid-owner 43 -p tcp --sport 9051 -j ACCEPT
+#iptables -A OUTPUT -m owner --uid-owner 43 -p udp --dport 9053 -j ACCEPT
+#iptables -A OUTPUT -m owner --uid-owner 43 -p udp --sport 9053 -j ACCEPT
+#iptables -A OUTPUT -m owner --uid-owner 43 -p tcp --dport 9001 -j ACCEPT
+#iptables -A OUTPUT -m owner --uid-owner 43 -p tcp --dport 443 -j ACCEPT
+#
+#iptables -A OUTPUT -p tcp --dport 80 -j ACCEPT
+#iptables -A OUTPUT -p tcp --dport 443 -j ACCEPT
+#iptables -A OUTPUT -p udp --dport 53 -j ACCEPT
+#
+#iptables -A OUTPUT -p tcp --dport 6697 -j ACCEPT
+#
+#iptables -A OUTPUT -p tcp --dport 31279 -j ACCEPT
+#iptables -A OUTPUT -p tcp --sport 31279 -j ACCEPT
+#
+#iptables -A OUTPUT -j LOG --log-prefix "OUTPUT" --log-level 6
+########################################################################################
+#iptables -t nat -A OUTPUT -m owner --uid-owner $(id -u bob) -p udp --dport 53 -j REDIRECT --to-ports 9053
+#iptables -t nat -A OUTPUT -m owner --uid-owner $(id -u bob) -p udp -j DROP
+#iptables -t nat -A OUTPUT -m owner --uid-owner $(id -u bob) -p tcp -j REDIRECT --to-ports 9050
+########################################################################################
+#iptables -t nat -A OUTPUT -s localhost -d localhost -p udp --dport 53 -j REDIRECT --to-port 9053
+#iptables -A PREROUTING -t nat -i !internal -p tcp --dport 80 -j REDIRECT --to-port 8080
+#iptables -A PREROUTING -t nat -i !internal -p tcp --dport 443 -j REDIRECT --to-port 8080
+########################################################################################
+#iptables -t nat -A PREROUTING -i proxy -p udp -j REDIRECT --to-ports 9053
+#iptables -t nat -A PREROUTING -i proxy -p tcp -j REDIRECT --to-ports 9050
+########################################################################################
+
+
+
+

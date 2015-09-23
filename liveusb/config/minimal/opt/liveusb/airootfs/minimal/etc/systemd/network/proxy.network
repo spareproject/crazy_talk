@@ -1,0 +1,11 @@
+[Match]
+Name=proxy
+
+[Network]
+Address=172.16.0.1/16
+DNS=172.16.0.1
+DHCPServer=true
+IPForward=yes
+IPMasquerade=yes
+LLMNR=false
+LLDP=false
