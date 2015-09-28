@@ -1,0 +1,162 @@
+#!/bin/env bash
+
+###############################################################################################################################################################################################################
+umask 077
+###############################################################################################################################################################################################################
+# if persistent isnt running or cached and /dev/archiso exists
+if [[ ! $(ps aux|grep gpg-agent|grep /home/user/gnupg/persistent) && $(ls /home/user/gnupg/persistent) == "" && -b /dev/archiso1 && -b /dev/archiso2 && -b /dev/archiso3 ]];then
+###############################################################################################################################################################################################################
+echo -e "this script isnt safe to run twice yet... quit (y|n)"
+unset input;while [[ $input != @("y"|"n") ]];do read -rp "input: " input;done
+if [[ $input == "y" ]];then exit;fi
+###############################################################################################################################################################################################################
+mount /dev/archiso2
+mount /dev/archiso3
+###############################################################################################################################################################################################################
+cp -ar /home/user/.mount/key/gnupg/persistent/* /home/user/gnupg/persistent
+unset input;read -rp "enter pin: " input;if [[ ${input} =~ ^0-9+$ ]];then echo "numeric pin";exit;fi
+if gpg --homedir /home/user/gnupg/persistent --passphrase-fd 0 -d /home/user/.mount/key/gnupg/trigger.asc <<< $(dd if=/home/user/.mount/random/randomfs bs=1 count=100 ibs=1 skip=${input} 2>/dev/null);then
+###############################################################################################################################################################################################################
+
+#gnupg
+###############################################################################################################################################################################################################
+
+gpg --homedir /home/user/gnupg/tmp --passphrase-fd 0 --gen-key --batch /etc/key/gnupg/batch.tmp <<< "" 2>/dev/null
+gpg --homedir /home/user/gnupg/tmp --output /home/user/gnupg/tmp.tmp --export user
+gpg --homedir /home/user/gnupg/persistent --output /home/user/gnupg/tmp.public --clearsign /home/user/gnupg/tmp.tmp
+rm /home/user/gnupg/user.tmp
+
+cp /home/user/.mount/key/gnupg/persistent.public /home/user/gnupg/
+cp /home/user/.mount/key/gnupg/revoke.public     /home/user/gnupg/
+cp /home/user/.mount/key/gnupg/root.public       /home/user/gnupg/
+
+gpg --homedir /home/user/gnupg/tmp --import /home/user/gnupg/root.public
+gpg --homedir /home/user/gnupg/tmp --quick-sign-key $(gpg --homedir /home/user/gnupg/tmp --fingerprint root|sed -n '2p'|awk -F '=' '{print$2}'|tr -d ' ')
+gpg --homedir /home/user/gnupg/tmp --import /home/user/gnupg/revoke.public
+gpg --homedir /home/user/gnupg/tmp --quick-sign-key $(gpg --homedir /home/user/gnupg/tmp --fingerprint revoke|sed -n '2p'|awk -F '=' '{print$2}'|tr -d ' ')
+gpg --homedir /home/user/gnupg/tmp --import /home/user/gnupg/persistent.public
+gpg --homedir /home/user/gnupg/tmp --quick-sign-key $(gpg --homedir /home/user/gnupg/tmp --fingerprint persistent|sed -n '2p'|awk -F '=' '{print$2}'|tr -d ' ')
+
+###############################################################################################################################################################################################################
+
+#openssh
+###############################################################################################################################################################################################################
+
+ssh-keygen -t rsa -b 4096 -f "/home/user/openssh/ssh/id_rsa" -N ""
+ssh-keygen -t rsa -b 4096 -f "/home/user/openssh/sshd/ssh_host_rsa_key" -N ""
+
+gpg --homedir /home/user/gnupg/tmp -e /home/user/openssh/ssh/id_rsa 2>/dev/null
+#rm /home/user/ssh/id_rsa
+gpg --homedir /home/user/gnupg/tmp -e /home/user/openssh/sshd/ssh_host_rsa_key 2>/dev/null
+#rm /home/user/sshd/ssh_host_rsa_key
+
+cp /home/user/.mount/key/openssh/known_hosts     /home/user/openssh/ssh/
+cp /home/user/.mount/key/openssh/client_ca.pub   /home/user/openssh/sshd/
+
+echo -e "Server Certificate Uptime\n1 - 1 hour\n2 - 1 day\n3 - 1 week\n4 - 1 month\n5 - 1 year\n"
+unset input;while [[ ${input} != @("1"|"2"|"3"|"4"|"5") ]];do read -p "input: " input;done
+if [[ ${input} == "1" ]];then timestamp="+1h";fi
+if [[ ${input} == "2" ]];then timestamp="+1d";fi
+if [[ ${input} == "3" ]];then timestamp="+1w";fi
+if [[ ${input} == "4" ]];then timestamp="+4w";fi
+if [[ ${input} == "5" ]];then timestamp="+52w";fi
+echo "$(gpg --homedir /home/user/gnupg/persistent -d /home/user/.mount/key/openssh/server_ca.asc 2>/dev/null)"|
+ssh-keygen -s /dev/stdin -I server_ca -h -n host -V ${timestamp} /home/user/openssh/sshd/ssh_host_rsa_key.pub
+
+echo -e "Client Certificate Uptime\n1 - 1 hour\n2 - 1 day\n3 - 1 week\n4 - 1 month\n5 - 1 year\n"
+unset input;while [[ ${input} != @("1"|"2"|"3"|"4"|"5") ]];do read -p "input: " input;done
+if [[ ${input} == "1" ]];then timestamp="+1h";fi
+if [[ ${input} == "2" ]];then timestamp="+1d";fi
+if [[ ${input} == "3" ]];then timestamp="+1w";fi
+if [[ ${input} == "4" ]];then timestamp="+4w";fi
+if [[ ${input} == "5" ]];then timestamp="+52w";fi
+echo "$(gpg --homedir /home/user/gnupg/persistent -d /home/user/.mount/key/openssh/client_ca.asc 2>/dev/null)"|
+ssh-keygen -s /dev/stdin -I user -n user -V ${timestamp} /home/user/openssh/ssh/id_rsa.pub
+
+###############################################################################################################################################################################################################
+
+# openssl
+###############################################################################################################################################################################################################
+
+openssl genrsa -out /home/user/openssl/localhost.key 4096
+gpg --homedir /home/user/gnupg/tmp -e /home/user/openssl/localhost.key 2>/dev/null
+#rm /home/user/openssl/localhost.key
+
+touch /home/user/openssl/index.txt
+echo 1001 > /home/user/openssl/serial
+touch /home/user/openssl/.random
+mkdir /home/user/openssl/certs
+
+echo -e "Webserver Certificate Uptime\n1 - 1 day\n2 - 1 week\n3 - 1 month\n4 - 1 year\n"
+unset input;while [[ ${input} != @("1"|"2"|"3"|"4"|"5") ]];do read -p "input: " input;done
+if [[ ${input} == "1" ]];then timestamp="1";fi
+if [[ ${input} == "2" ]];then timestamp="7";fi
+if [[ ${input} == "3" ]];then timestamp="30";fi
+if [[ ${input} == "4" ]];then timestamp="365";fi
+openssl req -config /home/user/.mount/key/openssl/persistent.cnf -new -sha256 -key /home/user/openssl/localhost.key -out /home/user/openssl/localhost.csr -subj '/CN=localhost'
+openssl ca -batch -config /home/user/.mount/key/openssl/persistent.cnf -extensions server -days ${timestamp} -notext -md sha256 -in /home/user/openssl/localhost.csr -out /home/user/openssl/localhost.cert
+
+cat /home/user/openssl/localhost.key /home/user/openssl/localhost.cert > /home/user/lighttpd/ssl/localhost.pem
+rm /home/user/openssl/localhost.csr
+cp /home/user/.mount/key/openssl/ca-certificates.crt /home/user/openssl/ca-certificates.crt
+
+rm -r /home/user/openssl/index.txt*
+rm -r /home/user/openssl/serial*
+rm -r /home/user/openssl/.random
+rm -r /home/user/openssl/certs
+
+###############################################################################################################################################################################################################
+
+###############################################################################################################################################################################################################
+sync
+kill $(ps aux|grep gpg-agent|grep '/home/user/gnupg/tmp'|awk '{print $2}')
+kill $(ps aux|grep gpg-agent|grep '/home/user/gnupg/persistent'|awk '{print $2}')
+umount /home/user/.mount/key
+umount /home/user/.mount/random
+rm -r  /home/user/gnupg/persistent/*
+###############################################################################################################################################################################################################
+chown -R user:group /home/user/
+chmod -R 700 /home/user/
+###############################################################################################################################################################################################################
+
+###############################################################################################################################################################################################################
+unset input;read -rp "start host listener (y|n)?" input
+if [[ $input == "y" ]];then
+mkfifo /home/user/host.socket
+touch /home/user/host.txt
+(nc -vulnzp 31279 1>/dev/null 2>/home/user/host.socket &)&
+(while :;do
+if read line </home/user/host.socket;then
+line=$(echo "$line"|awk '{print $4}'|awk -F ':' '{print $1}')
+if [[ $(wc -l </home/user/host.txt) -gt 9 ]];then sed -i 1d /home/user/host.txt;fi
+echo $line >> /home/user/host.txt
+fi
+done &)&
+unset input;read -rp "ping network (y|n)?" input
+if [[ $input == "y" ]];then
+for i in {1..254};do echo fu > /dev/udp/192.168.1.$i/31279;done
+fi
+chown user:group /home/user/host.socket
+chown user:group /home/user/host.txt
+fi
+#
+systemctl start sshd@user
+systemctl start lighttpd
+sleep 1
+systemctl status sshd@user
+systemctl status lighttpd
+###############################################################################################################################################################################################################
+
+else
+kill $(ps aux|grep gpg-agent|grep '/home/user/gnupg/persistent'|awk '{print $2}')
+#pkill gpg-agent
+rm -r /home/user/gnupg/persistent/*
+umount /dev/archiso2
+umount /dev/archiso3
+echo "Y U N0 ENTER CORRECT PIN!"
+fi
+
+else
+  echo "device not plugged in|oneshot currently running"
+fi
+###############################################################################################################################################################################################################

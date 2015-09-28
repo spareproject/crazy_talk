@@ -4,6 +4,93 @@ no need to ever delete anything but always good to hide the crazy...
 
 ###############################################################################################################################################################################################################
 
+if all this shit requires root to run then why would i give any fucks about user input?
+assuming you a fucking idiot none of it matters
+
+multiple openssl config files because... 2 line changes... /spit /spit
+
+
+usb - used to generate openssl when building the iso ie the hard stored keys
+host - used to generate the server tmp boot key and sign it
+internal - used to generate an internal root,persistent key set
+
+
+
+
+
+
+
+openssl is fucking shit...
+
+my path...
+
+/mnt/storage/liveusb
+  /key - all the configs for keys set
+  /mount/key - the mount point for host keyset
+
+^ only things key.sh cares about 
+where it gets its configs where it creates the keyset....
+
+all openssl config files are creating a config pointing to the directory the keys and certs will be stored in then rm the bloated pointless shit
+remake it if you need a key sign 
+why because openssl is the single most horrible cli tool ive ever used 
+i dont want anything to fucking do with it
+
+
+
+
+
+
+
+.sig root signed for that keyset
+.public one hop up signed if it exists ie 
+
+.public root signed for that keyset
+.sig - signed by one hop up...
+
+top level gets nothing but .public if its assumed all sub keys are clear sign...
+then nested sets ident with .sig?
+
+only because .public in host keyset then one .sig looks shit
+
+
+
+
+root/host keyset
+root
+revoke
+persistent
+tmp
+
+persistent.public is signed by its root.. clearsign /shrug
+persistent.sig is... signed by 
+
+keyset...
+root
+revoke
+persistent
+tmp
+
+host keyset...
+internal keyset...
+container keyset...
+
+if .public is nester its a cleartext sign from one hop up...
+.sig is that keysets root sign
+
+but all public keysets are signed by upper if it exists... done
+
+so export 
+
+###############################################################################################################################################################################################################
+
+pacman -r /mnt/mount/rootfs -Syu any_package < - shits the bed with vercmp
+pacman -r /mnt/mount/rootfs -Syu
+pacman -r /mnt/mount/rootfs -S any_package 
+^ need to test if seperated doesnt fuck shit up or if chromiums just going in the fucking bin
+
+
+
 totally dropping multiple key things sigs not publics unless its signed by itself....
 
 root

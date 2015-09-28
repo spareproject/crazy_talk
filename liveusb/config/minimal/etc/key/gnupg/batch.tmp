@@ -1,0 +1,12 @@
+%echo Generating user gnupg key
+Key-Type: rsa
+Key-Length: 4096
+Key-Usage: sign
+Subkey-Type: rsa
+Subkey-Length: 4096
+Subkey-Usage: encrypt
+Name-Real:tmp
+Name-Email:tmp@host
+Expire-Date: 0
+%commit
+%echo done

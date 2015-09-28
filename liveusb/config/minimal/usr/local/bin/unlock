@@ -1,0 +1,82 @@
+#!/bin/env bash
+###############################################################################################################################################################################################################
+umask 077
+###############################################################################################################################################################################################################
+#if [[ -f "/mnt/$(blkid /dev/archiso2 -s PARTUUID -o value).luks" && -f "/mnt/$(blkid /dev/archiso2 -s PARTUUID -o value).rawfs" ]];then
+#if [[ $(ps aux|grep gpg-agent|grep /home/user/gnupg/persistent) && -b /dev/archiso1 && -b /dev/archiso2 && -b /dev/archiso3 ]];then
+###############################################################################################################################################################################################################
+
+# trigger password prompt...
+###############################################################################################################################################################################################################
+if [[ ! $(ps aux|grep gpg-agent|grep /home/user/gnupg/persistent) && $(ls /home/user/gnupg/persistent) == "" && -b /dev/archiso1 && -b /dev/archiso2 && -b /dev/archiso3 ]];then
+mount /dev/archiso2
+mount /dev/archiso3
+cp -ar /home/user/.mount/key/gnupg/persistent/* /home/user/gnupg/persistent
+unset input;read -rp "enter pin: " input;if [[ ${input} =~ ^0-9+$ ]];then echo "numeric pin";exit;fi
+if gpg --homedir /home/user/gnupg/persistent --passphrase-fd 0 -d /home/user/.mount/key/gnupg/trigger.asc <<< $(dd if=/home/user/.mount/random/randomfs bs=1 count=100 ibs=1 skip=${input} 2>/dev/null);then
+###############################################################################################################################################################################################################
+
+###############################################################################################################################################################################################################
+
+mkdir -p /mnt/internal
+gpg --homedir /home/user/gnupg/persistent -d /mnt/$(blkid /dev/archiso2 -s PARTUUID -o value).luks 2>/dev/null|
+cryptsetup --cipher aes-xts-plain64 --key-size 512 --hash sha512 --iter-time 5000 --key-file - --type=plain --offset 0 open /mnt/$(blkid /dev/archiso2 -s PARTUUID -o value).rawfs internal
+mount /dev/mapper/internal /mnt/internal
+
+###############################################################################################################################################################################################################
+
+mkdir -p /mnt/tmpfs
+mount -t tmpfs tmpfs /mnt/tmpfs
+mkdir /mnt/tmpfs/tmp
+cp /etc/key/gnupg/gpg* /mnt/tmpfs/tmp
+
+# internal tmpfs
+gpg --homedir /mnt/tmpfs/tmp --passphrase-fd 0 --gen-key --batch /etc/key/gnupg/batch.tmp <<< "" 2>/dev/null
+gpg --homedir /mnt/tmpfs/tmp --output /mnt/tmpfs/tmp.public --export tmp 2>/dev/null
+
+# copy over all the public keys associated with the internal keyset
+cp /mnt/internal/gnupg/persistent.public /mnt/tmpfs/
+cp /mnt/internal/gnupg/revoke.public     /mnt/tmpfs/
+cp /mnt/internal/gnupg/root.public       /mnt/tmpfs/
+# copy all public keys signed by persistent
+cp /mnt/internal/gnupg/persistent.sig   /mnt/tmpfs/
+cp /mnt/internal/gnupg/revoke.sig       /mnt/tmpfs/
+cp /mnt/internal/gnupg/root.sig         /mnt/tmpfs/
+
+# import and sign all the public keys associated with the internal keyset still all internal random keys only ability to check cluster if it exists
+gpg --homedir /mnt/tmpfs/tmp --import /mnt/tmpfs/root.public
+gpg --homedir /mnt/tmpfs/tmp --quick-sign-key $(gpg --homedir /mnt/tmpfs/tmp --fingerprint root|sed -n '2p'|awk -F '=' '{print $2}'|tr -d ' ')
+gpg --homedir /mnt/tmpfs/tmp --import /mnt/tmpfs/revoke.public
+gpg --homedir /mnt/tmpfs/tmp --quick-sign-key $(gpg --homedir /mnt/tmpfs/tmp --fingerprint revoke|sed -n '2p'|awk -F '=' '{print $2}'|tr -d ' ')
+gpg --homedir /mnt/tmpfs/tmp -d /mnt/tmpfs/persistent.public | gpg --homedir /mnt/tmpfs/tmp --import
+gpg --homedir /mnt/tmpfs/tmp --quick-sign-key $(gpg --homedir /mnt/tmpfs/tmp --fingerprint persistent|sed -n '2p'|awk -F '=' '{print $2}'|tr -d ' ')
+
+###############################################################################################################################################################################################################
+#else echo "still needs oneshot...";fi
+###############################################################################################################################################################################################################
+#else echo "run setup - currently setup,lock,unlock or it doesnt spawn tmpfs for internal keyset";fi
+###############################################################################################################################################################################################################
+
+
+# if managing its own oneshot
+sync
+kill $(ps aux|grep gpg-agent|grep '/home/user/gnupg/persistent'|awk '{print $2}')
+umount /home/user/.mount/key
+umount /home/user/.mount/random
+rm -r /home/user/gnupg/persistent/*
+chown -R user:group /home/user
+chmod -R 700 /home/user
+
+else
+kill $(ps aux|grep gpg-agent|grep '/home/user/gnupg/persistent'|awk '{print $2}')
+rm -r /home/user/gnupg/persistent/*
+umount /dev/archiso2
+umount /dev/archiso3
+echo "Y U DO DIS SPIDERMONZ"
+fi
+
+else
+  echo "device not plugged || oneshot currently running"
+fi
+
+
