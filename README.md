@@ -7,7 +7,7 @@ and theres still a million and one other ways to break this<br>
 <br>
 but actually stuck a real udev rule in because it was breaking to much shit<br>
 <br>
-<br>
+steam doesnt work anymore... catalyst changed xrandr screen grouping? and steam cant find drivers so /shrug <br>
 <br>
 <br>
 <br>
