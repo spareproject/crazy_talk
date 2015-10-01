@@ -3,9 +3,9 @@
 umask 077
 clear;cat /etc/banner
 ###############################################################################################################################################################################################################
-if [[ ! $(ps aux|grep gpg-agent|grep /home/user/gnupg/persistent) && $(ls /home/user/gnupg/persistent) == "" && -b /dev/archiso1 && -b /dev/archiso2 && -b /dev/archiso3 ]];then
-mount /dev/archiso2
-mount /dev/archiso3
+if [[ ! $(ps aux|grep gpg-agent|grep /home/user/gnupg/persistent) && $(ls /home/user/gnupg/persistent) == "" && -b /dev/bootfs && -b /dev/keyfs && -b /dev/randomfs ]];then
+mount /dev/keyfs
+mount /dev/randomfs
 cp -ar /home/user/.mount/key/gnupg/persistent/* /home/user/gnupg/persistent
 echo -e "gnupg uptime\n1 - 1m\n2 - 5m\n3 - 10m\n4 - 15m\n"
 unset input;while [[ $input != @("1"|"2"|"3"|"4") ]];do read -p "input: " input;done
@@ -23,8 +23,8 @@ else
   #pkill gpg-agent
   rm -r /home/user/gnupg/persistent/*
 fi
-umount /dev/archiso2
-umount /dev/archiso3
+umount /dev/keyfs
+umount /dev/randomfs
 ###############################################################################################################################################################################################################
 else
   echo "!bail - dem errorz doe"

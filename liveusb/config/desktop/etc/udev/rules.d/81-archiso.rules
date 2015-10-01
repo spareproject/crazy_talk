@@ -1,0 +1,3 @@
+KERNEL=="sd?1",SUBSYSTEM=="block",ATTRS{idVendor}=="IDVENDOR",ATTRS{idProduct}=="IDPRODUCT",ATTRS{serial}=="SERIAL",SYMLINK+="bootfs"
+KERNEL=="sd?2",SUBSYSTEM=="block",ATTRS{idVendor}=="IDVENDOR",ATTRS{idProduct}=="IDPRODUCT",ATTRS{serial}=="SERIAL",SYMLINK+="keyfs"
+KERNEL=="sd?3",SUBSYSTEM=="block",ATTRS{idVendor}=="IDVENDOR",ATTRS{idProduct}=="IDPRODUCT",ATTRS{serial}=="SERIAL",SYMLINK+="randomfs"

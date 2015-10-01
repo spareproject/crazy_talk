@@ -21,9 +21,7 @@ if [[ ! -f /mnt/luks/${1} || ! -f /mnt/rawfs/${1} ]];then echo "luks and or rawf
 # rawfs has unionfs dependencies - cant use the container name listed. (effort to sed/awk names and not grep entire output vs not giving any fucks)
 if [[ $(machinectl|grep "${1}\.") || $(mount|grep "/mnt/mount/${1}\.") ]];then
 
-echo "rawfs has unionfs dependencies kill all (y|n)?"
-unset input;while [[ ${input} != @("y"|"n") ]];do read -rp "input: " input;done
-if [[ ${input} == "n" ]];then exit;fi
+unset input;while [[ ${input} != @("y"|"n") ]];do read -rp "rawfs has unionfs dependencies kill all (y|n)?" input;done;if [[ ${input} == "n" ]];then exit;fi
 
 # if running machine contains $1\. kill it
 for i in $(machinectl|sed 1d|sed '/^$/d'|sed '$ d'|awk '{print $1}');do

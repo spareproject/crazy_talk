@@ -8,5 +8,5 @@ total_run_times = 0,
 use_spacer = none,
 };
 conky.text = [[ 
-${if_existing /home/user/gnupg/unlocked}[ gnupg ] ${endif}${if_existing /home/user/openssh/ssh/id_rsa-cert.pub}${if_existing /home/user/openssh/sshd/ssh_host_rsa_key-cert.pub}${if_existing /home/user/lighttpd/ssl/localhost.pem}[ network ] ${endif}${endif}${endif}${if_mounted /mnt/internal}[ unlocked ] ${endif}${if_existing /dev/archiso}[ usb ] ${endif}${if_mounted /mnt}[ internal ] ${endif}[ CPU: ${cpu cpu0}% ] [ RAM: ${memperc}% ] [ ${uptime} | ${time %a %b %d %I:%M%P} ] [ Battery: ${battery_percent BAT0}% ]
+${if_existing /home/user/gnupg/unlocked}[ gnupg ] ${endif}${if_existing /home/user/openssh/ssh/id_rsa-cert.pub}${if_existing /home/user/openssh/sshd/ssh_host_rsa_key-cert.pub}${if_existing /home/user/lighttpd/ssl/localhost.pem}[ network ] ${endif}${endif}${endif}${if_mounted /mnt/internal}[ unlocked ] ${endif}${if_existing /dev/bootfs}[ usb ] ${endif}${if_mounted /mnt}[ internal ] ${endif}[ CPU: ${cpu cpu0}% ] [ RAM: ${memperc}% ] [ ${uptime} | ${time %a %b %d %I:%M%P} ] [ Battery: ${battery_percent BAT0}% ]
 ]];

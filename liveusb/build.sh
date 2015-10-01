@@ -49,19 +49,13 @@ arch-chroot ./rootfs /root/install.sh ${1}
 ###############################################################################################################################################################################################################
 idproduct=$(udevadm info ${1} | grep -e ID_MODEL_ID | sed 's/E: ID_MODEL_ID=//')
 idvendor=$(udevadm info ${1} | grep -e ID_VENDOR_ID | sed 's/E: ID_VENDOR_ID=//')
-iserial=$(udevadm info ${1} | grep -e ID_SERIAL_SHORT | sed 's/E: ID_SERIAL_SHORT=//')
-sed -i -e "s/IDVENDOR/${idvendor}/" -e "s/IDPRODUCT/${idproduct}/" -e "s/SERIAL/${iserial}/" ./rootfs/root/09-gnupg.rules
+serial=$(udevadm info ${1} | grep -e ID_SERIAL_SHORT | sed 's/E: ID_SERIAL_SHORT=//')
+sed -i -e "s/IDVENDOR/${idvendor}/" -e "s/IDPRODUCT/${idproduct}/" -e "s/SERIAL/${serial}/" ./rootfs/etc/udev/rules.d/81-archiso.rules
 ###############################################################################################################################################################################################################
-
-unset input;while [[ ${input} != @("y"|"n") ]];do read -rp "suppose to be mounting ${1}1 (y|n)" input;done
 mount ${1}1 ./mount
-
-unset input;while [[ ${input} != @("y"|"n") ]];do read -rp "check ./mount its been making corrupted squashfs (y|n)" input;done
-
 mksquashfs ./rootfs ./mount/rootfs.squashfs
 sync
 umount ./mount
-
 ###############################################################################################################################################################################################################
 unset input;while [[ ${input} != @("y"|"n") ]];do read -r -p "remove rootfs? (y|n)?" input;done
 if [[ ${input} == "y" ]];then umount ./rootfs/* 2>/dev/null;rm -r ./rootfs/*;fi

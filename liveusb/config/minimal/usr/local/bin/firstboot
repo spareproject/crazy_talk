@@ -4,14 +4,14 @@
 umask 077
 ###############################################################################################################################################################################################################
 # if persistent isnt running or cached and /dev/archiso exists
-if [[ ! $(ps aux|grep gpg-agent|grep /home/user/gnupg/persistent) && $(ls /home/user/gnupg/persistent) == "" && -b /dev/archiso1 && -b /dev/archiso2 && -b /dev/archiso3 ]];then
+if [[ ! $(ps aux|grep gpg-agent|grep /home/user/gnupg/persistent) && $(ls /home/user/gnupg/persistent) == "" && -b /dev/bootfs && -b /dev/keyfs && -b /dev/randomfs ]];then
 ###############################################################################################################################################################################################################
 echo -e "this script isnt safe to run twice yet... quit (y|n)"
 unset input;while [[ $input != @("y"|"n") ]];do read -rp "input: " input;done
 if [[ $input == "y" ]];then exit;fi
 ###############################################################################################################################################################################################################
-mount /dev/archiso2
-mount /dev/archiso3
+mount /dev/keyfs
+mount /dev/randomfs
 ###############################################################################################################################################################################################################
 cp -ar /home/user/.mount/key/gnupg/persistent/* /home/user/gnupg/persistent
 unset input;read -rp "enter pin: " input;if [[ ${input} =~ ^0-9+$ ]];then echo "numeric pin";exit;fi
@@ -151,8 +151,8 @@ else
 kill $(ps aux|grep gpg-agent|grep '/home/user/gnupg/persistent'|awk '{print $2}')
 #pkill gpg-agent
 rm -r /home/user/gnupg/persistent/*
-umount /dev/archiso2
-umount /dev/archiso3
+umount /dev/keyfs
+umount /dev/randomfs
 echo "Y U N0 ENTER CORRECT PIN!"
 fi
 

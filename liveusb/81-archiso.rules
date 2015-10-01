@@ -1,0 +1,12 @@
+
+
+
+closest so far
+ACTION=="add",
+SUBSYSTEM=="usb",
+ATTRS{idVendor}=="26bd",
+ATTRS{idProduct}=="9917",
+ATTRS{serial}=="070144EA39B2F958",
+SYMLINK+="archiso%n"
+
+
