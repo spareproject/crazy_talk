@@ -1,5 +1,9 @@
 #READMAH
 <br>
+ive borked a gpg command homedir somewhere /mnt/internal/gnupg keeps getting a pubkey.kbx pop up : /<br>
+^ in unlock i think<br>
+<br>
+<br>
 so general keylayout so far...<br>
 <br>
 top level - host... on the usb stick, tmp generated key in user home dir tmpfs<br>
