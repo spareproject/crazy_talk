@@ -3,6 +3,23 @@
 no need to ever delete anything but always good to hide the crazy...
 
 ###############################################################################################################################################################################################################
+#
+
+reverse ssh...
+
+from nas
+ssh -R 8888:localhost:31279 user@192.168.0.XXX 
+from laptop
+sshfs user@localhost:/home/user/torrents /mnt
+
+means i need to open...
+localhost on nas and laptop...
+
+basically i can ssh out of my router on the wifi router but not the other way round and tv in bed /shrug
+
+
+
+
 
 if all this shit requires root to run then why would i give any fucks about user input?
 assuming you a fucking idiot none of it matters

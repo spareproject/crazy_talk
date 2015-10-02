@@ -52,9 +52,9 @@ rm /mnt/internal/gnupg/persistent.tmp
 
 # import to persistent keyring
 gpg --homedir /mnt/internal/gnupg/persistent --import /mnt/internal/gnupg/root.public
-gpg --homedir /mnt/internal/gnupg/persistent --quick-sign-key $(gpg --homedir /home/user/gnupg/persistent --fingerprint root|sed -n '2p'|awk -F '=' '{print $2}'|tr -d ' ') <<< ""
+gpg --homedir /mnt/internal/gnupg/persistent --quick-sign-key $(gpg --homedir /mnt/internal/gnupg/persistent --fingerprint root|sed -n '2p'|awk -F '=' '{print $2}'|tr -d ' ') <<< ""
 gpg --homedir /mnt/internal/gnupg/persistent --import /mnt/internal/gnupg/revoke.public
-gpg --homedir /mnt/internal/gnupg/persistent --quick-sign-key $(gpg --homedir /home/user/gnupg/persistent --fingerprint revoke|sed -n '2p'|awk -F '=' '{print $2}'|tr -d ' ') <<< ""
+gpg --homedir /mnt/internal/gnupg/persistent --quick-sign-key $(gpg --homedir /mnt/internal/gnupg/persistent --fingerprint revoke|sed -n '2p'|awk -F '=' '{print $2}'|tr -d ' ') <<< ""
 
 # persistent trigger
 gpg --homedir /mnt/internal/gnupg/persistent -o /mnt/internal/gnupg/trigger.asc -e <<< "mounted && cached persitstent keyring"

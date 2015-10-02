@@ -22,9 +22,9 @@ if gpg --homedir /home/user/gnupg/persistent --passphrase-fd 0 -d /home/user/.mo
 ###############################################################################################################################################################################################################
 
 gpg --homedir /home/user/gnupg/tmp --passphrase-fd 0 --gen-key --batch /etc/key/gnupg/batch.tmp <<< "" 2>/dev/null
-gpg --homedir /home/user/gnupg/tmp --output /home/user/gnupg/tmp.tmp --export user
+gpg --homedir /home/user/gnupg/tmp --output /home/user/gnupg/tmp.tmp --export tmp
 gpg --homedir /home/user/gnupg/persistent --output /home/user/gnupg/tmp.public --clearsign /home/user/gnupg/tmp.tmp
-rm /home/user/gnupg/user.tmp
+rm /home/user/gnupg/tmp.tmp
 
 cp /home/user/.mount/key/gnupg/persistent.public /home/user/gnupg/
 cp /home/user/.mount/key/gnupg/revoke.public     /home/user/gnupg/
@@ -34,7 +34,7 @@ gpg --homedir /home/user/gnupg/tmp --import /home/user/gnupg/root.public
 gpg --homedir /home/user/gnupg/tmp --quick-sign-key $(gpg --homedir /home/user/gnupg/tmp --fingerprint root|sed -n '2p'|awk -F '=' '{print$2}'|tr -d ' ')
 gpg --homedir /home/user/gnupg/tmp --import /home/user/gnupg/revoke.public
 gpg --homedir /home/user/gnupg/tmp --quick-sign-key $(gpg --homedir /home/user/gnupg/tmp --fingerprint revoke|sed -n '2p'|awk -F '=' '{print$2}'|tr -d ' ')
-gpg --homedir /home/user/gnupg/tmp --import /home/user/gnupg/persistent.public
+gpg --homedir /home/user/gnupg/tmp -d /home/user/gnupg/persistent.public | gpg --homedir /home/user/gnupg/tmp --import
 gpg --homedir /home/user/gnupg/tmp --quick-sign-key $(gpg --homedir /home/user/gnupg/tmp --fingerprint persistent|sed -n '2p'|awk -F '=' '{print$2}'|tr -d ' ')
 
 ###############################################################################################################################################################################################################

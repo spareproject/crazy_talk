@@ -33,8 +33,10 @@ mkdir /mnt/tmpfs/tmp
 cp /etc/key/gnupg/gpg* /mnt/tmpfs/tmp
 
 # internal tmpfs
-gpg --homedir /mnt/tmpfs/tmp --passphrase-fd 0 --gen-key --batch /etc/key/gnupg/batch.tmp <<< "" 2>/dev/null
-gpg --homedir /mnt/tmpfs/tmp --output /mnt/tmpfs/tmp.public --export tmp 2>/dev/null
+gpg --homedir /mnt/tmpfs/tmp --passphrase-fd 0 --gen-key --batch /etc/key/gnupg/batch.tmp <<< ""
+gpg --homedir /mnt/tmpfs/tmp --output /mnt/tmpfs/tmp.tmp --export tmp
+gpg --homedir /mnt/internal/gnupg/persistent --output /mnt/tmpfs/tmp.public --clearsign /mnt/tmpfs/tmp.tmp
+rm /mnt/tmpfs/tmp.tmp
 
 # copy over all the public keys associated with the internal keyset
 cp /mnt/internal/gnupg/persistent.public /mnt/tmpfs/
