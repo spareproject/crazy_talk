@@ -1,6 +1,9 @@
 #READMAH
 <br>
 <br>
+need a way to chattr +i ~/.surf/cookies.txt... then toggle button allow the cookies / kill the cookies...<br>
+<br>
+<br>
 erm push because im afk probaly the most stable thing on the planet as always...<br>
 <br>
 no puters for 5 days and i already have withdrawl : / <br>
