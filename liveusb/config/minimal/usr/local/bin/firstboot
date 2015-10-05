@@ -93,8 +93,8 @@ if [[ ${input} == "1" ]];then timestamp="1";fi
 if [[ ${input} == "2" ]];then timestamp="7";fi
 if [[ ${input} == "3" ]];then timestamp="30";fi
 if [[ ${input} == "4" ]];then timestamp="365";fi
-openssl req -config /home/user/.mount/key/openssl/persistent.cnf -new -sha256 -key /home/user/openssl/localhost.key -out /home/user/openssl/localhost.csr -subj '/CN=localhost'
-openssl ca -batch -config /home/user/.mount/key/openssl/persistent.cnf -extensions server -days ${timestamp} -notext -md sha256 -in /home/user/openssl/localhost.csr -out /home/user/openssl/localhost.cert
+openssl req -config /home/user/.mount/key/openssl/persistent.cnf -new -sha512 -key /home/user/openssl/localhost.key -out /home/user/openssl/localhost.csr -subj '/CN=localhost'
+openssl ca -batch -config /home/user/.mount/key/openssl/persistent.cnf -extensions server -days ${timestamp} -notext -md sha512 -in /home/user/openssl/localhost.csr -out /home/user/openssl/localhost.cert
 
 cat /home/user/openssl/localhost.key /home/user/openssl/localhost.cert > /home/user/lighttpd/ssl/localhost.pem
 rm /home/user/openssl/localhost.csr

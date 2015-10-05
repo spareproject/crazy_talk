@@ -69,15 +69,15 @@ iptables -A PROXY -j LOG --log-prefix "PROXY" --log-level 6
 iptables -A PROXY -j DROP
 ########################################################################################
 iptables -t nat -A POSTROUTING -o host -j MASQUERADE
-iptables -A FORWARD        -i host      -o proxy      -m conntrack --ctstate ESTABLISHED,RELATED --ctproto udp -j ACCEPT
-iptables -A FORWARD        -i host      -o proxy      -m conntrack --ctstate ESTABLISHED,RELATED --ctproto tcp -j ACCEPT
-iptables -A FORWARD        -i host      -o container  -m conntrack --ctstate ESTABLISHED,RELATED --ctproto udp -j ACCEPT
-iptables -A FORWARD        -i host      -o container  -m conntrack --ctstate ESTABLISHED,RELATED --ctproto tcp -j ACCEPT
+iptables -A FORWARD -i host -o proxy      -m conntrack --ctstate ESTABLISHED,RELATED --ctproto udp -j ACCEPT
+iptables -A FORWARD -i host -o proxy      -m conntrack --ctstate ESTABLISHED,RELATED --ctproto tcp -j ACCEPT
+iptables -A FORWARD -i host -o container  -m conntrack --ctstate ESTABLISHED,RELATED --ctproto udp -j ACCEPT
+iptables -A FORWARD -i host -o container  -m conntrack --ctstate ESTABLISHED,RELATED --ctproto tcp -j ACCEPT
 iptables -A FORWARD -i host -o container -p udp --dport 31279 -j ACCEPT # netcat
-iptables -A FORWARD -p udp -i container -o host       -j ACCEPT
-iptables -A FORWARD -p tcp -i container -o host       -j ACCEPT
-iptables -A FORWARD -p udp -i proxy     -o host       -j ACCEPT
-iptables -A FORWARD -p tcp -i proxy     -o host       -j ACCEPT
+iptables -A FORWARD -p udp -i container -o host -j ACCEPT
+iptables -A FORWARD -p tcp -i container -o host -j ACCEPT
+iptables -A FORWARD -p udp -i proxy     -o host -j ACCEPT
+iptables -A FORWARD -p tcp -i proxy     -o host -j ACCEPT
 ########################################################################################
 # need to test -p udp --dport 53 and block output from proxy? basically this needs improving to block all traffic not tor forwarded
 iptables -t nat -A PREROUTING -i proxy -p udp -j REDIRECT --to-ports 9053

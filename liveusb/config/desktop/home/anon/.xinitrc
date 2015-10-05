@@ -1,4 +1,3 @@
-xrdb ~/.Xresources
 setxkbmap gb
-(conky|while read -r;do xsetroot -name "$REPLY";done)&
+(conky -c /home/anon/.config/conkyrc|while read -r;do xsetroot -name "$REPLY";done &)&
 exec dwm

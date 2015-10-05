@@ -51,14 +51,10 @@ lsof
 dmenu
 rtorrent
 mpv
-multitail
 libwebkit
 xorg-xprop
 aalib
 ##
 sudo
-##
 chromium
-##
-weechat
 ##
