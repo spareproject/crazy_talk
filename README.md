@@ -1,5 +1,6 @@
 #READMAH
 <br>
+ah ballz knew i forgot something <br>
 <br>
 need a way to chattr +i ~/.surf/cookies.txt... then toggle button allow the cookies / kill the cookies...<br>
 <br>
