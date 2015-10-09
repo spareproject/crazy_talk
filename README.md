@@ -17,4 +17,7 @@ personally i love installing old software expicially when it gets the point you 
 literally google <package> <version> security vulnerabilities and get a nice shiny list of ways to to own someone<br>
 i mean everythings updated for a reason but torrents, drugs and porn /shrug <br>
 <br>
+<br>
+^^ literally have no idea how to even start debugging that only way to trigger it is to pull it out<br>
+if its on a tty its spews kernel panic if its on X it just freezes meh<br>
 
