@@ -42,8 +42,12 @@ pacstrap -C ./config/${2}/etc/pacman.conf -cGMd ./rootfs $(for i in $(cat ./conf
 cp -arfv config/${2}/* rootfs/
 ###############################################################################################################################################################################################################
 mount ${1}1 ./mount
+lsblk
+read -rp 'ffs please press enter'
 mv ./rootfs/boot/* ./mount/
 umount ./mount/
+lsblk
+read -rp 'ffs please press enter'
 ###############################################################################################################################################################################################################
 arch-chroot ./rootfs /root/install.sh ${1}
 ###############################################################################################################################################################################################################
@@ -53,9 +57,14 @@ serial=$(udevadm info ${1} | grep -e ID_SERIAL_SHORT | sed 's/E: ID_SERIAL_SHORT
 sed -i -e "s/IDVENDOR/${idvendor}/" -e "s/IDPRODUCT/${idproduct}/" -e "s/SERIAL/${serial}/" ./rootfs/etc/udev/rules.d/81-archiso.rules
 ###############################################################################################################################################################################################################
 mount ${1}1 ./mount
+lsblk
+read -rp 'ffs please press enter'
 mksquashfs ./rootfs ./mount/rootfs.squashfs
 sync
 umount ./mount
+sync
+lsblk
+read -rp 'ffs please press enter'
 ###############################################################################################################################################################################################################
 unset input;while [[ ${input} != @("y"|"n") ]];do read -r -p "remove rootfs? (y|n)?" input;done
 if [[ ${input} == "y" ]];then umount ./rootfs/* 2>/dev/null;rm -r ./rootfs/*;fi
