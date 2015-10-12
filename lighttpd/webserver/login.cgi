@@ -10,11 +10,7 @@ echo "
 <body>
 <div class='outer'><div class='middle'><div class='inner'>
 
-<fieldset>"
- echo "Location:${SCRIPT_FILENAME##/home/user/lighttpd/webserver}"
-if [[ ! ${#cookie[@]} -eq 0 ]];then echo "cookie: "; for i in ${!cookie[@]};do echo "$i:${cookie[$i]}";done;fi
-
-echo "
+<fieldset>
 <form action='/login.cgi' method='post'>
 <table class=center><tr>
 <td><a href=/index.cgi>[challenge]</url></td>
