@@ -1,0 +1,48 @@
+/***********************************************************************************************************************************************************************************************************/
+body{
+z-index:0;
+height:100%;
+width:100%;
+margin:0;
+padding:0;
+color:black;
+background-color:lightgrey;
+font-size:1vw;
+font-family:"Lucida Console", Monaco, monospace;
+font-family:"Courier New", Courier, monospace;
+overflow:auto;
+word-wrap:break-word;
+}
+/***********************************************************************************************************************************************************************************************************/
+.outer{display:table;position:absolute;height:100%;width:100%;}
+.middle{display:table-cell;vertical-align:middle;margin:0 auto;}
+.inner{display:table;margin:0 auto;}
+/***********************************************************************************************************************************************************************************************************/
+#panel{width:100%;margin:0;padding:0;color:white;background-color:#005577;text-align:center;}
+.top{position:fixed;top:0;left:0;z-index:2;text-align:center;}
+.bottom{position:fixed;bottom:0;left:0;z-index:2;text-align:center;}
+#spacer{width:100%;color:lightgrey;}
+/***********************************************************************************************************************************************************************************************************/
+ul {padding:0;margin:0 auto;list-style:none;}
+li {margin:0 auto;padding:0em 1em;display:inline;position:relative;}
+li:hover{color:#005577;background-color:white;}
+li:hover ul{display:block;}
+li ul{height:100%;width:25%;color:white;background-color:#005577;display:none;overflow:auto;}
+li ul li{width:100%;display:block;position:static;}
+.left_side{position:fixed;top:0;left:0;z-index:1;}
+.right_side{position:fixed;top:0;right:0;z-index:1;}
+.header{color:white;background-color:#005577;}
+.header:hover{color:white;background-color:#005577;}
+/***********************************************************************************************************************************************************************************************************/
+.left{float:left;}
+.right{float:right;}
+.center{ margin:0 auto;text-align:center; }
+/***********************************************************************************************************************************************************************************************************/
+a{color:inherit;padding:0px;margin:0px;text-decoration:none;}
+p,h1,h2,h3,h4,h5,h6 { margin:0px; padding:0px; }
+fieldset{border:1px black solid; margin:2vh;padding:2vh;}
+legend{margin:0px;padding:0px;}
+form{padding:0px; margin:0px;}
+input{padding:0;margin:0 auto;}
+td{margin:0 auto;padding:0;}
+/***********************************************************************************************************************************************************************************************************/
