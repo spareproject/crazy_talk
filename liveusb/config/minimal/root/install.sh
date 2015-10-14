@@ -28,27 +28,23 @@ passwd -l root
 user=$(shuf -i 60000-65536 -n 1)
 group=$(shuf -i 60000-65536 -n 1)
 groupadd --gid ${group} group
-useradd --uid ${user} -g group -s /bin/bash user;
+useradd --uid ${user} -g group -s /bin/bash user
 gpasswd -a user wheel
-chown -R user:group /home/user;
+chown -R user:group /home/user
 chmod -R 700 /home/user
 passwd -l user
 ###############################################################################################################################################################################################################
-
 systemctl enable iptables
 #systemctl enable nftables
-
 systemctl enable haveged.service
-
 systemctl enable systemd-networkd.service
 #systemctl enable systemd-resolved.service
 systemctl enable dnscrypt-proxy.service
-
 systemctl enable combine.service
-
+rm /etc/systemd/system/remote-fs.service
 ###############################################################################################################################################################################################################
 umount /boot
-rm -r /boot
+rmdir  /boot
 ###############################################################################################################################################################################################################
 rm -r /var/lib/pacman/sync/*
 ###############################################################################################################################################################################################################

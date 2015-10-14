@@ -28,7 +28,6 @@ if [[ ! -f ./config/${2}/etc/pacman.conf ]];then      usage 1 "pacman.conf doesn
 if [[ ! -f ./config/${2}/root/arch.conf ]];then       usage 1 "arch.conf doesnt exist";fi
 if [[ ! -f ./config/${2}/root/loader.conf ]];then     usage 1 "loader.conf doesnt exist";fi
 if [[ ! -f ./config/${2}/root/syslinux.cfg ]];then    usage 1 "syslinux.cfg doesnt exist";fi
-if [[ ! -f ./config/${2}/root/09-gnupg.rules ]];then  usage 1 "09-gnupg.rules doesnt exist";fi
 # clean rootfs for a fresh install
 if [[ ! -z $(ls rootfs/) ]];then umount ./rootfs/* 2>/dev/null;rm -r ./rootfs/*;fi
 ###############################################################################################################################################################################################################
@@ -51,9 +50,9 @@ read -rp 'ffs please press enter'
 ###############################################################################################################################################################################################################
 arch-chroot ./rootfs /root/install.sh ${1}
 ###############################################################################################################################################################################################################
-idproduct=$(udevadm info ${1} | grep -e ID_MODEL_ID | sed 's/E: ID_MODEL_ID=//')
-idvendor=$(udevadm info ${1} | grep -e ID_VENDOR_ID | sed 's/E: ID_VENDOR_ID=//')
-serial=$(udevadm info ${1} | grep -e ID_SERIAL_SHORT | sed 's/E: ID_SERIAL_SHORT=//')
+idproduct=$(udevadm info ${1}|grep -e ID_MODEL_ID|sed 's/E: ID_MODEL_ID=//')
+idvendor=$(udevadm info ${1}|grep -e ID_VENDOR_ID|sed 's/E: ID_VENDOR_ID=//')
+serial=$(udevadm info ${1}|grep -e ID_SERIAL_SHORT|sed 's/E: ID_SERIAL_SHORT=//')
 sed -i -e "s/IDVENDOR/${idvendor}/" -e "s/IDPRODUCT/${idproduct}/" -e "s/SERIAL/${serial}/" ./rootfs/etc/udev/rules.d/81-archiso.rules
 ###############################################################################################################################################################################################################
 mount ${1}1 ./mount

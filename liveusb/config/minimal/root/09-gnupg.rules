@@ -1,7 +1,0 @@
-ACTION=="add",
-SUBSYSTEM=="scsi",
-ATTR{idVendor}=="IDVENDOR",
-ATTR{idProduct}=="IDPRODUCT",
-ATTR{serial}=="SERIAL",
-SYMLINK+="archiso%n"
-
