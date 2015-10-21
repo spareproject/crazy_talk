@@ -1,46 +1,55 @@
 #READMAH
 <br>
-new grsec... wont even boot : /<br>
+went a week without a phone its pretty good... haz plan<br>
 <br>
-i know the entire point of a plug and play usb is to plug and play it... but leave it in<br>
-someone blatenly switched out the syslinux mbr and dumped all things nasty in it<br>
-the stealth was epic considering it spews out garabage all over boot screen<br>
-and im pretty sure if your firmwaring keyboards or if its part of the bootloader blob<br>
-you should really test the output when you leave a tty open without starting x.... /sigh<br>
+random dump of website foo no where near finished no where near usable <br>
+pretty much only setup the login / 2fa and 2fa for account settings<br>
 <br>
-i get owned fucking loads because im clearly so popular but your stealth is terra bad and just starting to piss me off<br>
+going to make tables for messaging <br>
+profile with public facing public key - filter by account<br>
+none account username+private public key to leave a message<br>
 <br>
-so getting slightly bored havent done anything usefull for awhile...<br>
+meh just playing really<br>
 <br>
-going to write a script to hide messages against a binary blob<br>
-more specifically the binary blob in /dev/sdX3<br>
+general plan is use figlet for captcha till some unlucky fool has to write a ascii text to text generator<br>
+then dump random font generation in it... just a little nudge<br>
+then once someones well and truely wasted a large portion of their life<br>
+dump it to only pull words over 5 characters and random sub two chars with ?? only take missing input<br>
+and after all that<br>
+switch to css generated images, thats how nice i am as a person <br>
+its pretty much a stub but it does get points for being ascii art and i totally stole it from dhl haha<br>
 <br>
-./execute - random skip/seek dd takes whatever input you give it and generates a random numeric<br>
-remember the skip/seek and keep the numeric <br>
-./execute asks for insert point and file then calculate the message...<br>
-also going to look at dumping cryptsetup maps to use as salt<br>
+grsecs still totally forked i literally get nothing but missing os on boot regardless of boot format<br>
 <br>
-not exactly useful... but i have a giant binary blob and its only holding 100 chars<br>
-plus itll be easy to write and the actual 'salt' for the binary blob to store data is pretty much going to have to happen<br>
-^ if that even works if luks keyfile doesnt provide different maps ill have to find something else<br>
+read somewhere of actual use cases of sqlite databases hitting 500k read writes a day...<br>
+current setup that would literally be maybe about 5 calls per page click : /<br>
+but im going to bloat the shit out of it till i have wireframe / functionality down<br>
+then maybe look at shrinking it tidy it and leave a template<br>
 <br>
-if when i got back all this stuff still worked i would have left the tmp key fails but im dumping timestamps in it /shrug<br>
-^ and considering every form of authentication ive seen on the net relies on timestamps why people trust setting over the network is beyond me : /<br>
+everyone kept poking at email servers for ages but im that paranoid the only time i here people say this i just go weh?<br>
+going to the same spot everyweek is the equivilent of sticking a giant sign up saying super secret meeting place and expecting no one blow you up<br>
 <br>
-every default cookie cutter login / auth web based foo i ever learned was based on single user / single device login and single account<br>
-every fucking account i own is now apperently expected to have persistent access from a load of different devices  <br>
-this is pissing me off enough to actually pull my finger out and do some work : / pfft<br>
+if you have forward secrecy it isnt hard to otp a new place to leave a message on every exchange<br>
+ie google forum go to the one of 1,000,000 million forums out there<br>
+dump a profile and hello world in introduce yourself<br>
+hide the message and next X number of spots for redundency etc<br>
+could script that shit with my eyes closed <br>
 <br>
-but really need a cookie cutter single user multiple device authentication method and account management<br>
-its just pissing me off far to much<br>
+maybe i need to get out more : /<br>
 <br>
-as in single account multiple logins that are actually tracked and give 2 factor auth... 2nd account... or pki access to the control list<br>
-someone gets it and all the shiny alarm bells go off <br>
+basically desktops borked<br>
+minimal still works /shrug<br>
 <br>
-not a one cookie to rule them all fail <br>
+havent added or improved anything in minimal for a while and it is literally held together with duct tape <br>
 <br>
-^ going to start it all in bash its more theory than teh bestest web language out there... and just nest it after the sucky bruteforcable implementation in this repo<br>
+if i improve it itll probably go down i loose access to all the crap i have setup cant do anything that isnt iso get bored easily etc<br>
+but meh need to finish and improve so much crap on it<br>
 <br>
+erm...<br>
+systemd-nspawn random bug me thinks<br>
+if i call machinectl login machine, then attempt to login it doesnt work at all : /<br>
+if i systemd-nspawn -bD ./ and login it works perfectly<br>
+dont really have a usecase to even notice this anymore but its definitly fucked<br>
 <br>
-<br>
-<br>
+
+

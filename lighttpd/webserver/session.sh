@@ -1,76 +1,134 @@
 #!/bin/env bash
-###############################################################################################################################################################################################################
+#############################################################################################################################################################################################################
 declare -A get
 declare -A post
 declare -A cookie
-###############################################################################################################################################################################################################
-function input {
+#############################################################################################################################################################################################################
+function input { # http_cookie needs fixing
 if [[ ! -z ${HTTP_COOKIE} ]];then
-  input=$(echo "$HTTP_COOKIE" | tr -cd 'a-zA-Z0-9=.[:space:]')
+  input=$(tr -cd 'a-zA-Z0-9=.[:space:]'<<<$HTTP_COOKIE)
   for i in ${input};do cookie[${i%%=*}]=${i##*=};done
   unset input
 fi
 if [[ ! -z ${QUERY_STRING} ]];then
-  input=$(echo "$QUERY_STRING" | tr -cd 'a-zA-Z0-9=&%.')
+  input=$(tr -cd 'a-zA-Z0-9=&%.'<<<$QUERY_STRING)
   OLDIFS=$IFS;IFS="&";for i in ${input};do get[${i%%=*}]=${i##*=};done;IFS=$OLDIFS
   unset input
 fi
 if [[ ${REQUEST_METHOD} == "POST" && ${CONTENT_TYPE} == "application/x-www-form-urlencoded" ]];then
-  input=$(cat /dev/stdin|tr -cd 'a-zA-Z0-9=&%.')
+  input=$(tr -cd 'a-zA-Z0-9=&%.\-\+_'</dev/stdin)
   OLDIFS=$IFS;IFS="&";for i in ${input};do post[${i%%=*}]=${i##*=};done;IFS=$OLDIFS
   unset input
 fi
-#if [[ ${REQUEST_METHOD} == "POST" && ${CONTENT_TYPE} == "text/plain" ]];then input=$(cat /dev/stdin | tr -cd 'a-zA-Z0-9=[:space:]');for i in ${input};do post[${i%%=*}]=${i##*=};done;unset input;fi
-#if [[ ${REQUEST_METHOD} == "POST" && $(grep "multipart/form-data" <<< ${CONTENT_TYPE}) ]];then input=$(cat /dev/stdin);unset input;fi
 }
+###############################################################################################################################################################################################################
+
+
+
 ###############################################################################################################################################################################################################
 function session {
-if [[ -f /home/user/lighttpd/auth/cookie.hash && $(sha512sum<<<"${cookie[session]}${REMOTE_ADDR}") == $(cat /home/user/lighttpd/auth/cookie.hash) ]];then
+database=/home/user/lighttpd/database/webserver.sqlite
+sqlite3 $database<<<"delete from session where session_expire<'$(date +%s)';"&>/dev/null
+if [[ -v cookie[session] && $(sqlite3 $database<<<"select exists(select * from session where username='${cookie[username]}' and session='$(sha512sum<<<${cookie[session]})' and session_expire>'$(date +%s)');") == 1 ]];then
+if [[ -v cookie[auth] && $(sqlite3 $database<<<"select exists(select * from session where username='${cookie[username]}' and auth='$(sha512sum<<<${cookie[auth]})' and auth_expire>'$(date +%s)');") == 1 ]];then
+###############################################################################################################################################################################################################
+#if [[ -v cookie[priv] && $(sqlite3 $database<<<"select exists(select * from session where username='${cookie[username]}' and priv='$(sha512sum<<<${cookie[priv]})' and priv_expire>'$(date +%s)');") == 0 ]];then
+#if [[ ${REQUEST_URI} == "/account.cgi" ]];then echo "Location:/index.cgi";fi
+#fi
+###############################################################################################################################################################################################################
 
-  if [[ ${post[action]} == "logout" ]];then echo "Set-Cookie:session=empty;Path=/;Secure;HttpOnly";echo "Location:/login.cgi";fi
-  
-  if [[ -f /home/user/lighttpd/auth/cookie.timestamp && $(date +%s) -gt $(cat /home/user/lighttpd/auth/cookie.timestamp) ]];then
-    random=$(dd if=/dev/random bs=1 count=4000 2>/dev/null|tr -c 'a-zA-Z0-9' '.')
-    sha512sum<<<"$random$REMOTE_ADDR">/home/user/lighttpd/auth/cookie.hash
-    echo $(($(date +%s)+60))>/home/user/lighttpd/auth/cookie.timestamp
-    echo "Set-Cookie:session=$random;Path=/;Secure;HttpOnly"
-    #echo "Location:/${SCRIPT_FILENAME##/home/user/lighttpd/webserver}"
-    unset random
-  fi
-  
-  if [[ $(date +%s) -gt $(cat /home/user/lighttpd/auth/cookie.expire) ]];then rm /home/user/lighttpd/auth/cookie*;echo "Set-Cookie:session=expire;Path=/;Secure;HttpOnly";echo "Location:/login.cgi";fi
+if [[ "${REQUEST_URI}" == "/2fa.cgi" || "${REQUEST_URI}" == "/login.cgi" || "${REQUEST_URI}" == "/register.cgi" ]];then echo "Location:/index.cgi";fi
 
-  if [[ ${REQUEST_URI} == "/login.cgi" ]];then echo "Location:/index.cgi";fi
+if [[ ${post[action]} == "priv_logout" ]];then echo stub >/dev/null;fi
+if [[ ${post[action]} == "auth_logout" ]];then echo stub >/dev/null;fi
+
+if [[ ${post[action]} == "priv_login" ]];then
+if [[ $(sqlite3 $database<<<"select exists(select * from session where username='${cookie[username]}' and response='$(sha512sum<<<${post[response]})');") == 1 ]];then
+
+priv=$(dd if=/dev/random bs=1 count=1024 2>/dev/null|tr -c 'a-zA-Z0-9' '.')
+randum=$(dd if=/dev/random bs=1 count=128 2>/dev/null|tr -c 'a-zA-Z0-9' '.')
+challenge=$(gpg --homedir /home/user/lighttpd/gnupg -r "${cookie[username]}" -e<<<"$randum")
+
+sqlite3 $database<<<"
+update session set
+priv='$(sha512sum<<<${priv})',
+priv_expire='$(($(date +%s)+300))',
+last_seen='$(date +%s)',
+challenge='$challenge',
+response='$(sha512sum<<<$randum)'
+where response='$(sha512sum<<<${post[response]})';"
+
+echo "Set-Cookie:priv=$priv;Path=/;Secure;HttpOnly";echo "Location:/account.cgi"
+
+fi;fi
+###############################################################################################################################################################################################################
 
 else
+if [[ "${REQUEST_URI}" != "/2fa.cgi" ]];then echo "Location:/2fa.cgi";fi
+if [[ ${post[action]} == "session_logout" ]];then echo stub>/dev/null;fi
 
-  if [[ ! -f /home/user/lighttpd/auth/challenge.timestamp||$(date +%s) -gt $(cat /home/user/lighttpd/auth/challenge.timestamp) ]];then
-    random=$(dd if=/dev/random bs=1 count=1024 2>/dev/null|tr -c 'a-zA-Z0-9' '.')
-    salt=$RANDOM
-    echo $(($(date +%s)+60))>/home/user/lighttpd/auth/challenge.timestamp
-    echo $salt > /home/user/lighttpd/auth/challenge.salt
-    sha512sum<<<"$random$salt">/home/user/lighttpd/auth/challenge.hash
-    gpg --homedir /home/user/lighttpd/gnupg -e -r webserver<<<$random>/home/user/lighttpd/webserver/challenge
-    unset random
-    unset salt
-  fi
+if [[ ${post[action]} == "auth_login" ]];then
+if [[ $(sqlite3 $database<<<"select exists(select * from session where username='${cookie[username]}' and response='$(sha512sum<<<${post[response]})');") == 1 ]];then
+auth=$(dd if=/dev/random bs=1 count=1024 2>/dev/null|tr -c 'a-zA-Z0-9' '.')
+randum=$(dd if=/dev/random bs=1 count=128 2>/dev/null|tr -c 'a-zA-Z0-9' '.')
+challenge=$(gpg --homedir /home/user/lighttpd/gnupg -r "${cookie[username]}" -e<<<"$randum")
+sqlite3 $database<<<"
+update session set
+auth='$(sha512sum<<<$auth)',
+auth_expire='$(($(date +%s)+${post[expire]}))',
+last_seen='$(date +%s)',
+challenge='$challenge',
+response='$(sha512sum<<<$randum)'
+where response='$(sha512sum<<<${post[response]})';"
 
-  if [[ ${post[action]} == "login" ]];then
-    if [[ $(sha512sum<<<"${post[response]}$(cat /home/user/lighttpd/auth/challenge.salt)") == $(cat /home/user/lighttpd/auth/challenge.hash) || ${post[response]} == "password" ]];then
-      random=$(dd if=/dev/random bs=1 count=4000 2>/dev/null|tr -c 'a-zA-Z0-9' '.')
-      sha512sum<<<"$random$REMOTE_ADDR">/home/user/lighttpd/auth/cookie.hash
-      echo $(($(date +%s)+60))>/home/user/lighttpd/auth/cookie.timestamp
-      echo $(($(date +%s)+${post[expire]}))>/home/user/lighttpd/auth/cookie.expire
-      echo "Set-Cookie:session=$random;Path=/;Secure;HttpOnly"
-      echo "Location:/login.cgi"
-      unset random
-    fi
-  fi
-  if [[ ${REQUEST_URI} != "/login.cgi" ]];then echo "Location:/login.cgi";fi
-fi
-echo -e "Content-type:text/html\n\n"
-}
+echo "Set-Cookie:auth=$auth;Path=/;Secure;HttpOnly";echo "Location:/2fa.cgi"
+fi;fi
 ###############################################################################################################################################################################################################
+fi;else
+#
+if [[ "${REQUEST_URI}" != "/login.cgi" && "${REQUEST_URI}" != "/register.cgi" ]];then echo "Location:/login.cgi";fi
+#
+if [[ ${post[action]} == "session_login" ]];then
+if [[ $(sqlite3 $database<<<"select exists(select * from user where username='${post[username]}' and password='$(sha512sum<<<${post[password]})');") == 1 ]];then
+session=$(dd if=/dev/random bs=1 count=1024 2>/dev/null|tr -c 'a-zA-Z0-9' '.')
+randum=$(dd if=/dev/random bs=1 count=128 2>/dev/null|tr -c 'a-zA-Z0-9' '.')
+
+fingerprint=$(sqlite3 $database<<<"select fingerprint from user where username='${post[username]}';")
+
+challenge=$(gpg --homedir /home/user/lighttpd/gnupg -r "${post[username]}" -e<<<"$randum")
+
+
+sqlite3 $database<<<"
+insert into session(username,session,session_expire,ip,created,last_seen,challenge,response)
+values(
+'${post[username]}',
+'$(sha512sum<<<${session})',
+'$(($(date +%s)+${post[expire]}))',
+'$REMOTE_ADDR',
+'$(date +%s)',
+'$(date +%s)',
+'$challenge',
+'$(sha512sum<<<$randum)'
+);"
+echo "Set-Cookie:session=${session};Path=/;Secure:HttpOnly";
+echo "Set-Cookie:username=${post[username]};Path=/;Secure;HttpOnly";
+echo "Set-Cookie:fingerprint=$fingerprint;Path=/;Secure;HttpOnly";
+echo "Location:/login.cgi"
+fi;fi
+#
+if [[ ${post[action]} == "session_logout" ]];then
+sqlite3 $database<<<"delete from session where username='${cookie[username]}' and session='$(sha512sum<<<${cookie[session]})';"
+echo "Set-Cookie:session=;Path=/;Secure;HttpOnly";echo "Location:/login.cgi"
+fi
+#
+fi
+
+echo -e "Content-type:text/html\n\n";}
+#############################################################################################################################################################################################################
+
+
+
+#############################################################################################################################################################################################################
 function header {
 echo "
 <!DOCTYPE html><html>
@@ -79,8 +137,11 @@ echo "
 <div id='panel' class='top'>
 <ul class=left><li><a href=/index.cgi>[menu]</a><ul class=left_side>
   <li class=header>-</li>
+  <a href=/register.cgi><li>register</li></a>
   <a href=/login.cgi><li>login</li></a>
-  <a href=index.cgi><li>index</li></a>
+  <a href=/index.cgi><li>index</li></a>
+  <a href=/database.cgi><li>database</li></a>
+  <a href=/account.cgi><li>account</li></a>
   <div id='spacer' class=center>-</div>
 </ul></li></ul>
 <ul class=right><li>[$(date)]<ul class=right_side>

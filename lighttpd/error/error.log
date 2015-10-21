@@ -1,1 +1,89 @@
-.
+
+2015-10-04 17:31:43: (log.c.194) server started 
+2015-10-04 17:42:35: (server.c.1451) [note] graceful shutdown started 
+2015-10-04 17:42:35: (server.c.1567) server stopped by UID = 0 PID = 1 
+2015-10-04 17:42:36: (log.c.194) server started 
+2015-10-04 18:03:48: (server.c.1451) [note] graceful shutdown started 
+2015-10-04 18:03:48: (server.c.1567) server stopped by UID = 0 PID = 1 
+2015-10-04 18:03:49: (log.c.194) server started 
+2015-10-04 18:59:10: (log.c.194) server started 
+2015-10-04 19:23:44: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:18: (log.c.194) server started 
+2015-10-11 03:23:28: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:16: (log.c.194) server started 
+2015-10-11 12:23:58: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:15: (log.c.194) server started 
+2015-10-12 04:14:54: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:14: (log.c.194) server started 
+1970-01-01 00:17:51: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:14: (log.c.194) server started 
+2015-10-12 14:40:04: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:14: (log.c.194) server started 
+2015-10-13 17:10:59: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:14: (log.c.194) server started 
+2015-10-13 20:05:51: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:15: (log.c.194) server started 
+2015-10-14 18:53:15: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:14: (log.c.194) server started 
+2015-10-15 03:29:56: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:14: (log.c.194) server started 
+2015-10-15 16:48:53: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:14: (log.c.194) server started 
+2015-10-15 19:34:44: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:14: (log.c.194) server started 
+2015-10-15 20:30:58: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:14: (log.c.194) server started 
+2015-10-15 11:45:26: (server.c.1451) [note] graceful shutdown started 
+2015-10-15 11:45:26: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:15: (log.c.194) server started 
+2015-10-16 03:02:00: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:15: (log.c.194) server started 
+2015-10-16 03:52:05: (server.c.1451) [note] graceful shutdown started 
+2015-10-16 03:52:05: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:14: (log.c.194) server started 
+2015-10-16 05:30:52: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:14: (log.c.194) server started 
+2015-10-16 17:06:10: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:14: (log.c.194) server started 
+2015-10-16 23:46:10: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:15: (log.c.194) server started 
+2015-10-17 05:23:36: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:15: (log.c.194) server started 
+2015-10-17 16:23:54: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:15: (log.c.194) server started 
+2015-10-17 20:58:51: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:17: (log.c.194) server started 
+2015-10-18 06:17:08: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:16: (log.c.194) server started 
+2015-10-19 04:19:09: (server.c.1451) [note] graceful shutdown started 
+2015-10-19 04:19:09: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:15: (log.c.194) server started 
+2015-10-19 19:52:21: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:17: (log.c.194) server started 
+2015-10-20 02:37:43: (server.c.1451) [note] graceful shutdown started 
+2015-10-20 02:37:43: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:17: (log.c.194) server started 
+1970-01-01 00:00:17: (server.c.1048) WARNING: unknown config-key: accesslog.filename (ignored) 
+2015-10-20 03:02:53: (server.c.1451) [note] graceful shutdown started 
+2015-10-20 03:02:53: (server.c.1567) server stopped by UID = 0 PID = 1 
+2015-10-20 03:02:55: (log.c.194) server started 
+2015-10-20 03:02:55: (server.c.1048) WARNING: unknown config-key: accesslog.filename (ignored) 
+2015-10-20 03:04:07: (server.c.1451) [note] graceful shutdown started 
+2015-10-20 03:04:07: (server.c.1567) server stopped by UID = 0 PID = 1 
+2015-10-20 03:04:08: (log.c.194) server started 
+2015-10-20 03:04:08: (server.c.1048) WARNING: unknown config-key: accesslog.filename (ignored) 
+2015-10-20 07:07:11: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:16: (log.c.194) server started 
+1970-01-01 00:00:16: (server.c.1048) WARNING: unknown config-key: accesslog.filename (ignored) 
+1970-01-01 00:04:00: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:15: (log.c.194) server started 
+1970-01-01 00:00:15: (server.c.1048) WARNING: unknown config-key: accesslog.filename (ignored) 
+2015-10-21 07:56:55: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:16: (log.c.194) server started 
+1970-01-01 00:00:16: (server.c.1048) WARNING: unknown config-key: accesslog.filename (ignored) 
+2015-10-21 18:17:35: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:15: (log.c.194) server started 
+1970-01-01 00:00:15: (server.c.1048) WARNING: unknown config-key: accesslog.filename (ignored) 
+2015-10-21 19:50:57: (server.c.1567) server stopped by UID = 0 PID = 1 
+1970-01-01 00:00:15: (log.c.194) server started 
+1970-01-01 00:00:15: (server.c.1048) WARNING: unknown config-key: accesslog.filename (ignored) 

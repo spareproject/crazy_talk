@@ -1,0 +1,4 @@
+2015-10-20 02:44:43: (log.c.194) server started 
+2015-10-20 02:44:43: (server.c.1048) WARNING: unknown config-key: accesslog.filename (ignored) 
+2015-10-20 02:44:43: (server.c.1048) WARNING: unknown config-key: accesslog.filename (ignored) 
+2015-10-20 02:47:07: (server.c.1567) server stopped by UID = 1000 PID = 1327 

@@ -37,9 +37,6 @@ li ul li{width:100%;display:block;position:static;}
 .left{float:left;}
 .right{float:right;}
 .center{ margin:0 auto;text-align:center; }
-.wstretch{width:100%;}
-.hstretch{height:100%;}
-.captcha{font-size:0.3vw;}
 /***********************************************************************************************************************************************************************************************************/
 a{color:inherit;padding:0px;margin:0px;text-decoration:none;}
 p,h1,h2,h3,h4,h5,h6 { margin:0px; padding:0px; }
